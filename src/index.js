@@ -4,12 +4,26 @@ import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 
-const portalCode = document.getElementById("bukazu-app").getAttribute("portal-code");
-console.log(portalCode);
+import { ApolloProvider } from "react-apollo";
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
 
+const httpLink = createHttpLink({
+    uri: 'https://stage.bukazu.eu/graphql'
+})
+
+const client = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache()
+})
+
+const portalCode = document.getElementById("bukazu-app").getAttribute("portal-code");
 
 ReactDOM.render(
-    <App portalCode={portalCode} />,
+  <ApolloProvider client={client}>
+    <App portalCode={portalCode} />
+  </ApolloProvider>,
   document.getElementById("bukazu-app")
 );
 registerServiceWorker();
