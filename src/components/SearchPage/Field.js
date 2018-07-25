@@ -4,22 +4,22 @@ class Field extends Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this)
-        this.state = {value: ''}
     }
 
-    handleChange(e) {
-        this.props.onFilterChange(this.props.field.id, e.target.value);
+    handleChange(event) {
+        this.props.onFilterChange(this.props.field.id, event.target.value);
     }
 
   render() {
       const field = this.props.field
       const options = this.props.options;
       let input;
-      const value = this.state.value;
+      const value = this.props.filters[field.id];
 
       if (field.type === 'select') {
           if (options.constructor === Array) {
               input = <select  name={field.id} onChange={this.handleChange}>
+                  <option value=''>Maak een keuze</option>
                   {options.map(opt =>
                       <option key={opt.id} value={opt.id}>{opt.name}</option>
                   )}

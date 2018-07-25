@@ -6,17 +6,21 @@ class Filters extends Component {
     constructor(props) {
         super(props)
         this.saveFilters = this.saveFilters.bind(this)
-        this.state = {filters: []}
+        this.state = {filters: {
+            countries: ''
+        }}
     }
 
     saveFilters(field, input) {
-        this.setState(prevState => ({
-            filters: [this.state.filters.array, {[field]: input} ]
-        }))
+        let newFilters = this.state.filters
+        newFilters[field] = input
+        this.setState({filters: newFilters})
+        console.log(this.state.filters);
     }
 
   render() {
     const PortalSite = this.props.PortalSite
+    const filters = this.state.filters
 
     return (
         <div
@@ -30,7 +34,7 @@ class Filters extends Component {
                             display: 'block'
                         }}
                         >{field.label}</label>
-                    <Field field={field} options={PortalSite[field.id]} onFilterChange={this.saveFilters} />
+                    <Field field={field} options={PortalSite[field.id]} filters={filters} onFilterChange={this.saveFilters} />
                 </div>
             )}
         </div>

@@ -18,13 +18,14 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-const portalCode = document.getElementById("bukazu-app").getAttribute("portal-code");
-const objectCode = document.getElementById("bukazu-app").getAttribute("object-code");
+const element = document.getElementById("bukazu-app")
+const portalCode = element.getAttribute("portal-code");
+const objectCode = element.getAttribute("object-code");
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App portalCode={portalCode} objectCode={objectCode} />
   </ApolloProvider>,
-  document.getElementById("bukazu-app")
+  element
 );
 registerServiceWorker();
