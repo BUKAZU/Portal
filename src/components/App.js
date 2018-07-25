@@ -37,17 +37,18 @@ export const PORTAL_QUERY = gql`
 
 class App extends Component {
   render() {
+      const id = this.props.portalCode
     return (
-        <Query query={PORTAL_QUERY} variables={id: this.props.portalCode}>
+        <Query query={PORTAL_QUERY} variables={{ id }}>
             {({ loading, error, data }) => {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
 
-              const linksToRender = data.feed.links
+              const linksToRender = data.feed
 
               return (
                 <div>
-                  {linksToRender.map(link => <div key={link.id} link={link} />)}
+                  {linksToRender}
                 </div>
               )
             }}
