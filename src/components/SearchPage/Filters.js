@@ -1,44 +1,42 @@
 import React, { Component } from 'react';
-// import Field from './Field';
+import Field from './Field';
 
 
 class Filters extends Component {
     constructor(props) {
-        super.props
+        super(props)
+        this.saveFilters = this.saveFilters.bind(this)
+        this.state = {filters: []}
     }
+
+    saveFilters(field, input) {
+        this.setState(prevState => ({
+            filters: [this.state.filters.array, {[field]: input} ]
+        }))
+    }
+
   render() {
     const PortalSite = this.props.PortalSite
-    console.log(PortalSite['cities']);
+    console.log(this.state);
 
     return (
-        <div>
+        <div
+            style={{
+                width: '30%'
+            }}>
             {PortalSite.options.searchFields.map(field =>
                 <div key={field.id}>
-                    <label>{field.label}</label>
-                    <Field field={field} options={PortalSite[field.id]} />
+                    <label style={{
+                            width: '100%',
+                            display: 'block'
+                        }}
+                        >{field.label}</label>
+                    <Field field={field} options={PortalSite[field.id]} onFilterChange={this.saveFilters} />
                 </div>
             )}
         </div>
     )
   }
-}
-
-function Field(props) {
-    const field = props.field
-    const options = props.options;
-    if (field.type === 'select') {
-        console.log(options.constructor);
-        if (options.constructor === Array) {
-            return (<select name={field.id}>
-                {options.map(opt =>
-                    <option key={opt.id} value={opt.id}>{opt.name}</option>
-                )}
-                </select>);
-        }
-        return <input/>
-    } else {
-        return <input/>
-    }
 }
 
 export default Filters;

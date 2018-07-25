@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Filters from './Filters'
+import Results from './Results'
 
 
 
@@ -8,8 +9,14 @@ class SearchPage extends Component {
       console.log(this.props.PortalSite);
 
     return (
-        <div>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'row'
+            }}
+            >
             <Filters PortalSite={this.props.PortalSite} />
+            <Results PortalSite={this.props.PortalSite} />
         </div>
     )
   }

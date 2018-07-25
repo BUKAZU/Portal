@@ -8,6 +8,7 @@ import SearchPage from './SearchPage/SearchPage'
 export const PORTAL_QUERY = gql`
     query PortalSiteQuery($id: ID!) {
         PortalSite(id: $id) {
+            portal_code
             options
             countries {
                 id
