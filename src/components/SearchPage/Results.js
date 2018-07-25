@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import SingleResult from './SingleResult'
+import './Results.css'
 
 export const HOUSES_QUERY = gql`
     query PortalSiteHousesQuery($id: ID!, $country_id: ID!){
@@ -38,7 +39,7 @@ class Results extends Component {
               const Results = data.PortalSite.houses
 
               return (
-                <div>
+                <div id='results'>
                 {Results.map(result =>
                     <SingleResult key={result.id} result={result} />
                 )}

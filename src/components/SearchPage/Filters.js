@@ -6,9 +6,7 @@ class Filters extends Component {
     constructor(props) {
         super(props)
         this.saveFilters = this.saveFilters.bind(this)
-        this.state = {filters: {
-            countries: ''
-        }}
+        this.state = {filters: {}}
     }
 
     saveFilters(field, input) {

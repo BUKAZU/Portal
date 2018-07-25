@@ -1,0 +1,7 @@
+#bukazu-app #results {
+    display: flex;
+    flex-direction: row;
+    div {
+
+    }
+}
