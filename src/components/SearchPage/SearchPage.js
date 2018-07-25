@@ -6,8 +6,6 @@ import Results from './Results'
 
 class SearchPage extends Component {
   render() {
-      console.log(this.props.PortalSite);
-
     return (
         <div
             style={{

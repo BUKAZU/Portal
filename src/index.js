@@ -19,10 +19,11 @@ const client = new ApolloClient({
 })
 
 const portalCode = document.getElementById("bukazu-app").getAttribute("portal-code");
+const objectCode = document.getElementById("bukazu-app").getAttribute("object-code");
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App portalCode={portalCode} />
+    <App portalCode={portalCode} objectCode={objectCode} />
   </ApolloProvider>,
   document.getElementById("bukazu-app")
 );

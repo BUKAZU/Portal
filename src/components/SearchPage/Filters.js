@@ -17,12 +17,11 @@ class Filters extends Component {
 
   render() {
     const PortalSite = this.props.PortalSite
-    console.log(this.state);
 
     return (
         <div
             style={{
-                width: '30%'
+                width: '20%'
             }}>
             {PortalSite.options.searchFields.map(field =>
                 <div key={field.id}>

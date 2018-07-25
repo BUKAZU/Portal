@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import SearchPage from './SearchPage/SearchPage'
+import CalendarPage from './CalendarPage/CalendarPage'
 
 export const PORTAL_QUERY = gql`
     query PortalSiteQuery($id: ID!) {
@@ -41,6 +42,8 @@ export const PORTAL_QUERY = gql`
 class App extends Component {
   render() {
       const id = this.props.portalCode
+      const objectId = this.props.objectCode
+
     return (
         <Query query={PORTAL_QUERY} variables={{ id }}>
             {({ loading, error, data }) => {
@@ -49,11 +52,11 @@ class App extends Component {
 
               const PortalSite = data.PortalSite
 
-              return (
-                <div>
-                  <SearchPage PortalSite={PortalSite} />
-                </div>
-              )
+              if (objectId !== '' || objectId !== null) {
+                  return <SearchPage PortalSite={PortalSite} />
+              } else {
+                  return <CalendarPage PortalSite={PortalSite} objectId={objectId} />
+              }
             }}
         </Query>
     )

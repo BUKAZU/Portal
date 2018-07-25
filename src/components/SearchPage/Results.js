@@ -4,9 +4,11 @@ import gql from "graphql-tag";
 import SingleResult from './SingleResult'
 
 export const HOUSES_QUERY = gql`
-    query PortalSiteHousesQuery($id: ID!){
+    query PortalSiteHousesQuery($id: ID!, $country_id: ID!){
         PortalSite(id: $id) {
-            houses {
+            houses(
+                country_id: $country_id
+            ) {
                 id
                 name
                 persons
@@ -22,20 +24,23 @@ export const HOUSES_QUERY = gql`
 
 class Results extends Component {
   render() {
-    const id = this.props.PortalSite.portal_code
+    const variables = {
+        id: this.props.PortalSite.portal_code,
+        country_id: 1
+    }
 
     return (
-        <Query query={HOUSES_QUERY} variables={{ id }}>
+        <Query query={HOUSES_QUERY} variables={variables}>
             {({ loading, error, data }) => {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
 
-              const Houses = data.PortalSite.houses
+              const Results = data.PortalSite.houses
 
               return (
                 <div>
-                {Houses.map(house =>
-                    <SingleResult key={house.id} house={house} />
+                {Results.map(result =>
+                    <SingleResult key={result.id} result={result} />
                 )}
                 </div>
               )

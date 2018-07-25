@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class SingleResult extends Component {
 
   render() {
-      const house = this.props.house
+      const result = this.props.result
       return (
         <div>
-            {house.name}
-            {house.image_url}
+            {result.name}
+            {result.image_url}
         </div>
       )
   }
