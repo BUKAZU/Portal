@@ -3,6 +3,8 @@ import './App.css';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
+import SearchPage from './SearchPage/SearchPage'
+
 export const PORTAL_QUERY = gql`
     query PortalSiteQuery($id: ID!) {
         PortalSite(id: $id) {
@@ -44,11 +46,11 @@ class App extends Component {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
 
-              const linksToRender = data.feed
+              const PortalSite = data.PortalSite
 
               return (
                 <div>
-                  {linksToRender}
+                  <SearchPage PortalSite={PortalSite} />
                 </div>
               )
             }}
