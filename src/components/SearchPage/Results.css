@@ -1,7 +1,8 @@
 #bukazu-app #results {
     display: flex;
     flex-direction: row;
-    div {
-
-    }
+    flex-wrap: wrap;
+}
+#bukazu-app #results .object {
+    flex: 1 1 25%;
 }
