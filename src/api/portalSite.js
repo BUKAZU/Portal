@@ -1,6 +1,10 @@
+
+import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-const PORTAL_SITE = gql`
+const PortalSite = () => (
+    <Query
+        query={gql`
   query PortalSiteQuery($id: ID!) {
     PortalSite(id: $id) {
       options
@@ -30,4 +34,7 @@ const PORTAL_SITE = gql`
       region_label
     }
   }
-`;
+`}
+>
+</Query>
+);
