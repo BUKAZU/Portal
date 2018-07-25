@@ -43,6 +43,7 @@ class App extends Component {
   render() {
       const id = this.props.portalCode
       const objectId = this.props.objectCode
+      console.log(objectId);
 
     return (
         <Query query={PORTAL_QUERY} variables={{ id }}>
@@ -53,9 +54,9 @@ class App extends Component {
               const PortalSite = data.PortalSite
 
               if (objectId !== '' || objectId !== null) {
-                  return <SearchPage PortalSite={PortalSite} />
-              } else {
                   return <CalendarPage PortalSite={PortalSite} objectId={objectId} />
+              } else {
+                  return <SearchPage PortalSite={PortalSite} />
               }
             }}
         </Query>
