@@ -21,10 +21,8 @@ class Filters extends Component {
     const filters = this.state.filters
 
     return (
-        <div
-            style={{
-                width: '20%'
-            }}>
+        <div className="filters"
+            >
             {PortalSite.options.searchFields.map(field =>
                 <div key={field.id}>
                     <label style={{
