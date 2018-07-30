@@ -17,19 +17,22 @@ class Field extends Component {
       let input;
       const value = this.props.filters[field.id];
 
-      if (field.type === 'select') {
-          if (options.constructor === Array) {
-              input = <select  name={field.id} onChange={this.handleChange}>
-                  <option value=''>Maak een keuze</option>
-                  {options.map(opt =>
-                      <option key={opt.id} value={opt.id}>{opt.name}</option>
-                  )}
+      switch (field.type) {
+          case 'select':
+              if (options.constructor === Array) {
+                  input = <select  name={field.id} onChange={this.handleChange}>
+                      <option value=''>Maak een keuze</option>
+                      {options.map(opt =>
+                          <option key={opt.id} value={opt.id}>{opt.name}</option>
+                      )}
                   </select>
-          } else {
+              } else {
+                  input = <input value={value} onChange={this.handleChange} />
+              }
+              break
+
+          default:
               input = <input value={value} onChange={this.handleChange} />
-          }
-      } else {
-          input = <input value={value} onChange={this.handleChange} />
       }
       return input
   }
