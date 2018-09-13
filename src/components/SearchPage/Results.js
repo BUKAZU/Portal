@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import SingleResult from './SingleResult'
@@ -25,9 +26,9 @@ export const HOUSES_QUERY = gql`
 
 class Results extends Component {
   render() {
-    const variables = {
-        id: this.props.PortalSite.portal_code,
-        country_id: 1
+    let variables =  {
+            id: this.props.PortalSite.portal_code,
+            country_id: this.props.filters.countries
     }
 
     return (
@@ -49,6 +50,11 @@ class Results extends Component {
         </Query>
     )
   }
+}
+
+Results.defaultProps = {
+    countries: "",
+    city_id: "",
 }
 
 export default Results;

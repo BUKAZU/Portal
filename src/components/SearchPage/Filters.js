@@ -12,8 +12,7 @@ class Filters extends Component {
     saveFilters(field, input) {
         let newFilters = this.state.filters
         newFilters[field] = input
-        this.setState({filters: newFilters})
-        console.log(this.state.filters);
+        this.props.onFilterChange(newFilters)
     }
 
   render() {
