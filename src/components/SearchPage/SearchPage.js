@@ -7,7 +7,20 @@ import './SearchPage.css'
 class SearchPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {filters: {}}
+    this.state = {
+      filters: {
+        countries: "1",
+        cities: "",
+        regions: "",
+        max_persons: "",
+        max_weekprice: "",
+        max_nights: "",
+        max_bedrooms: "",
+        max_bathrooms: "",
+        extra_search: "",
+        max_price: ""
+      }
+    }
     this.onFilterChange = this.onFilterChange.bind(this)
   }
 
@@ -22,7 +35,7 @@ class SearchPage extends Component {
     return (
         <div id='search-page'
             >
-            <Filters PortalSite={this.props.PortalSite} onFilterChange={this.onFilterChange} />
+            <Filters PortalSite={this.props.PortalSite} filters={filters} onFilterChange={this.onFilterChange} />
             <Results PortalSite={this.props.PortalSite} filters={filters}/>
         </div>
     )

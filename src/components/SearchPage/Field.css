@@ -38,9 +38,3 @@
     padding: 0;
     list-style: none;
 }
-#bukazu-app .radioList li {
-    display: flex;
-    align-items: center;
-    margin: 8px 0;
-    cursor: pointer;
-}
