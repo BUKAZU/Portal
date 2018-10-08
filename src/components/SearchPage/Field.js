@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Field.css'
+import ListItem from './inputs/listItem.css'
+
 
 class Field extends Component {
     constructor(props) {
@@ -15,14 +17,15 @@ class Field extends Component {
       const field = this.props.field
       const options = this.props.options;
       let input;
-      const value = this.props.filters[field.id];
+      const value = this.props.value;
+      const countries = this.props.filters.countries
 
       if (field.type === 'select') {
           if (options.constructor === Array) {
-              input = <select  name={field.id} onChange={this.handleChange}>
+              input = <select  name={field.id} onChange={this.handleChange} value={value}>
                   <option value=''>Maak een keuze</option>
                   {options.map(opt =>
-                      <option key={opt.id} value={opt.id}>{opt.name}</option>
+                      <option key={opt.id} value={opt.id} disabled={countries ? !countries.includes(opt.country_id) : false }>{opt.name}</option>
                   )}
                   </select>
           } else {
@@ -30,12 +33,11 @@ class Field extends Component {
           }
       } else if(field.type === 'list')  {
           input = <ul className='radioList'>
-
             {options.map(opt =>
-                <li key={opt.id}>
-                    <input name={field.id} type='radio' id={opt.id} value={opt.id} />
+                <ListItem key={opt.id} disabled={countries ? !countries.includes(opt.country_id) : false }>
+                    <input name={field.id} type='radio' id={opt.id} value={opt.id} disabled={countries ? !countries.includes(opt.country_id) : false } checked={value === opt.id} onChange={this.handleChange}/>
                     <label htmlFor={opt.id}>{opt.name}</label>
-                </li>
+                </ListItem>
 
             )}
           </ul>

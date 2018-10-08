@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import Field from './Field';
 
-
 class Filters extends Component {
     constructor(props) {
         super(props)
         this.saveFilters = this.saveFilters.bind(this)
-        this.state = {filters: {}}
     }
 
     saveFilters(field, input) {
-        let newFilters = this.state.filters
+        let newFilters = this.props.filters
         newFilters[field] = input
         this.props.onFilterChange(newFilters)
     }
 
   render() {
     const PortalSite = this.props.PortalSite
-    const filters = this.state.filters
+    const filters = this.props.filters
 
     return (
         <div className="filters"
@@ -29,7 +27,7 @@ class Filters extends Component {
                             display: 'block'
                         }}
                         >{field.label}</label>
-                    <Field field={field} options={PortalSite[field.id]} filters={filters} onFilterChange={this.saveFilters} />
+                    <Field field={field} options={PortalSite[field.id]} filters={filters} value={filters[field.id]} onFilterChange={this.saveFilters} />
                 </div>
             )}
         </div>
