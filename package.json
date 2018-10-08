@@ -4,13 +4,14 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.10",
+    "babel-plugin-styled-components": "^1.7.1",
+    "date-fns": "^1.29.0",
     "graphql": "^0.13.2",
-    "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.9",
     "react-dom": "^16.4.1",
-    "react-moment": "^0.7.9",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "styled-components": "^3.4.6"
   },
   "scripts": {
     "start": "react-scripts start",

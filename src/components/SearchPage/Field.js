@@ -28,6 +28,17 @@ class Field extends Component {
           } else {
               input = <input value={value} onChange={this.handleChange} />
           }
+      } else if(field.type === 'list')  {
+          input = <ul className='radioList'>
+
+            {options.map(opt =>
+                <li key={opt.id}>
+                    <input name={field.id} type='radio' id={opt.id} value={opt.id} />
+                    <label htmlFor={opt.id}>{opt.name}</label>
+                </li>
+
+            )}
+          </ul>
       } else {
           input = <input value={value} onChange={this.handleChange} />
       }

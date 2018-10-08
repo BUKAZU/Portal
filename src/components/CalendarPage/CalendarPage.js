@@ -20,7 +20,7 @@ class CalendarPage extends Component {
   render() {
       const variables = {
           id: this.props.PortalSite.portal_code,
-          house_id: '404'
+          house_id: '4'
       }
 
       return <Query query={HOUSE_QUERY} variables={variables}>
@@ -31,12 +31,10 @@ class CalendarPage extends Component {
             const Results = data.PortalSite.houses;
 
             return <div id="calendar-container">
-                {Results.map(result => (
-                    <div>
-                        <div>{result.name}</div>
-                        <Calendar />
-                    </div>
-                ))}
+                {Results.map(result => <div key={result.id}>
+                    <div>{result.name}</div>
+                    <Calendar portal_code={variables.id} house_id={variables.house_id} />
+                  </div>)}
               </div>;
           }}
         </Query>;

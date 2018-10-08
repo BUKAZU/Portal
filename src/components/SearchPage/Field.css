@@ -9,3 +9,38 @@
     box-sizing: border-box;
     margin: 4px 0 8px;
 }
+#bukazu-app input[type=radio] {
+    width: 8px;
+    height: 8px;
+    padding: 8px;
+    margin: 0 16px 0 0;
+    position: relative;
+    border-radius: 16px;
+}
+#bukazu-app input[type=radio]:checked+label {
+    font-weight: bold;
+}
+#bukazu-app input[type=radio]:checked::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 10px;
+    width: 10px;
+    border-radius: 16px;
+    background: blueviolet;
+
+}
+#bukazu-app .radioList {
+    padding: 0;
+    list-style: none;
+}
+#bukazu-app .radioList li {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    cursor: pointer;
+}
