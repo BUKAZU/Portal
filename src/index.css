@@ -11,6 +11,9 @@
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
     }
+    #bukazu-app .calendar .header {
+            background-color: rgba(211,211,211,.2)
+        }
     #bukazu-app .calendar .row {
             width: 100%;
             display: -webkit-box;
@@ -20,11 +23,15 @@
                 -ms-flex: 1 1;
                     flex: 1 1;
         }
+    #bukazu-app .calendar .row.days {
+                border-bottom: 1px solid rgba(211,211,211,.5);
+            }
     #bukazu-app .calendar .col {
             width: 100%;
             border: solid 1px #fff;
             padding: 8px;
             text-transform: capitalize;
+            text-align: center;
         }
     #bukazu-app .calendar .col-center {
                 text-align: center;

@@ -7,16 +7,23 @@
         min-width: 50%;
         padding: 16px;
         box-sizing: border-box;
+        .header {
+            background-color: rgba(211,211,211,.2)
+        }
         .row {
             width: 100%;
             display: flex;
             flex: 1 1;
+            &.days {
+                border-bottom: 1px solid rgba(211,211,211,.5);
+            }
         }
         .col {
             width: 100%;
             border: solid 1px #fff;
             padding: 8px;
             text-transform: capitalize;
+            text-align: center;
             &-center {
                 text-align: center;
             }

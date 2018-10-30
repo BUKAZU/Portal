@@ -2,8 +2,8 @@ import React from "react";
 import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { FormattedMessage } from 'react-intl'
 import format from "../../_lib/format";
+import CalendarHeader from './CalendarHeader'
 // import "./Calendar.css";
 
 export const CALENDAR_QUERY = gql`
@@ -43,16 +43,8 @@ class Calendar extends React.Component {
     const dateFormat = "MMMM YYYY";
 
     return <div className="header row flex-middle">
-        <div className="col col-start" style={{ textAlign: "center" }}>
-          <div className="icon" onClick={this.prevMonth}>
-            <FormattedMessage id="previous" />
-          </div>
-        </div>
         <div className="col col-center" style={{ textAlign: "center" }}>
           <span>{format(month, dateFormat)}</span>
-        </div>
-        <div className="col col-end" onClick={this.nextMonth} style={{ textAlign: "center" }}>
-          <div className="icon"><FormattedMessage id="next" /></div>
         </div>
       </div>;
   }
@@ -184,11 +176,10 @@ class Calendar extends React.Component {
   };
 
   render() {
-    return (
-      <div className="calendars-row">
-        {this.renderMonths()}
-      </div>
-    );
+    return <div>
+        <CalendarHeader onGoNext={this.nextMonth} onGoPrev={this.prevMonth} />
+        <div className="calendars-row">{this.renderMonths()}</div>
+      </div>;
   }
 }
 
