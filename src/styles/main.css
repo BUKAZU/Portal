@@ -1,5 +1,5 @@
-.App {
-}
+@import 'calendar.css';
+
 #bukazu-app div {
     box-sizing: border-box;
 }

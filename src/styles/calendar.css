@@ -1,0 +1,26 @@
+#bukazu-app {
+    .calendar {
+        .row {
+            width: 100%;
+            display: flex;
+            flex: 1 1;
+        }
+        .col {
+            width: 100%;
+            border: solid 1px #fff;
+        }
+        .disabled {
+            opacity: 0.5;
+        }
+        .arrival {
+            background: #6EEB83;
+        }
+        .icon {
+            cursor: pointer;
+        }
+        .selected {
+            border: solid 1px green;
+            background: #17BEBB;
+        }
+    }
+}

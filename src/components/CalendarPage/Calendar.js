@@ -2,7 +2,7 @@ import React from "react";
 import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import "./Calendar.css";
+// import "./Calendar.css";
 
 export const CALENDAR_QUERY = gql`
   query PortalSiteHousesQuery(

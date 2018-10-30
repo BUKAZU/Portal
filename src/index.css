@@ -1,5 +1,31 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+#bukazu-app .calendar .row {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 1;
+                    flex: 1 1;
+        }
+        #bukazu-app .calendar .col {
+            width: 100%;
+            border: solid 1px #fff;
+        }
+        #bukazu-app .calendar .disabled {
+            opacity: 0.5;
+        }
+        #bukazu-app .calendar .arrival {
+            background: #6EEB83;
+        }
+        #bukazu-app .calendar .icon {
+            cursor: pointer;
+        }
+        #bukazu-app .calendar .selected {
+            border: solid 1px green;
+            background: #17BEBB;
+        }
+
+#bukazu-app div {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
