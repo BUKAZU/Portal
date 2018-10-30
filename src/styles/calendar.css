@@ -1,5 +1,10 @@
 #bukazu-app {
+    .calendars-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
     .calendar {
+        padding: 16px;
         .row {
             width: 100%;
             display: flex;
@@ -10,7 +15,7 @@
             border: solid 1px #fff;
         }
         .disabled {
-            opacity: 0.5;
+            opacity: 0;
         }
         .arrival {
             background: #6EEB83;
@@ -21,6 +26,10 @@
         .selected {
             border: solid 1px green;
             background: #17BEBB;
+        }
+        .booked {
+            background: #EA2B1F;
+            color: #fff;
         }
     }
 }

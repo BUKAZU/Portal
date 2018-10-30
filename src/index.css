@@ -1,4 +1,14 @@
-#bukazu-app .calendar .row {
+#bukazu-app .calendars-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    }
+    #bukazu-app .calendar {
+        padding: 16px;
+    }
+    #bukazu-app .calendar .row {
             width: 100%;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -7,22 +17,26 @@
                 -ms-flex: 1 1;
                     flex: 1 1;
         }
-        #bukazu-app .calendar .col {
+    #bukazu-app .calendar .col {
             width: 100%;
             border: solid 1px #fff;
         }
-        #bukazu-app .calendar .disabled {
-            opacity: 0.5;
+    #bukazu-app .calendar .disabled {
+            opacity: 0;
         }
-        #bukazu-app .calendar .arrival {
+    #bukazu-app .calendar .arrival {
             background: #6EEB83;
         }
-        #bukazu-app .calendar .icon {
+    #bukazu-app .calendar .icon {
             cursor: pointer;
         }
-        #bukazu-app .calendar .selected {
+    #bukazu-app .calendar .selected {
             border: solid 1px green;
             background: #17BEBB;
+        }
+    #bukazu-app .calendar .booked {
+            background: #EA2B1F;
+            color: #fff;
         }
 
 #bukazu-app div {

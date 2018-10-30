@@ -17,11 +17,13 @@ export const HOUSE_QUERY = gql`
 `
 
 class CalendarPage extends Component {
-  render() {
+
+    render() {
+        const { objectCode, PortalSite } = this.props;
       const variables = {
-          id: this.props.PortalSite.portal_code,
-          house_id: '4'
-      }
+          id: PortalSite.portal_code,
+          house_id: objectCode
+        }
 
       return <Query query={HOUSE_QUERY} variables={variables}>
           {({ loading, error, data }) => {
@@ -33,7 +35,7 @@ class CalendarPage extends Component {
             return <div id="calendar-container">
                 {Results.map(result => <div key={result.id}>
                     <div>{result.name}</div>
-                    <Calendar portal_code={variables.id} house_id={variables.house_id} />
+                    <Calendar portal_code={variables.id} objectCode={variables.house_id} />
                   </div>)}
               </div>;
           }}

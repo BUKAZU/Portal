@@ -41,7 +41,7 @@ export const PORTAL_QUERY = gql`
 class App extends Component {
   render() {
       const id = this.props.portalCode
-      const objectId = this.props.objectCode
+      const objectCode = this.props.objectCode;
 
     return (
         <Query query={PORTAL_QUERY} variables={{ id }}>
@@ -51,8 +51,10 @@ class App extends Component {
 
               const PortalSite = data.PortalSite
 
-              if (objectId !== null) {
-                  return <CalendarPage PortalSite={PortalSite} objectId={objectId} />
+              if (objectCode !== null) {
+                  console.log(objectCode);
+
+                  return <CalendarPage PortalSite={PortalSite} objectCode={objectCode} />;
               } else {
                   return <SearchPage PortalSite={PortalSite} />
               }

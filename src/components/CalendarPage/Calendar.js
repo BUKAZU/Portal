@@ -33,31 +33,26 @@ export const CALENDAR_QUERY = gql`
 class Calendar extends React.Component {
   state = {
     currentMonth: new Date(),
-    selectedDate: new Date()
+    selectedDate: new Date(),
+    numberOfMonths: this.props.numberOfMonths
   };
 
-  renderHeader() {
+  renderHeader(month) {
     const dateFormat = "MMMM YYYY";
 
-    return (
-      <div className="header row flex-middle">
+    return <div className="header row flex-middle">
         <div className="col col-start" style={{ textAlign: "center" }}>
           <div className="icon" onClick={this.prevMonth}>
             terug
           </div>
         </div>
         <div className="col col-center" style={{ textAlign: "center" }}>
-          <span>{dateFns.format(this.state.currentMonth, dateFormat)}</span>
+          <span>{dateFns.format(month, dateFormat)}</span>
         </div>
-        <div
-          className="col col-end"
-          onClick={this.nextMonth}
-          style={{ textAlign: "center" }}
-        >
-          <div className="icon">volgende</div>
+        <div className="col col-end" onClick={this.nextMonth} style={{ textAlign: "center" }}>
+          <div className="icon"></div>
         </div>
-      </div>
-    );
+      </div>;
   }
 
   renderDays() {
@@ -77,12 +72,12 @@ class Calendar extends React.Component {
     return <div className="days row">{days}</div>;
   }
 
-  renderCells(availabilities) {
-    const { currentMonth, selectedDate } = this.state;
-    const monthStart = dateFns.startOfMonth(currentMonth);
-    // const monthEnd = dateFns.endOfMonth(monthStart);
+  renderCells(availabilities, month) {
+    const { selectedDate } = this.state;
+    const monthStart = dateFns.startOfMonth(month);
+    const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
-    // const endDate = dateFns.endOfWeek(monthEnd);
+    const endDate = dateFns.endOfWeek(monthEnd);
 
     const dateFormat = "D";
     const rows = [];
@@ -92,11 +87,15 @@ class Calendar extends React.Component {
     let formattedDate = "";
     let dayz = availabilities;
 
-    // while (day <= endDate) {
-    for (let daz of dayz) {
+    while (day <= endDate) {
+    // for (let daz of dayz) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
+        let date = dateFns.format(day, "YYYY-MM-DD");
+        let daz = dayz.find(x => x.date === date);
+        console.log(daz);
+
         days.push(
           <div
             className={`col cell ${
@@ -105,11 +104,11 @@ class Calendar extends React.Component {
                 : dateFns.isSameDay(day, selectedDate)
                   ? "selected"
                   : ""
-            } ${daz.arrival ? "arrival" : ""}`}
+              } ${daz.arrival ? 'arrival' : ''} ${daz.max_nights === 0 ? 'booked' : ''}`}
             key={day}
+            date={daz.date}
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
           >
-            {/* <span className="number">{formattedDate} </span> */}
             <span className="bg">
               {!dateFns.isSameMonth(day, monthStart) ? "" : formattedDate}
             </span>
@@ -125,6 +124,43 @@ class Calendar extends React.Component {
       days = [];
     }
     return <div className="body">{rows}</div>;
+  }
+
+  renderMonths() {
+    let template = []
+    for (let i = 0; i < this.state.numberOfMonths; i++) {
+      template.push(this.renderSingleMonth(i))
+    }
+    return template
+
+  }
+
+  renderSingleMonth(count) {
+    let month = dateFns.addMonths(this.state.currentMonth, count);
+    console.log(month);
+    let monthStart = dateFns.startOfMonth(month);
+    let monthEnd = dateFns.endOfMonth(month);
+    const variables = {
+      id: this.props.portal_code,
+      house_id: this.props.objectCode,
+      starts_at: dateFns.startOfWeek(monthStart),
+      ends_at: dateFns.endOfWeek(monthEnd)
+    };
+
+    return <div className="calendar" key={month}>
+        {this.renderHeader(month)}
+        {this.renderDays()}
+        <Query query={CALENDAR_QUERY} variables={variables}>
+          {({ loading, error, data }) => {
+            if (loading) return <div>Fetching</div>;
+            if (error) return <div>Error</div>;
+
+            const results = data.PortalSite.houses[0].availabilities;
+
+            return this.renderCells(results, month);
+          }}
+        </Query>
+      </div>;
   }
 
   onDateClick = day => {
@@ -146,33 +182,16 @@ class Calendar extends React.Component {
   };
 
   render() {
-    let monthStart = dateFns.startOfMonth(this.state.currentMonth);
-    let monthEnd = dateFns.endOfMonth(this.state.currentMonth);
-    const variables = {
-      id: this.props.portal_code,
-      house_id: this.props.house_id,
-      starts_at: dateFns.startOfWeek(monthStart),
-      ends_at: dateFns.endOfWeek(monthEnd)
-    };
-
     return (
-      <div className="calendar">
-        {this.renderHeader()}
-        {this.renderDays()}
-        <Query query={CALENDAR_QUERY} variables={variables}>
-          {({ loading, error, data }) => {
-            if (loading) return <div>Fetching</div>;
-            if (error) return <div>Error</div>;
-
-            const Results = data.PortalSite.houses[0].availabilities;
-
-            return this.renderCells(Results);
-          }}
-        </Query>
-        ;
+      <div className="calendars-row">
+        {this.renderMonths()}
       </div>
     );
   }
+}
+
+Calendar.defaultProps = {
+  numberOfMonths: 4
 }
 
 export default Calendar;
