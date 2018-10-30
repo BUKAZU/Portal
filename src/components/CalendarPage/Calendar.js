@@ -3,6 +3,7 @@ import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { FormattedMessage } from 'react-intl'
+import format from "../../_lib/format";
 // import "./Calendar.css";
 
 export const CALENDAR_QUERY = gql`
@@ -44,11 +45,11 @@ class Calendar extends React.Component {
     return <div className="header row flex-middle">
         <div className="col col-start" style={{ textAlign: "center" }}>
           <div className="icon" onClick={this.prevMonth}>
-            terug
+            <FormattedMessage id="previous" />
           </div>
         </div>
         <div className="col col-center" style={{ textAlign: "center" }}>
-          <span>{dateFns.format(month, dateFormat)}</span>
+          <span>{format(month, dateFormat)}</span>
         </div>
         <div className="col col-end" onClick={this.nextMonth} style={{ textAlign: "center" }}>
           <div className="icon"><FormattedMessage id="next" /></div>
@@ -57,7 +58,7 @@ class Calendar extends React.Component {
   }
 
   renderDays() {
-    const dateFormat = "dddd";
+    const dateFormat = "ddd";
     const days = [];
 
     let startDate = dateFns.startOfWeek(this.state.currentMonth);
@@ -65,7 +66,7 @@ class Calendar extends React.Component {
     for (let i = 0; i < 7; i++) {
       days.push(
         <div className="col col-center" key={i}>
-          {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+          {format(dateFns.addDays(startDate, i), dateFormat)}
         </div>
       );
     }

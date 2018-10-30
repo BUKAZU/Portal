@@ -24,7 +24,6 @@ class CalendarPage extends Component {
           id: PortalSite.portal_code,
           house_id: objectCode
         }
-
       return <Query query={HOUSE_QUERY} variables={variables}>
           {({ loading, error, data }) => {
             if (loading) return <div>Fetching</div>;

@@ -49,6 +49,7 @@ const element = document.getElementById("bukazu-app")
 const portalCode = element.getAttribute("portal-code");
 const objectCode = element.getAttribute("object-code");
 const locale = element.getAttribute("language");
+window.__localeId__ = locale;
 
 ReactDOM.render(
   <ApolloProvider client={client}>

@@ -6,7 +6,10 @@
             flex-wrap: wrap;
     }
     #bukazu-app .calendar {
+        min-width: 50%;
         padding: 16px;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
     }
     #bukazu-app .calendar .row {
             width: 100%;
@@ -20,7 +23,18 @@
     #bukazu-app .calendar .col {
             width: 100%;
             border: solid 1px #fff;
+            padding: 8px;
+            text-transform: capitalize;
         }
+    #bukazu-app .calendar .col-center {
+                text-align: center;
+            }
+    #bukazu-app .calendar .col-start {
+                text-align: left;
+            }
+    #bukazu-app .calendar .col-end {
+                text-align: right;
+            }
     #bukazu-app .calendar .disabled {
             opacity: 0;
         }
