@@ -2,6 +2,7 @@ import React from "react";
 import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { FormattedMessage } from 'react-intl'
 // import "./Calendar.css";
 
 export const CALENDAR_QUERY = gql`
@@ -50,7 +51,7 @@ class Calendar extends React.Component {
           <span>{dateFns.format(month, dateFormat)}</span>
         </div>
         <div className="col col-end" onClick={this.nextMonth} style={{ textAlign: "center" }}>
-          <div className="icon"></div>
+          <div className="icon"><FormattedMessage id="next" /></div>
         </div>
       </div>;
   }
