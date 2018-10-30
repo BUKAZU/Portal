@@ -3,7 +3,10 @@ import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import format from "../../_lib/format";
+import compareAsc from 'date-fns/compare_asc'
+import isAfter from "date-fns/is_after";
 import CalendarHeader from './CalendarHeader'
+import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 // import "./Calendar.css";
 
 export const CALENDAR_QUERY = gql`
@@ -35,7 +38,7 @@ export const CALENDAR_QUERY = gql`
 class Calendar extends React.Component {
   state = {
     currentMonth: new Date(),
-    selectedDate: new Date(),
+    selectedDate: '',
     numberOfMonths: this.props.numberOfMonths
   };
 
@@ -85,10 +88,10 @@ class Calendar extends React.Component {
     // for (let daz of dayz) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
-        const cloneDay = day;
         let date = dateFns.format(day, "YYYY-MM-DD");
         let daz = dayz.find(x => x.date === date);
-        console.log(daz);
+        const cloneDay = daz;
+        const highlight = daz.departure && isAfter(daz.date, selectedDate) ? "departure" : "";
 
         days.push(
           <div
@@ -98,10 +101,10 @@ class Calendar extends React.Component {
                 : dateFns.isSameDay(day, selectedDate)
                   ? "selected"
                   : ""
-              } ${daz.arrival ? 'arrival' : ''} ${daz.max_nights === 0 ? 'booked' : ''}`}
+              } ${daz.arrival ? 'arrival' : ''} ${highlight} ${daz.max_nights === 0 ? 'booked' : ''}`}
             key={day}
             date={daz.date}
-            onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+            onClick={() => this.onDateClick(cloneDay)}
           >
             <span className="bg">
               {!dateFns.isSameMonth(day, monthStart) ? "" : formattedDate}
@@ -131,7 +134,6 @@ class Calendar extends React.Component {
 
   renderSingleMonth(count) {
     let month = dateFns.addMonths(this.state.currentMonth, count);
-    console.log(month);
     let monthStart = dateFns.startOfMonth(month);
     let monthEnd = dateFns.endOfMonth(month);
     const variables = {
@@ -158,9 +160,15 @@ class Calendar extends React.Component {
   }
 
   onDateClick = day => {
-    this.setState({
-      selectedDate: day
-    });
+    if (day.departure && isAfter(day.date, this.state.selectedDate)) {
+      alert("picked departure");
+    }
+    if (day.arrival) {
+        this.setState({
+          selectedDate: dateFns.parse(day.date),
+          arrivalDate: day
+        });
+      }
   };
 
   nextMonth = () => {
@@ -176,9 +184,11 @@ class Calendar extends React.Component {
   };
 
   render() {
+    const { selectedDate } = this.state
     return <div>
         <CalendarHeader onGoNext={this.nextMonth} onGoPrev={this.prevMonth} />
         <div className="calendars-row">{this.renderMonths()}</div>
+        <div>{format(selectedDate, 'DD-MM-YYYY')}</div>
       </div>;
   }
 }

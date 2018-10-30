@@ -1,64 +1,92 @@
-#bukazu-app .calendars-row {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+#bukazu-app .calendars-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+    #bukazu-app .calendars-header .col .icon {
+        padding: 8px 40px;
+        background: rgba(23, 190, 187, 0.75);
+        -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+    #bukazu-app .calendars-header .col .icon:hover {
+          -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+                  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+        }
+  #bukazu-app .calendars-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  #bukazu-app .calendar {
+    min-width: 50%;
+    padding: 16px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  #bukazu-app .calendar .header {
+      background-color: rgba(211, 211, 211, 0.2);
     }
-    #bukazu-app .calendar {
-        min-width: 50%;
-        padding: 16px;
-        -webkit-box-sizing: border-box;
-                box-sizing: border-box;
+  #bukazu-app .calendar .row {
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 1;
+              flex: 1 1;
     }
-    #bukazu-app .calendar .header {
-            background-color: rgba(211,211,211,.2)
-        }
-    #bukazu-app .calendar .row {
-            width: 100%;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-flex: 1;
-                -ms-flex: 1 1;
-                    flex: 1 1;
-        }
-    #bukazu-app .calendar .row.days {
-                border-bottom: 1px solid rgba(211,211,211,.5);
-            }
-    #bukazu-app .calendar .col {
-            width: 100%;
-            border: solid 1px #fff;
-            padding: 8px;
-            text-transform: capitalize;
-            text-align: center;
-        }
-    #bukazu-app .calendar .col-center {
-                text-align: center;
-            }
-    #bukazu-app .calendar .col-start {
-                text-align: left;
-            }
-    #bukazu-app .calendar .col-end {
-                text-align: right;
-            }
-    #bukazu-app .calendar .disabled {
-            opacity: 0;
-        }
-    #bukazu-app .calendar .arrival {
-            background: #6EEB83;
-        }
-    #bukazu-app .calendar .icon {
-            cursor: pointer;
-        }
-    #bukazu-app .calendar .selected {
-            border: solid 1px green;
-            background: #17BEBB;
-        }
-    #bukazu-app .calendar .booked {
-            background: #EA2B1F;
-            color: #fff;
-        }
+  #bukazu-app .calendar .row.days {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+      }
+  #bukazu-app .calendar .col {
+      width: 100%;
+      border: solid 1px #fff;
+      padding: 8px;
+      text-transform: capitalize;
+      text-align: center;
+    }
+  #bukazu-app .calendar .col-center {
+        text-align: center;
+      }
+  #bukazu-app .calendar .col-start {
+        text-align: left;
+      }
+  #bukazu-app .calendar .col-end {
+        text-align: right;
+      }
+  #bukazu-app .calendar .disabled {
+      opacity: 0;
+    }
+  #bukazu-app .calendar .arrival {
+      background: #6eeb83;
+      cursor: pointer;
+    }
+  #bukazu-app .calendar .departure {
+        font-weight: bold;
+        background: blue;
+        cursor: pointer;
+    }
+  #bukazu-app .calendar .icon {
+      cursor: pointer;
+    }
+  #bukazu-app .calendar .selected {
+      border: solid 1px green;
+      background: #17bebb;
+    }
+  #bukazu-app .calendar .booked {
+      background: #ea2b1f;
+      color: #fff;
+    }
 
 #bukazu-app div {
     -webkit-box-sizing: border-box;
