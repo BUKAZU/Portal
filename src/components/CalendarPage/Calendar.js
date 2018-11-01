@@ -3,21 +3,20 @@ import dateFns from "date-fns";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import format from "../../_lib/format";
-import compareAsc from 'date-fns/compare_asc'
+// import compareAsc from 'date-fns/compare_asc'
 import isAfter from "date-fns/is_after";
 import CalendarHeader from './CalendarHeader'
-import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
-// import "./Calendar.css";
+// import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 
 export const CALENDAR_QUERY = gql`
   query PortalSiteHousesQuery(
     $id: ID!
-    $house_id: ID!
+    $house_id: String!
     $starts_at: Date!
     $ends_at: Date!
   ) {
     PortalSite(id: $id) {
-      houses(id: $house_id) {
+      houses(house_code: $house_id) {
         id
         name
         availabilities(starts_at: $starts_at, ends_at: $ends_at) {
