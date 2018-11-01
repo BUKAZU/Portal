@@ -1,13 +1,21 @@
 .price-overview {
     padding: 16px;
     display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: 992px) {
+        flex-direction: column;
+    }
     &--build {
         display: flex;
         flex-direction: row;
-        width: 30%;
+        /* width: 30%; */
+        flex: 1;
         justify-content: center;
         flex-wrap: wrap;
         align-items: flex-start;
+        @media screen and (max-width: 992px) {
+            padding: 16px 0;
+        }
         table {
             width: 100%;
         }
@@ -15,7 +23,7 @@
             text-align: left;
         }
         tr {
-            border-bottom: 1px solid rgba(0, 0, 0, .25);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.25);
         }
         td {
             padding: 4px;
@@ -28,14 +36,19 @@
     &--extra {
         display: flex;
         flex-direction: column;
-        width: 30%;
+        flex: 1;
+        /* width: 30%; */
     }
     &--book {
-        width: 30%;
+        flex: 1;
+        /* width: 30%; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @media screen and (max-width: 992px) {
+            padding: 16px 0;
+        }
         &>div {
             padding: 8px 0;
         }
@@ -50,8 +63,14 @@
             font-size: 32px;
             font-weight: bold;
         }
+        .option {
+            display: block;
+            color: #004fa7;
+            text-decoration: underline;
+            padding: 8px 0;
+        }
         .button {
-            background: #E28413;
+            background: #e28413;
             color: #fff;
             padding: 12px 32px;
             margin: 8px 0;
@@ -59,6 +78,7 @@
             width: 75%;
             text-align: center;
             border: 0;
+            font-size: 20px;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
             cursor: pointer;
             &:hover {

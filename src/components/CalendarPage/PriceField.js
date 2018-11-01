@@ -122,9 +122,9 @@ const PriceField = ({ portalCode, objectCode, startsAt, endsAt, locale }) => (
             <button className="button">
               <FormattedMessage id="book" />
             </button>
-            <div className="option">
+            <a className="option">
               <FormattedMessage id="choose_for_option" />
-            </div>
+            </a>
           </div>
         </React.Fragment>
       );
