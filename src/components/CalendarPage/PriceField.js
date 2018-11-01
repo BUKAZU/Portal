@@ -119,9 +119,9 @@ const PriceField = ({ portalCode, objectCode, startsAt, endsAt, locale }) => (
             <div className="price">
                 € <FormattedNumber value={result.total_price} minimumFractionDigits="2" maximumFractionDigits="2" />
             </div>
-            <div className="button">
+            <button className="button">
               <FormattedMessage id="book" />
-            </div>
+            </button>
             <div className="option">
               <FormattedMessage id="choose_for_option" />
             </div>

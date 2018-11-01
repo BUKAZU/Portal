@@ -56,6 +56,14 @@
             padding: 12px 32px;
             margin: 8px 0;
             font-weight: bold;
+            width: 75%;
+            text-align: center;
+            border: 0;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            &:hover {
+                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+            }
         }
     }
 }
