@@ -5,6 +5,35 @@
     @media screen and (max-width: 992px) {
         flex-direction: column;
     }
+    table {
+        width: 100%;
+    }
+    th {
+        text-align: left;
+    }
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    }
+    td {
+        padding: 4px;
+        width: 50%;
+        &.price {
+            text-align: right;
+        }
+    }
+    td.column {
+        width: 30%;
+    }
+    .price-list {
+        list-style: none;
+        padding: 0;
+        text-align: right;
+    }
+    ul {
+        li {
+            padding: 2px 0;
+        }
+    }
     &--build {
         display: flex;
         flex-direction: row;
@@ -13,28 +42,14 @@
         justify-content: center;
         flex-wrap: wrap;
         align-items: flex-start;
+        padding: 16px;
         @media screen and (max-width: 992px) {
             padding: 16px 0;
-        }
-        table {
-            width: 100%;
-        }
-        th {
-            text-align: left;
-        }
-        tr {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-        }
-        td {
-            padding: 4px;
-            width: 50%;
-            &.price {
-                text-align: right;
-            }
         }
     }
     &--extra {
         display: flex;
+        padding: 16px;
         flex-direction: column;
         flex: 1;
         /* width: 30%; */
@@ -42,6 +57,7 @@
     &--book {
         flex: 1;
         /* width: 30%; */
+        padding: 16px;
         display: flex;
         flex-direction: column;
         justify-content: center;

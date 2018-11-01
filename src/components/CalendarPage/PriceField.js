@@ -42,54 +42,95 @@ const PriceField = ({ portalCode, objectCode, startsAt, endsAt, locale }) => (
           <div className="price-overview--details" />
           <div className="price-overview--build">
             <table>
-                <thead>
-                    <th><FormattedMessage id="included_in_price" /></th>
-                </thead>
+              <thead>
+                <th>
+                  <FormattedMessage id="included_in_price" />
+                </th>
+              </thead>
               <tbody>
                 <tr>
-                  <td className="column">
+                  <td className="column" colSpan="2">
                     <FormattedMessage id="rent_price" />
                   </td>
                   <td className="price">
-                    € <FormattedNumber value={result.rent_price} minimumFractionDigits="2" maximumFractionDigits="2" />
+                    €{" "}
+                    <FormattedNumber
+                      value={result.rent_price}
+                      minimumFractionDigits="2"
+                      maximumFractionDigits="2"
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td className="column">
+                  <td className="column" colSpan="2">
                     <FormattedMessage id="discount" />
                   </td>
                   <td className="price">{result.discount} %</td>
                 </tr>
                 <tr>
-                  <td className="column">
+                  <td className="column" colSpan="2">
                     <FormattedMessage id="price_after_discount" />
                   </td>
                   <td className="price">
-                    € <FormattedNumber value={result.discounted_price} minimumFractionDigits="2" maximumFractionDigits="2" />
+                    €{" "}
+                    <FormattedNumber
+                      value={result.discounted_price}
+                      minimumFractionDigits="2"
+                      maximumFractionDigits="2"
+                    />
                   </td>
                 </tr>
                 <tr>
-                  <td className="column">
-                  </td>
+                  <td className="column" colSpan="3" />
                 </tr>
                 <tr>
-                  <td className="column" style={{verticalAlign: 'top'}}>
+                  <td className="column" style={{ verticalAlign: "top" }}>
                     <FormattedMessage id="extra_costs_included" />:
                   </td>
+                </tr>
+                <tr>
                   <td className="column">
                     <ul>
-                        {result.required_house_costs.map(cost => {
-                            return <li>{cost[`name_${locale}`]}</li>
-                        })}
+                      {result.required_house_costs.map(cost => {
+                        return <li>{cost[`name_${locale}`]}</li>;
+                      })}
+                    </ul>
+                  </td>
+                  <td className="column">
+                    <ul className="price-list">
+                      {result.required_house_costs.map(cost => {
+                        return (
+                          <li>
+                            €{" "}
+                            <FormattedNumber
+                              value={cost.amount}
+                              minimumFractionDigits="2"
+                              maximumFractionDigits="2"
+                            />
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </td>
+                  <td className="column">
+                    <ul className="price-list">
+                      {result.required_house_costs.map(cost => {
+                        return <li><FormattedMessage id={cost.method} /></li>;
+                      })}
                     </ul>
                   </td>
                 </tr>
                 <tr>
-                  <td className="column">
+                  <td className="column" colSpan="2">
                     <FormattedMessage id="price" />
                   </td>
                   <td className="price">
-                    € <FormattedNumber value={result.total_price} minimumFractionDigits="2" maximumFractionDigits="2" />
+                    €{" "}
+                    <FormattedNumber
+                      value={result.total_price}
+                      minimumFractionDigits="2"
+                      maximumFractionDigits="2"
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -97,27 +138,38 @@ const PriceField = ({ portalCode, objectCode, startsAt, endsAt, locale }) => (
           </div>
           <div className="price-overview--extra">
             <table>
-                <thead>
-                    <tr>
-                        <th>
-                            <FormattedMessage id="optional_costs" />
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr></tr>
-                </tbody>
+              <thead>
+                <th>
+                  <FormattedMessage id="optional_costs" />
+                </th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="column">
+                    <ul>
+                      {result.optional_house_costs.map(cost => {
+                        return <li>{cost[`name_${locale}`]}</li>;
+                      })}
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className="price-overview--book">
             <div className="data-label">
-                <FormattedMessage id="booking_from_til" />
+              <FormattedMessage id="booking_from_til" />
             </div>
             <div className="data">
-                { format(startsAt, "DD-MM-YYYY") } / { format(endsAt, "DD-MM-YYYY") }
+              {format(startsAt, "DD-MM-YYYY")} / {format(endsAt, "DD-MM-YYYY")}
             </div>
             <div className="price">
-                € <FormattedNumber value={result.total_price} minimumFractionDigits="2" maximumFractionDigits="2" />
+              €{" "}
+              <FormattedNumber
+                value={result.total_price}
+                minimumFractionDigits="2"
+                maximumFractionDigits="2"
+              />
             </div>
             <button className="button">
               <FormattedMessage id="book" />
@@ -131,6 +183,5 @@ const PriceField = ({ portalCode, objectCode, startsAt, endsAt, locale }) => (
     }}
   </Query>
 );
-
 
 export default PriceField;
