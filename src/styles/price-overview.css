@@ -1,0 +1,58 @@
+.price-overview {
+    padding: 16px;
+    display: flex;
+    &--build {
+        display: flex;
+        flex-direction: row;
+        width: 30%;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        table {
+            width: 100%;
+        }
+        th {
+            text-align: left;
+        }
+        tr {
+            border-bottom: 1px solid rgba(0, 0, 0, .25);
+        }
+
+        td {
+            padding: 4px;
+            width: 50%;
+            &.price {
+                text-align: right;
+            }
+        }
+    }
+    &--extra {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+    &--book {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &>div {
+            padding: 8px 0;
+        }
+        .price-label {
+            font-size: 24px;
+        }
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .button {
+            background: #E28413;
+            color: #fff;
+            padding: 12px 32px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+    }
+}

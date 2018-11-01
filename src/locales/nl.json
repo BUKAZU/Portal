@@ -1,4 +1,11 @@
 {
     "next": "volgende",
-    "previous": "vorige"
+    "previous": "vorige",
+    "price": "Prijs",
+    "book": "Boeken",
+    "choose_for_option": "Neem een optie op deze periode",
+    "included_in_price": "Inbegrepen in de prijs",
+    "rent_price": "huurprijs",
+    "discount": "kortings percentage",
+    "extra_costs_included": "Extra kosten inbegrepen"
 }

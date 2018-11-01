@@ -137,12 +137,7 @@ class Calendar extends React.Component {
     let month = dateFns.addMonths(this.state.currentMonth, count);
     let monthStart = dateFns.startOfMonth(month);
     let monthEnd = dateFns.endOfMonth(month);
-    const variables = {
-      id: this.props.portal_code,
-      house_id: this.props.objectCode,
-      starts_at: dateFns.startOfWeek(monthStart),
-      ends_at: dateFns.endOfWeek(monthEnd)
-    };
+    const variables = { id: this.props.portalCode, house_id: this.props.objectCode, starts_at: dateFns.startOfWeek(monthStart), ends_at: dateFns.endOfWeek(monthEnd) };
 
     return <div className="calendar" key={month}>
         {this.renderHeader(month)}
@@ -191,10 +186,17 @@ class Calendar extends React.Component {
 
   showBooking() {
     const { startBooking, arrivalDate, departureDate } = this.state;
-    if (startBooking) {
-      console.log(departureDate);
+    const { portalCode, objectCode, locale } = this.props;
 
-      return <PriceField portalCode={this.props.portal_code} objectCode={this.props.objectCode} startsAt={arrivalDate.date} endsAt={departureDate.date} />;
+    if (startBooking) {
+      setTimeout(function () {
+        document
+          .querySelector(".price-overview")
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+      }, 500);
+      return <PriceField portalCode={portalCode} objectCode={objectCode} locale={locale} startsAt={arrivalDate.date} endsAt={departureDate.date} />;
     } else {
       return <div></div>
     }

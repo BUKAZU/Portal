@@ -40,27 +40,24 @@ export const PORTAL_QUERY = gql`
 
 class App extends Component {
   render() {
-      const id = this.props.portalCode
-      const objectCode = this.props.objectCode;
+    const { portalCode, objectCode, locale} = this.props
 
-    return (
-        <Query query={PORTAL_QUERY} variables={{ id }}>
-            {({ loading, error, data }) => {
-              if (loading) return <div>Fetching</div>
-              if (error) return <div>Error</div>
+    return <Query query={PORTAL_QUERY} variables={{ id: portalCode }}>
+        {({ loading, error, data }) => {
+          if (loading) return <div>Fetching</div>;
+          if (error) return <div>Error</div>;
 
-              const PortalSite = data.PortalSite
+          const PortalSite = data.PortalSite;
 
-              if (objectCode !== null) {
-                  console.log(objectCode);
+          if (objectCode !== null) {
+            console.log(objectCode);
 
-                  return <CalendarPage PortalSite={PortalSite} objectCode={objectCode} />;
-              } else {
-                  return <SearchPage PortalSite={PortalSite} />
-              }
-            }}
-        </Query>
-    )
+            return <CalendarPage PortalSite={PortalSite} objectCode={objectCode} locale={locale} />;
+          } else {
+            return <SearchPage PortalSite={PortalSite} locale={locale} />;
+          }
+        }}
+      </Query>;
   }
 }
 

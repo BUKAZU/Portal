@@ -17,7 +17,7 @@ export const HOUSE_QUERY = gql`
 
 class CalendarPage extends Component {
   render() {
-    const { objectCode, PortalSite } = this.props;
+    const { objectCode, PortalSite, locale } = this.props;
     const variables = {
       id: PortalSite.portal_code,
       house_id: objectCode
@@ -36,9 +36,10 @@ class CalendarPage extends Component {
                 <div key={result.id}>
                   <div>{result.name}</div>
                   <Calendar
-                    portal_code={variables.id}
+                    portalCode={variables.id}
                     objectCode={variables.house_id}
                     house={result}
+                    locale={locale}
                   />
                 </div>
               ))}

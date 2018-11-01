@@ -54,9 +54,9 @@ window.__localeId__ = locale;
 ReactDOM.render(
   <ApolloProvider client={client}>
     <IntlProvider locale={locale} messages={messages[locale]}>
-      <App portalCode={portalCode} objectCode={objectCode} />
+      <App portalCode={portalCode} objectCode={objectCode} locale={locale} />
     </IntlProvider>
   </ApolloProvider>,
   element
 );
-registerServiceWorker();
+
