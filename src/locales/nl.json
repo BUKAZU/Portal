@@ -5,7 +5,10 @@
     "book": "Boeken",
     "choose_for_option": "Neem een optie op deze periode",
     "included_in_price": "Inbegrepen in de prijs",
-    "rent_price": "huurprijs",
-    "discount": "kortings percentage",
-    "extra_costs_included": "Extra kosten inbegrepen"
+    "rent_price": "Huurprijs",
+    "discount": "Korting",
+    "extra_costs_included": "Extra kosten inbegrepen",
+    "optional_costs": "Bij te boeken kosten",
+    "price_after_discount": "Prijs inclusief korting",
+    "booking_from_til": "Boekingsdata:"
 }

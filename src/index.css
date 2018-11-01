@@ -158,8 +158,12 @@
 .price-overview--book>div {
             padding: 8px 0;
         }
-.price-overview--book .price-label {
-            font-size: 24px;
+.price-overview--book .data-label {
+            font-size: 18px;
+        }
+.price-overview--book .data {
+            font-size: 20px;
+            font-weight: bold;
         }
 .price-overview--book .price {
             font-size: 32px;

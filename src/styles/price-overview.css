@@ -17,7 +17,6 @@
         tr {
             border-bottom: 1px solid rgba(0, 0, 0, .25);
         }
-
         td {
             padding: 4px;
             width: 50%;
@@ -40,8 +39,12 @@
         &>div {
             padding: 8px 0;
         }
-        .price-label {
-            font-size: 24px;
+        .data-label {
+            font-size: 18px;
+        }
+        .data {
+            font-size: 20px;
+            font-weight: bold;
         }
         .price {
             font-size: 32px;
