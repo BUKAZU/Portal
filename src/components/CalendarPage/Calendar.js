@@ -6,7 +6,8 @@ import format from "../../_lib/format";
 // import compareAsc from 'date-fns/compare_asc'
 import isAfter from "date-fns/is_after";
 import CalendarHeader from './CalendarHeader'
-// import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
+import PriceField from './PriceField'
+import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 
 export const CALENDAR_QUERY = gql`
   query PortalSiteHousesQuery(
@@ -38,7 +39,11 @@ class Calendar extends React.Component {
   state = {
     currentMonth: new Date(),
     selectedDate: '',
-    numberOfMonths: this.props.numberOfMonths
+    numberOfMonths: this.props.numberOfMonths,
+    house: this.props.house,
+    arrivalDate: '',
+    departureDate: '',
+    startBooking: false
   };
 
   renderHeader(month) {
@@ -69,7 +74,7 @@ class Calendar extends React.Component {
   }
 
   renderCells(availabilities, month) {
-    const { selectedDate } = this.state;
+    const { selectedDate, departureDate, house } = this.state;
     const monthStart = dateFns.startOfMonth(month);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -90,26 +95,24 @@ class Calendar extends React.Component {
         let date = dateFns.format(day, "YYYY-MM-DD");
         let daz = dayz.find(x => x.date === date);
         const cloneDay = daz;
-        const highlight = daz.departure && isAfter(daz.date, selectedDate) ? "departure" : "";
+        const minimum = differenceInCalendarDays(daz.date, selectedDate) >= daz.min_nights;
+        const maximum = differenceInCalendarDays(selectedDate, daz.date) <= house.max_nights;
 
-        days.push(
-          <div
-            className={`col cell ${
-              !dateFns.isSameMonth(day, monthStart)
-                ? "disabled"
-                : dateFns.isSameDay(day, selectedDate)
-                  ? "selected"
-                  : ""
-              } ${daz.arrival ? 'arrival' : ''} ${highlight} ${daz.max_nights === 0 ? 'booked' : ''}`}
-            key={day}
-            date={daz.date}
-            onClick={() => this.onDateClick(cloneDay)}
-          >
-            <span className="bg">
-              {!dateFns.isSameMonth(day, monthStart) ? "" : formattedDate}
+        const highlight = daz.departure && isAfter(daz.date, selectedDate) ? minimum ? maximum ? "departure" : "" : "" : "";
+
+        days.push(<div className={`col cell
+        ${!dateFns.isSameMonth(day, monthStart) ? "disabled" : dateFns.isSameDay(day, selectedDate) || dateFns.isSameDay(day, departureDate.date) ? "selected" : ""}
+              ${dateFns.isAfter(day, selectedDate) && dateFns.isBefore(day, departureDate.date)? 'selected' : ''}
+              ${daz.arrival ? "arrival" : ""}
+              ${highlight}
+              ${daz.max_nights === 0 ? "booked" : ""}`} key={day} date={daz.date} onClick={() => this.onDateClick(cloneDay)}>
+          <span className="bg">
+              {!dateFns.isSameMonth(day, monthStart)
+                ? ""
+                : formattedDate}
+
             </span>
-          </div>
-        );
+          </div>);
         day = dateFns.addDays(day, 1);
       }
       rows.push(
@@ -128,7 +131,6 @@ class Calendar extends React.Component {
       template.push(this.renderSingleMonth(i))
     }
     return template
-
   }
 
   renderSingleMonth(count) {
@@ -160,12 +162,17 @@ class Calendar extends React.Component {
 
   onDateClick = day => {
     if (day.departure && isAfter(day.date, this.state.selectedDate)) {
-      alert("picked departure");
+      this.setState({
+        departureDate: day,
+        startBooking: true
+      })
     }
     if (day.arrival) {
-        this.setState({
-          selectedDate: dateFns.parse(day.date),
-          arrivalDate: day
+      this.setState({
+        startBooking: false,
+        selectedDate: dateFns.parse(day.date),
+        arrivalDate: day,
+        departureDate: ''
         });
       }
   };
@@ -182,12 +189,23 @@ class Calendar extends React.Component {
     });
   };
 
+  showBooking() {
+    const { startBooking, arrivalDate, departureDate } = this.state;
+    if (startBooking) {
+      console.log(departureDate);
+
+      return <PriceField portalCode={this.props.portal_code} objectCode={this.props.objectCode} startsAt={arrivalDate.date} endsAt={departureDate.date} />;
+    } else {
+      return <div></div>
+    }
+  }
+
   render() {
-    const { selectedDate } = this.state
+    const { startBooking } = this.state;
     return <div>
         <CalendarHeader onGoNext={this.nextMonth} onGoPrev={this.prevMonth} />
         <div className="calendars-row">{this.renderMonths()}</div>
-        <div>{format(selectedDate, 'DD-MM-YYYY')}</div>
+        <div className={`price-overview ${startBooking ? 'open' : ''}`}>{this.showBooking()}</div>
       </div>;
   }
 }

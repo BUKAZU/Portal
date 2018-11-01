@@ -9,6 +9,7 @@ export const HOUSE_QUERY = gql`
       houses(house_code: $house_id) {
         id
         name
+        max_nights
       }
     }
   }
@@ -37,6 +38,7 @@ class CalendarPage extends Component {
                   <Calendar
                     portal_code={variables.id}
                     objectCode={variables.house_id}
+                    house={result}
                   />
                 </div>
               ))}
