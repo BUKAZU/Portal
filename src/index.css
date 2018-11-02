@@ -50,7 +50,7 @@
             }
     #bukazu-app .calendar .col {
             width: 100%;
-            border: solid 1px #fff;
+            /* border: solid 1px #fff; */
             padding: 8px;
             text-transform: capitalize;
             text-align: center;
@@ -66,12 +66,17 @@
     #bukazu-app .calendar .col-end {
                 text-align: right;
             }
+    #bukazu-app .calendar .cell {
+                    background: #6eeb83;
+                }
     #bukazu-app .calendar .disabled {
             opacity: 0;
         }
     #bukazu-app .calendar .arrival {
             background: #6eeb83;
             cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
         }
     #bukazu-app .calendar .departure {
             font-weight: bold;
@@ -82,7 +87,7 @@
             cursor: pointer;
         }
     #bukazu-app .calendar .selected {
-            border: solid 1px rgba(23, 190, 187, 0.75);
+            /* border: solid 1px rgba(23, 190, 187, 0.75); */
             background: rgba(23, 190, 187, 0.75);
         }
     #bukazu-app .calendar .booked {

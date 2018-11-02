@@ -36,7 +36,7 @@
         }
         .col {
             width: 100%;
-            border: solid 1px #fff;
+            /* border: solid 1px #fff; */
             padding: 8px;
             text-transform: capitalize;
             text-align: center;
@@ -51,12 +51,17 @@
                 text-align: right;
             }
         }
+                .cell {
+                    background: #6eeb83;
+                }
         .disabled {
             opacity: 0;
         }
         .arrival {
             background: #6eeb83;
             cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
         }
         .departure {
             font-weight: bold;
@@ -67,7 +72,7 @@
             cursor: pointer;
         }
         .selected {
-            border: solid 1px rgba(23, 190, 187, 0.75);
+            /* border: solid 1px rgba(23, 190, 187, 0.75); */
             background: rgba(23, 190, 187, 0.75);
         }
         .booked {
