@@ -16,6 +16,7 @@ export const BOOKING_PRICE_QUERY = gql`
         id
         name
         persons
+        image_url
         booking_price(starts_at: $starts_at, ends_at: $ends_at)
       }
     }

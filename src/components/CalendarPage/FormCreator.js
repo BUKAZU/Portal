@@ -55,7 +55,7 @@ class FormCreator extends React.Component {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
     const bookingPrice = this.props.house.booking_price;
-    const options = this.props.options;
+    const {options, house } = this.props;
 
     let optionalCosts = {};
 
@@ -197,6 +197,10 @@ class FormCreator extends React.Component {
             </div>
 
             <div className="form-sum">
+              <h2><FormattedMessage id='stay_details' /></h2>
+              <div className='house-details'>
+                <img src={house.image_url} alt=""/>
+              </div>
               Cost list
               {bookingPrice.required_house_costs.map(cost => {
                 return (
