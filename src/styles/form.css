@@ -9,7 +9,8 @@
         .error-message {
             width: 100%;
             color: red;
-            font-weight: bold;
+            font-size: 14px;
+            padding-bottom: 4px
         }
         &-section {
             background: rgba(0,0,0,.05);
@@ -20,7 +21,7 @@
         }
     &-row {
         display: flex;
-            flex-direction: column;
+        flex-direction: column;
         padding: 8px 16px;
         &.inline {
             align-items: center;
@@ -31,7 +32,7 @@
             width: 100%;
             label {
                 width: 40%;
-                font-size: 18px
+                font-size: 16px
             }
             select, input {
                 max-width: 100px;

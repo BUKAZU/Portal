@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
 import * as calc from "../../_lib/costs";
+import { Countries } from "../../_lib/countries";
 
 class FormCreator extends React.Component {
   state = {
@@ -21,17 +22,16 @@ class FormCreator extends React.Component {
     values.persons =
       Number(values.children) + Number(values.adults) + Number(values.babies);
 
-      for(let field of options.bookingFields) {
-
-          if(field.required) {
-              if (!values[field.id]) {
-                errors[field.id] = 'Required'
-              }
-          }
+    for (let field of options.bookingFields) {
+      if (field.required) {
+        if (!values[field.id]) {
+          errors[field.id] = "Required";
+        }
       }
+    }
 
     if (values.adults < 1) {
-        errors.adults = <FormattedMessage id="at_least_1_adult" />;
+      errors.adults = <FormattedMessage id="at_least_1_adult" />;
     }
     if (values.persons > this.state.max_persons) {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
@@ -84,7 +84,7 @@ class FormCreator extends React.Component {
           handleBlur
         }) => (
           <Form className="form">
-            <div className='form-section'>
+            <div className="form-section">
               <div className="form-row inline">
                 <label htmlFor="persons">
                   <FormattedMessage id="adults" />
@@ -103,7 +103,10 @@ class FormCreator extends React.Component {
                     );
                   })}
                 </Field>
-                {errors.adults && touched.adults && <div className="error-message">{errors.adults}</div>}
+                {errors.adults &&
+                  touched.adults && (
+                    <div className="error-message">{errors.adults}</div>
+                  )}
               </div>
               <div className="form-row inline">
                 <label htmlFor="children">
@@ -149,25 +152,49 @@ class FormCreator extends React.Component {
                   }
                 })}
               </div>
-                {errors.max_persons && (
+              {errors.max_persons && (
                 <div className="error-message">{errors.max_persons}</div>
-                )}
+              )}
             </div>
             <div className="form-section">
-                {options.bookingFields.map(input => {
-                    return (<div className="form-row" key={input.id}>
-                        <label htmlFor={input.id}>
-                            {input.label}
-                        </label>
-                        <Field type={input.type} name={input.id} />
-                        {errors[input.id] && touched[input.id] && (
-                            <div className="error-message">{errors[input.id]}</div>
+              {options.bookingFields.map(input => {
+                if (input.id === "country") {
+                  return (
+                    <div className="form-row" key={input.id}>
+                      <label htmlFor={input.id}>{input.label}</label>
+                      <Field component="select" name={input.id}>
+                        {Countries[window.__localeId__].map(country => {
+                          return (
+                            <option value={country.alpha2} key={country.alpha2}>
+                              {country.name}
+                            </option>
+                          );
+                        })}
+                      </Field>
+                      {errors[input.id] &&
+                        touched[input.id] && (
+                          <div className="error-message">
+                            {errors[input.id]}
+                          </div>
                         )}
-                    </div>)
-                })}
-
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="form-row" key={input.id}>
+                      <label htmlFor={input.id}>{input.label}</label>
+                      <Field type={input.type} name={input.id} />
+                      {errors[input.id] &&
+                        touched[input.id] && (
+                          <div className="error-message">
+                            {errors[input.id]}
+                          </div>
+                        )}
+                    </div>
+                  );
+                }
+              })}
             </div>
-
 
             <div className="form-sum">
               Cost list
@@ -188,12 +215,11 @@ class FormCreator extends React.Component {
                   </li>
                 );
               })}
-            {status && status.msg && <div>{status.msg}</div>}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
+              {status && status.msg && <div>{status.msg}</div>}
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
             </div>
-
           </Form>
         )}
       />
