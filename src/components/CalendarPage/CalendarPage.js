@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Calendar from "./Calendar";
+import BookingForm from './BookingForm'
 
 export const HOUSE_QUERY = gql`
   query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
@@ -16,7 +17,26 @@ export const HOUSE_QUERY = gql`
 `;
 
 class CalendarPage extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+
+    this.onBooking = this.onBooking.bind(this);
+
+    this.state = {
+      bookingStarted: false,
+      booking: {}
+    };
+  }
+
+  onBooking(booking) {
+    console.log(booking);
+    this.setState({
+      bookingStarted: true,
+      booking
+    });
+  }
+
+  calendar() {
     const { objectCode, PortalSite, locale } = this.props;
     const variables = {
       id: PortalSite.portal_code,
@@ -40,6 +60,7 @@ class CalendarPage extends Component {
                     objectCode={variables.house_id}
                     house={result}
                     locale={locale}
+                    onBooking={this.onBooking}
                   />
                 </div>
               ))}
@@ -48,6 +69,23 @@ class CalendarPage extends Component {
         }}
       </Query>
     );
+  }
+
+  bookingForm() {
+
+    return <BookingForm booking={this.state.booking} />;
+  }
+
+  pageRendering() {
+    if (this.state.bookingStarted) {
+      return this.bookingForm();
+    } else {
+      return this.calendar();
+    }
+  }
+
+  render() {
+    return this.pageRendering();
   }
 }
 

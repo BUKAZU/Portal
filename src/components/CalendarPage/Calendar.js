@@ -36,6 +36,12 @@ export const CALENDAR_QUERY = gql`
 `;
 
 class Calendar extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.bookingStart = this.bookingStart.bind(this);
+  }
+
   state = {
     currentMonth: new Date(),
     selectedDate: '',
@@ -191,15 +197,28 @@ class Calendar extends React.Component {
     if (startBooking) {
       setTimeout(function () {
         document
-          .querySelector(".price-overview")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
+        .querySelector(".price-overview")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
       }, 500);
-      return <PriceField portalCode={portalCode} objectCode={objectCode} locale={locale} startsAt={arrivalDate.date} endsAt={departureDate.date} />;
+      return <PriceField portalCode={portalCode} objectCode={objectCode} locale={locale} startsAt={arrivalDate.date} endsAt={departureDate.date} onStartBooking={this.bookingStart} />;
     } else {
       return <div></div>
     }
+  }
+
+  bookingStart(status) {
+    const { arrivalDate, departureDate } = this.state;
+    const { portalCode, objectCode } = this.props;
+    const booking = {
+      portalCode,
+      objectCode,
+      arrivalDate,
+      departureDate,
+      status
+    }
+    this.props.onBooking(booking)
   }
 
   render() {
