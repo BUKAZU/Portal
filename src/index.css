@@ -94,24 +94,69 @@
             background: #ea2b1f;
             color: #fff;
         }
-.form {
+#bukazu-app .form {
+    max-width: 1400px;
+    margin: 0 auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+        -ms-flex-direction: row;
+            flex-direction: row;
 }
-.form-row {
-        padding: 16px;
+#bukazu-app .form > div {
+        -webkit-box-flex: 1;
+            -ms-flex: 1;
+                flex: 1;
     }
-.form-row.inline {
+#bukazu-app .form .error-message {
+            width: 100%;
+            color: red;
+            font-weight: bold;
+        }
+#bukazu-app .form-section {
+            background: rgba(0,0,0,.05);
+        }
+#bukazu-app .form-sum {
+            padding: 16px;
+            border-left: 1px solid rgba(0, 0, 0, 0.25);
+        }
+#bukazu-app .form-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+        padding: 8px 16px;
+    }
+#bukazu-app .form-row.inline {
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             display: -webkit-box;
             display: -ms-flexbox;
             display: flex;
-
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                    flex-direction: row;
+            -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            width: 100%;
         }
+#bukazu-app .form-row.inline label {
+                width: 40%;
+                font-size: 18px
+            }
+#bukazu-app .form-row.inline select, #bukazu-app .form-row.inline input {
+                max-width: 100px;
+            }
 .price-overview {
     padding: 16px;
     display: -webkit-box;

@@ -1,11 +1,41 @@
-.form {
+#bukazu-app .form {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    > div {
+        flex: 1;
+    }
+        .error-message {
+            width: 100%;
+            color: red;
+            font-weight: bold;
+        }
+        &-section {
+            background: rgba(0,0,0,.05);
+        }
+        &-sum {
+            padding: 16px;
+            border-left: 1px solid rgba(0, 0, 0, 0.25);
+        }
     &-row {
-        padding: 16px;
+        display: flex;
+            flex-direction: column;
+        padding: 8px 16px;
         &.inline {
+            align-items: center;
             display: flex;
-
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            width: 100%;
+            label {
+                width: 40%;
+                font-size: 18px
+            }
+            select, input {
+                max-width: 100px;
+            }
         }
     }
 }
