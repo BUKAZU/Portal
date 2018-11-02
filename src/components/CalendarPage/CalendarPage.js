@@ -22,13 +22,25 @@ class CalendarPage extends Component {
 
     this.onBooking = this.onBooking.bind(this);
 
+    // TODO Remove booking data
     this.state = {
-      bookingStarted: false,
-      booking: {}
+      bookingStarted: true,
+      booking: {
+        objectCode: "NL0001",
+        portalCode: "7f2614bc",
+        arrivalDate: {
+          date: "2018-11-16"
+        },
+        departureDate: {
+          date: "2018-11-22"
+        },
+        in_option: false
+      }
     };
   }
 
   onBooking(booking) {
+    // TODO Remove log
     console.log(booking);
     this.setState({
       bookingStarted: true,

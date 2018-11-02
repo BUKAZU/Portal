@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Formik, Form, Field } from "formik";
+import FormCreator from "./FormCreator";
 
 export const BOOKING_PRICE_QUERY = gql`
   query BookingPriceQuery(
@@ -48,9 +48,9 @@ class BookingForm extends React.Component {
                     if (error) return <div>Error</div>;
 
                     const result = data.PortalSite.houses[0];
-                    const bookingFields = data.PortalSite.options
+                    const options = data.PortalSite.options;
 
-                    return <div>{result.persons}</div>;
+                    return <FormCreator house={result} options={options} booking={this.state.booking} />;
                 }}
             </Query>
         )
