@@ -215,6 +215,9 @@
                 flex-wrap: wrap;
             width: 100%;
         }
+#bukazu-app .form-row.inline.hidden {
+                display: none;
+            }
 #bukazu-app .form-row.inline label {
                 width: 20%;
                 font-size: 16px

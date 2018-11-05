@@ -24,15 +24,15 @@ class CalendarPage extends Component {
 
     // TODO Remove booking data
     this.state = {
-      bookingStarted: true,
+      bookingStarted: false,
       booking: {
-        objectCode: "NL0001",
-        portalCode: "7f2614bc",
+        objectCode: "",
+        portalCode: "",
         arrivalDate: {
-          date: "2018-11-16"
+
         },
         departureDate: {
-          date: "2018-11-22"
+
         },
         in_option: false
       }
@@ -40,8 +40,6 @@ class CalendarPage extends Component {
   }
 
   onBooking(booking) {
-    // TODO Remove log
-    console.log(booking);
     this.setState({
       bookingStarted: true,
       booking

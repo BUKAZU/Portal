@@ -26,5 +26,14 @@
     "max_persons_reached": "Het maximaal aantal personen is overschreden",
     "personal_details": "Persoonlijke details",
     "required": "Verplicht",
+    "cancel_insurance_all_risk": "All Risk",
+    "cancel_insurance_normal": "Normaal",
+    "none": "Geen",
+    "damage_insurance": "Schadeverzekering",
+    "cancel_insurance": "Annuleringsverzekering",
+    "travel_insurance": "Reisverzekering",
+    "insurance_costs": "Poliskosten",
+    "choose": "Kies",
+    "yes": "Ja",
     "booking_details": "Boekingsgegevens"
 }
