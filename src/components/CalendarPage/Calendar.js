@@ -102,9 +102,9 @@ class Calendar extends React.Component {
         let daz = dayz.find(x => x.date === date);
         const cloneDay = daz;
         const minimum = differenceInCalendarDays(daz.date, selectedDate) >= daz.min_nights;
-        const maximum = differenceInCalendarDays(selectedDate, daz.date) <= house.max_nights;
+        const maximum = differenceInCalendarDays(daz.date, selectedDate) <= house.max_nights;
 
-        const highlight = daz.departure && isAfter(daz.date, selectedDate) ? minimum ? maximum ? "departure" : "" : "" : "";
+        const highlight = daz.departure && isAfter(daz.date, selectedDate) ? (minimum ? (maximum ? "departure" : "") : "") : "";
 
         days.push(<div className={`col cell
         ${!dateFns.isSameMonth(day, monthStart) ? "disabled" : dateFns.isSameDay(day, selectedDate) || dateFns.isSameDay(day, departureDate.date) ? "selected" : ""}
@@ -112,7 +112,7 @@ class Calendar extends React.Component {
               ${daz.arrival ? "arrival" : ""}
               ${highlight}
               ${daz.max_nights === 0 ? "booked" : ""}`} key={day} date={daz.date} onClick={() => this.onDateClick(cloneDay)}>
-          <span className="bg">
+            <span className="bg">
               {!dateFns.isSameMonth(day, monthStart)
                 ? ""
                 : formattedDate}
