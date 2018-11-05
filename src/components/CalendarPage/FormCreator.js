@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, FormattedNumber } from "react-intl";
 import * as calc from "../../_lib/costs";
 import { Countries } from "../../_lib/countries";
 
@@ -55,7 +55,7 @@ class FormCreator extends React.Component {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
     const bookingPrice = this.props.house.booking_price;
-    const {options, house } = this.props;
+    const { options, house } = this.props;
 
     let optionalCosts = {};
 
@@ -85,6 +85,9 @@ class FormCreator extends React.Component {
         }) => (
           <Form className="form">
             <div className="form-section">
+              <h2>
+                <FormattedMessage id="stay_details" />
+              </h2>
               <div className="form-row inline">
                 <label htmlFor="persons">
                   <FormattedMessage id="adults" />
@@ -136,6 +139,14 @@ class FormCreator extends React.Component {
                   })}
                 </Field>
               </div>
+              {errors.max_persons && (
+                <div className="error-message">{errors.max_persons}</div>
+              )}
+            </div>
+            <div className="form-section">
+              <h2>
+                <FormattedMessage id="extra_costs_bookable" />
+              </h2>
               <div>
                 {bookingPrice.optional_house_costs.map(cost => {
                   if (!["none", "total"].includes(cost.method)) {
@@ -152,11 +163,11 @@ class FormCreator extends React.Component {
                   }
                 })}
               </div>
-              {errors.max_persons && (
-                <div className="error-message">{errors.max_persons}</div>
-              )}
             </div>
             <div className="form-section">
+              <h2>
+                <FormattedMessage id="personal_details" />
+              </h2>
               {options.bookingFields.map(input => {
                 if (input.id === "country") {
                   return (
@@ -197,31 +208,115 @@ class FormCreator extends React.Component {
             </div>
 
             <div className="form-sum">
-              <h2><FormattedMessage id='stay_details' /></h2>
-              <div className='house-details'>
-                <img src={house.image_url} alt=""/>
+              <h2>
+                <FormattedMessage id="booking_details" />
+              </h2>
+              <div className="house-details">
+                <div>{house.name}</div>
+                <img src={house.image_url} alt="" />
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>
+                        <FormattedMessage id="arrival_date" />
+                      </th>
+                      <td />
+                    </tr>
+                    <tr>
+                      <th>
+                        <FormattedMessage id="departure_date" />
+                      </th>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              Cost list
-              {bookingPrice.required_house_costs.map(cost => {
-                return (
-                  <div key={cost.id}>
-                    {cost[`name_${window.__localeId__}`]}:{" "}
-                    {this.calculateCost(cost, values)}
-                  </div>
-                );
-              })}
-              <br />
-              {bookingPrice.optional_house_costs.map(cost => {
-                return (
-                  <li key={cost.id}>
-                    {cost[`name_${window.__localeId__}`]}:{" "}
-                    {this.calculateCost(cost, values)}
-                  </li>
-                );
-              })}
+              <div className="costs-section">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <FormattedMessage id="rent_price" />
+                      </td>
+                      <td className="price">
+                        €{" "}
+                        <FormattedNumber
+                          value={bookingPrice.rent_price}
+                          minimumFractionDigits={2}
+                          maximumFractionDigits={2}
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <FormattedMessage id="discount" />
+                      </td>
+                      <td className="price">
+                        <FormattedNumber value={bookingPrice.discount} /> %
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <FormattedMessage id="price_after_discount" />
+                      </td>
+                      <td className="price">
+                        €{" "}
+                        <FormattedNumber
+                          value={bookingPrice.discounted_price}
+                          minimumFractionDigits={2}
+                          maximumFractionDigits={2}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="costs-section">
+                <table>
+                  <tbody>
+                    {bookingPrice.required_house_costs.map(cost => {
+                      return (
+                        <tr key={cost.id}>
+                          <td>{cost[`name_${window.__localeId__}`]}</td>
+                          <td className="price">
+                            €{" "}
+                            <FormattedNumber
+                              value={this.calculateCost(cost, values)}
+                              minimumFractionDigits={2}
+                              maximumFractionDigits={2}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className="costs-section">
+                <table>
+                  <tbody>
+                    {bookingPrice.optional_house_costs.map(cost => {
+                      return <tr key={cost.id}>
+                          <td>
+                            {
+                              cost[
+                                `name_${
+                                  window.__localeId__
+                                }`
+                              ]
+                            }
+                          </td>
+                          <td className="price">
+                            € <FormattedNumber value={this.calculateCost(cost, values)} minimumFractionDigits={2} maximumFractionDigits={2} />
+                          </td>
+                        </tr>;
+                    })}
+                  </tbody>
+                </table>
+              </div>
               {status && status.msg && <div>{status.msg}</div>}
-              <button type="submit" disabled={isSubmitting}>
-                Submit
+              <button type="submit">
+                <FormattedMessage id="book" />
               </button>
             </div>
           </Form>

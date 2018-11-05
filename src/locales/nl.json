@@ -14,5 +14,13 @@
     "per_night": "per nacht",
     "per_person_per_night": "per persoon per nacht",
     "total": "totaal",
-    "stay_details": "Verblijfsgegevens"
+    "stay_details": "Verblijfsgegevens",
+    "babies": "Baby's",
+    "adults": "Volwassenen",
+    "children": "Kinderen",
+    "arrival_date": "Aankomstdatum",
+    "departure_date": "Vertrekdatum",
+    "extra_costs_bookable": "Extra bij te boeken",
+    "insurances": "Verzekeringen",
+    "personal_details": "Persoonlijke details"
 }

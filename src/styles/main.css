@@ -2,6 +2,9 @@
 @import 'form.css';
 @import 'price-overview.css';
 
-#bukazu-app div {
-    box-sizing: border-box;
+#bukazu-app {
+    background: #FBFBFB;
+    div {
+        box-sizing: border-box;
+    }
 }
