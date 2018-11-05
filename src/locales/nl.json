@@ -22,5 +22,9 @@
     "departure_date": "Vertrekdatum",
     "extra_costs_bookable": "Extra bij te boeken",
     "insurances": "Verzekeringen",
-    "personal_details": "Persoonlijke details"
+    "at_least_1_adult": "Kies minstens 1 volwassene",
+    "max_persons_reached": "Het maximaal aantal personen is overschreden",
+    "personal_details": "Persoonlijke details",
+    "required": "Verplicht",
+    "booking_details": "Boekingsgegevens"
 }

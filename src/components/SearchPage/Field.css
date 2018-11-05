@@ -9,6 +9,7 @@
     box-sizing: border-box;
     margin: 4px 0 8px;
 }
+
 #bukazu-app input[type=radio] {
     width: 8px;
     height: 8px;
@@ -17,9 +18,11 @@
     position: relative;
     border-radius: 16px;
 }
+
 #bukazu-app input[type=radio]:checked+label {
     font-weight: bold;
 }
+
 #bukazu-app input[type=radio]:checked::after {
     content: '';
     position: absolute;
@@ -32,8 +35,8 @@
     width: 10px;
     border-radius: 16px;
     background: blueviolet;
-
 }
+
 #bukazu-app .radioList {
     padding: 0;
     list-style: none;

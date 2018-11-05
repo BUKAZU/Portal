@@ -176,8 +176,13 @@
             border: 0;
             color: #fff;
             font-size: 20px;
-            background: #e28413
+            background: #e28413;
+            cursor: pointer;
         }
+#bukazu-app .form-sum button:hover {
+                -webkit-box-shadow: 0px 2px 12px rgba(0, 0, 0, .25);
+                        box-shadow: 0px 2px 12px rgba(0, 0, 0, .25);
+            }
 #bukazu-app .form-row {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -216,8 +221,24 @@
             }
 #bukazu-app .form-row.inline select,
             #bukazu-app .form-row.inline input {
-                max-width: 100px;
+                width: auto;
+                padding: 8px 64px 8px 16px;
             }
+#bukazu-app .form select {
+        background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+        background-position:
+            calc(100% - 20px) calc(1em),
+            calc(100% - 15px) calc(1em),
+            calc(100% - 2.5em) ;
+        background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+        background-repeat: no-repeat;
+    }
 .price-overview {
     padding: 16px;
     display: -webkit-box;

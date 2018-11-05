@@ -1,27 +1,7 @@
 import React from 'react';
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import FormCreator from "./FormCreator";
-
-export const BOOKING_PRICE_QUERY = gql`
-  query BookingPriceQuery(
-    $id: ID!
-    $house_id: String!
-    $starts_at: Date!
-    $ends_at: Date!
-  ) {
-    PortalSite(id: $id) {
-      options
-      houses(house_code: $house_id) {
-        id
-        name
-        persons
-        image_url
-        booking_price(starts_at: $starts_at, ends_at: $ends_at)
-      }
-    }
-  }
-`;
+import { BOOKING_PRICE_QUERY } from '../../_lib/queries'
 
 class BookingForm extends React.Component {
     constructor(props) {

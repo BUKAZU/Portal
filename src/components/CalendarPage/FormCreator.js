@@ -25,7 +25,7 @@ class FormCreator extends React.Component {
     for (let field of options.bookingFields) {
       if (field.required) {
         if (!values[field.id]) {
-          errors[field.id] = "Required";
+          errors[field.id] = <FormattedMessage id="required" />;
         }
       }
     }
@@ -74,6 +74,12 @@ class FormCreator extends React.Component {
           babies: 0,
           persons: 2
         }}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
         render={({
           errors,
           touched,
@@ -81,7 +87,8 @@ class FormCreator extends React.Component {
           status,
           isSubmitting,
           handleChange,
-          handleBlur
+          handleBlur,
+          handleSubmit
         }) => (
           <Form className="form">
             <div className="form-section">
@@ -145,6 +152,41 @@ class FormCreator extends React.Component {
             </div>
             <div className="form-section">
               <h2>
+                <FormattedMessage id="insurances" />
+              </h2>
+              <div className={`form-row inline ${house.damage_insurance ? '' : 'hidden'}`}>
+                <label htmlFor="damage_insurance">
+                  <FormattedMessage id="damage_insurance" />
+                </label>
+                <Field component="select" name='damage_insurance' required="true">
+                  <option value="">Choose</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </Field>
+              </div>
+              <div className="form-row inline">
+                <label htmlFor="cancel_insurance">
+                  <FormattedMessage id="cancel_insurance" />
+                </label>
+                <Field component="select" name='cancel_insurance'  required="true">
+                  <option value="">Choose</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </Field>
+              </div>
+              <div className="form-row inline">
+                <label htmlFor="travel_insurance">
+                  <FormattedMessage id="travel_insurance" />
+                </label>
+                <Field component="select" name='travel_insurance' required="true">
+                  <option value="">Choose</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </Field>
+              </div>
+            </div>
+            <div className="form-section">
+              <h2>
                 <FormattedMessage id="extra_costs_bookable" />
               </h2>
               <div>
@@ -182,8 +224,7 @@ class FormCreator extends React.Component {
                           );
                         })}
                       </Field>
-                      {errors[input.id] &&
-                        touched[input.id] && (
+                      {errors[input.id] && (
                           <div className="error-message">
                             {errors[input.id]}
                           </div>
@@ -191,18 +232,15 @@ class FormCreator extends React.Component {
                     </div>
                   );
                 } else {
-                  return (
-                    <div className="form-row" key={input.id}>
-                      <label htmlFor={input.id}>{input.label}</label>
+                  return <div className="form-row" key={input.id}>
+                      <label htmlFor={input.id}>
+                        {input.label}
+                      </label>
                       <Field type={input.type} name={input.id} />
-                      {errors[input.id] &&
-                        touched[input.id] && (
-                          <div className="error-message">
+                      {errors[input.id] && <div className="error-message">
                             {errors[input.id]}
-                          </div>
-                        )}
-                    </div>
-                  );
+                          </div>}
+                    </div>;
                 }
               })}
             </div>
@@ -260,7 +298,7 @@ class FormCreator extends React.Component {
                         <FormattedMessage id="price_after_discount" />
                       </td>
                       <td className="price">
-                        €{" "}
+                        €{"  "}
                         <FormattedNumber
                           value={bookingPrice.discounted_price}
                           minimumFractionDigits={2}
@@ -279,7 +317,7 @@ class FormCreator extends React.Component {
                         <tr key={cost.id}>
                           <td>{cost[`name_${window.__localeId__}`]}</td>
                           <td className="price">
-                            €{" "}
+                            €{"  "}
                             <FormattedNumber
                               value={this.calculateCost(cost, values)}
                               minimumFractionDigits={2}
@@ -307,7 +345,7 @@ class FormCreator extends React.Component {
                             }
                           </td>
                           <td className="price">
-                            € <FormattedNumber value={this.calculateCost(cost, values)} minimumFractionDigits={2} maximumFractionDigits={2} />
+                            €  <FormattedNumber value={this.calculateCost(cost, values)} minimumFractionDigits={2} maximumFractionDigits={2} />
                           </td>
                         </tr>;
                     })}
@@ -315,7 +353,7 @@ class FormCreator extends React.Component {
                 </table>
               </div>
               {status && status.msg && <div>{status.msg}</div>}
-              <button type="submit">
+              <button type="submit" disabled={isSubmitting}>
                 <FormattedMessage id="book" />
               </button>
             </div>
