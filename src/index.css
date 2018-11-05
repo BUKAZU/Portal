@@ -26,12 +26,18 @@
         display: flex;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
     }
     #bukazu-app .calendar {
-        min-width: 50%;
+        min-width: 48%;
         padding: 16px;
         -webkit-box-sizing: border-box;
                 box-sizing: border-box;
+        background: #fff;
+        -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, .25);
+                box-shadow: 1px 1px 8px rgba(0, 0, 0, .25);
+        margin: 16px 0;
     }
     #bukazu-app .calendar .header {
             background-color: rgba(211, 211, 211, 0.2);

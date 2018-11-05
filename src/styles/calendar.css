@@ -18,11 +18,15 @@
     .calendars-row {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-around;
     }
     .calendar {
-        min-width: 50%;
+        min-width: 48%;
         padding: 16px;
         box-sizing: border-box;
+        background: #fff;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, .25);
+        margin: 16px 0;
         .header {
             background-color: rgba(211, 211, 211, 0.2);
         }
