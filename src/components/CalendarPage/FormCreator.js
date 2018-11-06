@@ -58,24 +58,26 @@ class FormCreator extends React.Component {
   calculateInsurances(values) {
     const house = this.props.house;
     const prices = this.calculateRentPrice(values);
+    const { damage_insurance, cancel_insurance, travel_insurance, persons } = values
 
     let insurances = [];
-    if (house.damage_insurance_required || values.damage_insurance === 1) {
+    if (house.damage_insurance_required || damage_insurance === 1) {
       let ins = {};
       ins.name = "damage_insurance";
       ins.price = prices.discounted_price * (1.81 / 100);
       insurances.push(ins);
     }
-    if (values.cancel_insurance === "1" || values.cancel_insurance === "2") {
+    if (cancel_insurance === "1" || cancel_insurance === "2") {
+      let perc = cancel_insurance === "1" ? 5.5 : 7
       let ins = {};
       ins.name = "cancel_insurance";
-      ins.price = prices.discounted_price * (1.81 / 100);
+      ins.price = prices.discounted_price * (perc / 100);
       insurances.push(ins);
     }
-    if (values.travel_insurance === "1") {
+    if (travel_insurance === "1") {
       let ins = {};
       ins.name = "travel_insurance";
-      ins.price = prices.discounted_price * (1.81 / 100);
+      ins.price = (persons * (house.booking_price.nights + 1) * 2.8);
       insurances.push(ins);
     }
     if (
@@ -115,7 +117,6 @@ class FormCreator extends React.Component {
     };
     for (let perc of person_percentages) {
       if (persons < perc.persons && perc.persons < percentage.persons) {
-        console.log(persons);
         percentage = perc;
       }
     }
@@ -128,6 +129,25 @@ class FormCreator extends React.Component {
     };
 
     return new_rent;
+  }
+
+  calculateTotal(values) {
+    const bookingPrice = this.props.house.booking_price
+    let total = 0;
+    total += this.calculateRentPrice(values).discounted_price
+
+    for(let ins of this.calculateInsurances(values)) {
+      total += ins.price
+    }
+
+    for (let cost of bookingPrice.required_house_costs) {
+      total += parseFloat(this.calculateCost(cost, values));
+    }
+    for (let cost of bookingPrice.optional_house_costs) {
+      total += parseFloat(this.calculateCost(cost, values))
+    }
+
+    return total
   }
 
   render() {
@@ -299,8 +319,7 @@ class FormCreator extends React.Component {
             </div>
 
             <div className="form-sum">
-              <Summary house={house} />
-
+              <Summary house={house} bookingPrice={bookingPrice} />
               <div className="costs-section">
                 <table>
                   <tbody>
@@ -399,6 +418,29 @@ class FormCreator extends React.Component {
                     })}
                   </tbody>
                 </table>
+              </div>
+              <div className="costs-section">
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th style={{
+                            textAlign: 'left',
+                            testTransform: 'capitalize'
+                          }}>
+                            <FormattedMessage id="total" />
+
+                          </th>
+                          <td className="price">
+                            €{" "}
+                            <FormattedNumber
+                              value={this.calculateTotal(values)}
+                              minimumFractionDigits={2}
+                              maximumFractionDigits={2}
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
               </div>
               {status && status.msg && <div>{status.msg}</div>}
               <button type="submit" disabled={isSubmitting}>

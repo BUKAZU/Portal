@@ -1,39 +1,13 @@
 import React from "react";
 import dateFns from "date-fns";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import format from "../../_lib/format";
-// import compareAsc from 'date-fns/compare_asc'
 import isAfter from "date-fns/is_after";
 import CalendarHeader from './CalendarHeader'
 import PriceField from './PriceField'
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 
-export const CALENDAR_QUERY = gql`
-  query PortalSiteHousesQuery(
-    $id: ID!
-    $house_id: String!
-    $starts_at: Date!
-    $ends_at: Date!
-  ) {
-    PortalSite(id: $id) {
-      houses(house_code: $house_id) {
-        id
-        name
-        availabilities(starts_at: $starts_at, ends_at: $ends_at) {
-          arrival
-          arrival_time_from
-          arrival_time_to
-          date
-          departure
-          departure_time
-          max_nights
-          min_nights
-        }
-      }
-    }
-  }
-`;
+import { CALENDAR_QUERY } from "../../_lib/queries";
 
 class Calendar extends React.Component {
   constructor(props) {

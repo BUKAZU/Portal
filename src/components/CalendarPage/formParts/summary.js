@@ -1,5 +1,6 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import format from "../../../_lib/format";
 
 export const Summary = ({ house, bookingPrice }) => (
   <React.Fragment>
@@ -15,13 +16,17 @@ export const Summary = ({ house, bookingPrice }) => (
             <th>
               <FormattedMessage id="arrival_date" />
             </th>
-            <td />
+            <td className="price">
+              {format(bookingPrice.arrival_date, "DD-MM-YYYY")}
+            </td>
           </tr>
           <tr>
             <th>
               <FormattedMessage id="departure_date" />
             </th>
-            <td />
+            <td className="price">
+              {format(bookingPrice.departure_date, "DD-MM-YYYY")}
+            </td>
           </tr>
         </tbody>
       </table>

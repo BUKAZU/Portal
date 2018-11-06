@@ -33,6 +33,32 @@ export const PORTAL_QUERY = gql`
   }
 `;
 
+export const CALENDAR_QUERY = gql`
+  query PortalSiteHousesQuery(
+    $id: ID!
+    $house_id: String!
+    $starts_at: Date!
+    $ends_at: Date!
+  ) {
+    PortalSite(id: $id) {
+      houses(house_code: $house_id) {
+        id
+        name
+        availabilities(starts_at: $starts_at, ends_at: $ends_at) {
+          arrival
+          arrival_time_from
+          arrival_time_to
+          date
+          departure
+          departure_time
+          max_nights
+          min_nights
+        }
+      }
+    }
+  }
+`;
+
 export const BOOKING_PRICE_QUERY = gql`
   query BookingPriceQuery(
     $id: ID!
