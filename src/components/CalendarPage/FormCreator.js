@@ -186,8 +186,7 @@ class FormCreator extends React.Component {
           status,
           isSubmitting,
           handleChange,
-          handleBlur,
-          handleSubmit
+          handleBlur
         }) => (
           <Form className="form">
             <div className="form-section">
@@ -195,7 +194,7 @@ class FormCreator extends React.Component {
                 <FormattedMessage id="stay_details" />
               </h2>
               <div className="form-row inline">
-                <label htmlFor="persons">
+                <label htmlFor="adults">
                   <FormattedMessage id="adults" />
                 </label>
                 <Field

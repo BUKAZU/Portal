@@ -190,7 +190,7 @@ class PriceField extends React.Component {
                 <button
                   className="button"
                   onClick={() => {
-                    this.props.onStartBooking("booking");
+                    this.props.onStartBooking(true);
                   }}
                 >
                   <FormattedMessage id="book" />
@@ -198,7 +198,7 @@ class PriceField extends React.Component {
                 <a
                   className="option"
                   onClick={() => {
-                    this.props.onStartBooking("option");
+                    this.props.onStartBooking(false);
                   }}
                 >
                   <FormattedMessage id="choose_for_option" />

@@ -141,8 +141,7 @@ class Calendar extends React.Component {
         departureDate: day,
         startBooking: true
       })
-    }
-    if (day.arrival) {
+    } else if (day.arrival) {
       this.setState({
         startBooking: false,
         selectedDate: dateFns.parse(day.date),
@@ -190,7 +189,7 @@ class Calendar extends React.Component {
       objectCode,
       arrivalDate,
       departureDate,
-      status
+      is_option: status
     }
     this.props.onBooking(booking)
   }
