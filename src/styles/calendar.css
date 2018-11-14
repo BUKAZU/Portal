@@ -1,87 +1,89 @@
 #bukazu-app {
-    .calendars-header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        .col {
-            .icon {
-                padding: 8px 40px;
-                background: rgba(23, 190, 187, 0.75);
-                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-                cursor: pointer;
-                &:hover {
-                    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-                }
-            }
+  .calendars-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .col {
+      .icon {
+        padding: 8px 40px;
+        background: rgba(23, 190, 187, 0.75);
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        &:hover {
+          box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
         }
+      }
     }
-    .calendars-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
+  }
+  .calendars-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .calendar {
+    min-width: 48%;
+    padding: 16px;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+    margin: 16px 0;
+    .header {
+      background-color: rgba(211, 211, 211, 0.2);
     }
-    .calendar {
-        min-width: 48%;
-        padding: 16px;
-        box-sizing: border-box;
-        background: #fff;
-        box-shadow: 1px 1px 8px rgba(0, 0, 0, .25);
-        margin: 16px 0;
-        .header {
-            background-color: rgba(211, 211, 211, 0.2);
-        }
-        .row {
-            width: 100%;
-            display: flex;
-            flex: 1 1;
-            &.days {
-                border-bottom: 1px solid rgba(211, 211, 211, 0.5);
-            }
-        }
-        .col {
-            width: 100%;
-            /* border: solid 1px #fff; */
-            padding: 8px;
-            text-transform: capitalize;
-            text-align: center;
-            transition: all 0.5s ease;
-            &-center {
-                text-align: center;
-            }
-            &-start {
-                text-align: left;
-            }
-            &-end {
-                text-align: right;
-            }
-        }
-                .cell {
-                    background: #6eeb83;
-                }
-        .disabled {
-            opacity: 0;
-        }
-        .arrival {
-            background: #6eeb83;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-        .departure {
-            font-weight: bold;
-            background: yellow;
-            cursor: pointer;
-        }
-        .icon {
-            cursor: pointer;
-        }
-        .selected {
-            /* border: solid 1px rgba(23, 190, 187, 0.75); */
-            background: rgba(23, 190, 187, 0.75);
-        }
-        .booked {
-            background: #ea2b1f;
-            color: #fff;
-        }
+    .row {
+      width: 100%;
+      display: flex;
+      flex: 1 1;
+      &.days {
+        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+      }
     }
+    .col {
+      width: 100%;
+      /* border: solid 1px #fff; */
+      padding: 8px;
+      text-transform: capitalize;
+      text-align: center;
+      transition: all 0.5s ease;
+      &-center {
+        text-align: center;
+      }
+      &-start {
+        text-align: left;
+      }
+      &-end {
+        text-align: right;
+      }
+    }
+    .cell {
+      background: #6eeb83;
+    }
+    .disabled {
+      opacity: 0;
+    }
+    .arrival {
+      background: #6eeb83;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .icon {
+      cursor: pointer;
+    }
+    .discount {
+      background: orange;
+    }
+    .departure {
+      font-weight: bold;
+      background: yellow;
+      cursor: pointer;
+    }
+    .selected {
+      background: rgba(23, 190, 187, 0.75);
+    }
+    .booked {
+      background: #ea2b1f;
+      color: #fff;
+    }
+  }
 }

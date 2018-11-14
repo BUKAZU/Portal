@@ -44,6 +44,7 @@ export const CALENDAR_QUERY = gql`
       houses(house_code: $house_id) {
         id
         name
+        last_minute_days
         availabilities(starts_at: $starts_at, ends_at: $ends_at) {
           arrival
           arrival_time_from
@@ -53,6 +54,7 @@ export const CALENDAR_QUERY = gql`
           departure_time
           max_nights
           min_nights
+          special_offer
         }
       }
     }

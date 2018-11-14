@@ -59,6 +59,7 @@ class Calendar extends React.Component {
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
     const endDate = dateFns.endOfWeek(monthEnd);
+    const today = new Date()
 
     const dateFormat = "D";
     const rows = [];
@@ -78,12 +79,16 @@ class Calendar extends React.Component {
         const minimum = differenceInCalendarDays(daz.date, selectedDate) >= daz.min_nights;
         const maximum = differenceInCalendarDays(daz.date, selectedDate) <= house.max_nights;
 
+        const daysFromToday = differenceInCalendarDays(daz.date, today);
+        const last_minute = daysFromToday <= house.last_minute_days && daysFromToday >= 0;
+
         const highlight = daz.departure && isAfter(daz.date, selectedDate) ? (minimum ? (maximum ? "departure" : "") : "") : "";
 
         days.push(<div className={`col cell
         ${!dateFns.isSameMonth(day, monthStart) ? "disabled" : dateFns.isSameDay(day, selectedDate) || dateFns.isSameDay(day, departureDate.date) ? "selected" : ""}
               ${dateFns.isAfter(day, selectedDate) && dateFns.isBefore(day, departureDate.date)? 'selected' : ''}
-              ${daz.arrival ? "arrival" : ""}
+              ${daz.arrival ? dateFns.isAfter(daz.date, new Date()) ? "arrival" : "" : ""}
+              ${last_minute || daz.special_offer > 0 ? 'discount' : ''}
               ${highlight}
               ${daz.max_nights === 0 ? "booked" : ""}`} key={day} date={daz.date} onClick={() => this.onDateClick(cloneDay)}>
             <span className="bg">

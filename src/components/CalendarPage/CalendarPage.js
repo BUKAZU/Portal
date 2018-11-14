@@ -5,16 +5,17 @@ import Calendar from "./Calendar";
 import BookingForm from './BookingForm'
 
 export const HOUSE_QUERY = gql`
-  query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
-    PortalSite(id: $id) {
-      houses(house_code: $house_id) {
-        id
-        name
-        max_nights
-      }
-    }
-  }
-`;
+         query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
+           PortalSite(id: $id) {
+             houses(house_code: $house_id) {
+               id
+               name
+               max_nights
+               last_minute_days
+             }
+           }
+         }
+       `;
 
 class CalendarPage extends Component {
   constructor(props) {

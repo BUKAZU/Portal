@@ -256,24 +256,33 @@ class FormCreator extends React.Component {
               <div>
                 {bookingPrice.optional_house_costs.map(cost => {
                   if (!["none", "total"].includes(cost.method)) {
-                    return (
-                      <div className="form-row inline" key={cost.id}>
+                    return <div className="form-row inline" key={cost.id}>
                         <label htmlFor={cost.id}>
-                          {cost[`name_${window.__localeId__}`]}
+                          {
+                            cost[
+                              `name_${window.__localeId__}`
+                            ]
+                          }
                         </label>
                         <Field component="select" name={cost.id}>
                           {this.createPeronsArray(cost.max_available).map(
                             opt => {
                               return (
-                                <option key={opt} value={opt}>
+                                <option
+                                  key={opt}
+                                  value={opt}
+                                >
                                   {opt}
                                 </option>
                               );
                             }
                           )}
                         </Field>
-                      </div>
-                    );
+
+                        <div className="price_per">
+                          € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} /> <FormattedMessage id={cost.method} />
+                        </div>
+                      </div>;
                   } else {
                     return "";
                   }
