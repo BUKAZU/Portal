@@ -418,6 +418,7 @@
             color: #004fa7;
             text-decoration: underline;
             padding: 8px 0;
+            cursor: pointer;
         }
 .price-overview--book .button {
             background: #e28413;

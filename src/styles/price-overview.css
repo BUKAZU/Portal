@@ -84,6 +84,7 @@
             color: #004fa7;
             text-decoration: underline;
             padding: 8px 0;
+            cursor: pointer;
         }
         .button {
             background: #e28413;
