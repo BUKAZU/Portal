@@ -5,6 +5,7 @@ import * as calc from "../../_lib/costs";
 import { Countries } from "../../_lib/countries";
 import { Insurances } from "./formParts/insurances";
 import { Summary } from "./formParts/summary"
+import { RadioButton, RadioButtonGroup } from './formParts/radioButtons'
 
 class FormCreator extends React.Component {
   state = {
@@ -106,6 +107,8 @@ class FormCreator extends React.Component {
   }
 
   calculateRentPrice(values) {
+    console.log(values);
+
     const {
       rent_price,
       discount,
@@ -154,7 +157,7 @@ class FormCreator extends React.Component {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
     const bookingPrice = this.props.house.booking_price;
-    const { options, house } = this.props;
+    const { options, house, booking } = this.props;
 
     let optionalCosts = {};
 
@@ -328,6 +331,15 @@ class FormCreator extends React.Component {
 
             <div className="form-sum">
               <Summary house={house} bookingPrice={bookingPrice} />
+
+              <div>
+                <RadioButtonGroup id='is_option' className="booking_option">
+                    <Field component={RadioButton} name='is_option' id="false" label={<FormattedMessage id="option" />} />
+                    <Field component={RadioButton} name='is_option' id="true" label={<FormattedMessage id="booking" />} />
+                </RadioButtonGroup>
+
+              </div>
+
               <div className="costs-section">
                 <table>
                   <tbody>
