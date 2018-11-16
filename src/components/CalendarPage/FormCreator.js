@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage, FormattedNumber } from "react-intl";
+import { Mutation } from 'react-apollo'
+import { CREATE_BOOKING_MUTATION } from '../../_lib/queries'
 import * as calc from "../../_lib/costs";
 import { Countries } from "../../_lib/countries";
 import { Insurances } from "./formParts/insurances";
@@ -49,7 +51,7 @@ class FormCreator extends React.Component {
     const bookingPrice = this.props.house.booking_price;
     return calc[cost.method](
       cost.amount,
-      Number(values[cost.id]),
+      Number(values.costs[cost.id]),
       Number(values.persons),
       bookingPrice.nights,
       this.calculateRentPrice(values).discounted_price
@@ -107,7 +109,6 @@ class FormCreator extends React.Component {
   }
 
   calculateRentPrice(values) {
-    console.log(values);
 
     const {
       rent_price,
@@ -159,10 +160,10 @@ class FormCreator extends React.Component {
     const bookingPrice = this.props.house.booking_price;
     const { options, house } = this.props;
 
-    let optionalCosts = {};
+    let costs = {};
 
     for (const val of bookingPrice.optional_house_costs) {
-      optionalCosts[val.id] = 0;
+      costs[val.id] = 0;
     }
 
     return (
@@ -170,17 +171,66 @@ class FormCreator extends React.Component {
         validate={this.validate}
         initialValues={{
           ...this.props.booking,
-          ...optionalCosts,
+          costs,
           adults: 2,
           children: 0,
           babies: 0,
           persons: 2
         }}
         onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
+          console.log(values);
+
+          let variables = {
+            first_name: values.first_name,
+            last_name: values.last_name,
+            is_option: values.is_option,
+            address: values.address || '',
+            zipcode: values.zipcode || '',
+            city: values.city || '',
+            phone: values.phone || '',
+            email: values.email,
+            house_code: values.objectCode,
+            portal_code: values.portalCode,
+            country: values.country,
+            adults: values.adults,
+            children: values.children || 0,
+            babies: values.babies || 0,
+            pets: values.pets || 0,
+            discount: values.discount || 0,
+            damage_insurance: values.damage_insurance || 0,
+            cancel_insurance: values.cancel_insurance || 0,
+            travel_insurance: values.travel_insurance || 0,
+            discount_reason: values.discount_reason || '',
+            arrival_date: values.arrivalDate.date,
+            departure_date: values.departureDate.date,
+            costs: values.costs
+          };
+
+          return (
+            <div style={{
+              display: 'fixed',
+              top:0
+            }}>
+              {console.log('run')}
+              <Mutation mutation={CREATE_BOOKING_MUTATION} variables={variables}>
+              {(createBooking, { loading, error }) => (
+                <div>
+                  { loading && <p>Loading...</p> }
+                  {error && <p>Error :( Please try again</p>}
+                  <form
+                    onSubmit={e => {
+                      e.preventDefault();
+                      createBooking({ variables });
+                    }}
+                    >
+                  <button type="submit">Add Todo</button>
+
+                  </form>
+                </div>
+              )}
+            </Mutation>
+            </div>
+        )
         }}
         render={({
           errors,
@@ -267,7 +317,7 @@ class FormCreator extends React.Component {
                             ]
                           }
                         </label>
-                        <Field component="select" name={cost.id}>
+                        <Field component="select" name={`costs[` + cost.id + `]`}>
                           {this.createPeronsArray(cost.max_available).map(
                             opt => {
                               return (

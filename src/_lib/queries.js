@@ -85,3 +85,33 @@ export const BOOKING_PRICE_QUERY = gql`
     }
   }
 `;
+
+export const CREATE_BOOKING_MUTATION = gql`
+  mutation CreateBooking(
+    $first_name: String!
+    $last_name: String!
+    $is_option: Boolean!,
+    $address: String,
+    $zipcode: String,
+    $city: String,
+    $phone: String,
+    $email: String!,
+    $house_code: String!,
+    $portal_code: String,
+    $country: String!,
+    $adults: Int!,
+    $children: Int,
+    $babies: Int,
+    $pets: Int,
+    $discount: Int,
+    $damage_insurance: Int,
+    $cancel_insurance: Int,
+    $travel_insurance: Int,
+    $discount_reason: String,
+    $arrival_date: String!,
+    $departure_date: String!,
+    $costs: Json
+  ) {
+    booking_nr
+  }
+`;

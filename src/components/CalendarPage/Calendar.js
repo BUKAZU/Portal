@@ -188,13 +188,14 @@ class Calendar extends React.Component {
 
   bookingStart(status) {
     const { arrivalDate, departureDate } = this.state;
-    const { portalCode, objectCode } = this.props;
+    const { portalCode, objectCode, locale } = this.props;
     const booking = {
       portalCode,
       objectCode,
       arrivalDate,
       departureDate,
-      is_option: status
+      is_option: status,
+      locale
     }
     this.props.onBooking(booking)
   }
