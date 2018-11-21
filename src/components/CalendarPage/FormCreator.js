@@ -93,7 +93,8 @@ class FormCreator extends React.Component {
     if (
       house.damage_insurance_required ||
       values.damage_insurance === 1 ||
-      values.cancel_insurance !== 0 ||
+      values.cancel_insurance === 1 ||
+      values.cancel_insurance === 2 ||
       values.travel_insurance === 1
     ) {
       let ins = {};
