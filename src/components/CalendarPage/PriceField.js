@@ -40,8 +40,7 @@ class PriceField extends React.Component {
 
           const result = data.PortalSite.houses[0].booking_price;
 
-          return (
-            <React.Fragment>
+          return <React.Fragment>
               <div className="price-overview--details" />
               <div className="price-overview--build">
                 <table>
@@ -58,31 +57,21 @@ class PriceField extends React.Component {
                         <FormattedMessage id="rent_price" />
                       </td>
                       <td className="price">
-                        €{" "}
-                        <FormattedNumber
-                          value={result.rent_price}
-                          minimumFractionDigits={2}
-                          maximumFractionDigits={2}
-                        />
+                        € <FormattedNumber value={result.rent_price} minimumFractionDigits={2} maximumFractionDigits={2} />
                       </td>
                     </tr>
-                    <tr>
+                  <tr className={result.discount > 0 ? "" : "hidden"}>
                       <td className="column" colSpan="2">
                         <FormattedMessage id="discount" />
                       </td>
                       <td className="price">{result.discount} %</td>
                     </tr>
-                    <tr>
+                  <tr className={result.discount > 0 ? "" : "hidden"}>
                       <td className="column" colSpan="2">
                         <FormattedMessage id="price_after_discount" />
                       </td>
                       <td className="price">
-                        €{" "}
-                        <FormattedNumber
-                          value={result.discounted_price}
-                          minimumFractionDigits={2}
-                          maximumFractionDigits={2}
-                        />
+                        € <FormattedNumber value={result.discounted_price} minimumFractionDigits={2} maximumFractionDigits={2} />
                       </td>
                     </tr>
                     <tr>
@@ -97,36 +86,27 @@ class PriceField extends React.Component {
                       <td className="column">
                         <ul>
                           {result.required_house_costs.map(cost => {
-                            return (
-                              <li key={cost.id}>{cost[`name_${locale}`]}</li>
-                            );
+                            return <li key={cost.id}>
+                                {cost[`name_${locale}`]}
+                              </li>;
                           })}
                         </ul>
                       </td>
                       <td className="column">
                         <ul className="price-list">
                           {result.required_house_costs.map(cost => {
-                            return (
-                              <li key={cost.id}>
-                                €{" "}
-                                <FormattedNumber
-                                  value={cost.amount}
-                                  minimumFractionDigits={2}
-                                  maximumFractionDigits={2}
-                                />
-                              </li>
-                            );
+                            return <li key={cost.id}>
+                                € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} />
+                              </li>;
                           })}
                         </ul>
                       </td>
                       <td className="column">
                         <ul className="price-list">
                           {result.required_house_costs.map(cost => {
-                            return (
-                              <li key={cost.id}>
+                            return <li key={cost.id}>
                                 <FormattedMessage id={cost.method} />
-                              </li>
-                            );
+                              </li>;
                           })}
                         </ul>
                       </td>
@@ -136,12 +116,7 @@ class PriceField extends React.Component {
                         <FormattedMessage id="price" />
                       </td>
                       <td className="price">
-                        €{" "}
-                        <FormattedNumber
-                          value={result.total_price}
-                          minimumFractionDigits={2}
-                          maximumFractionDigits={2}
-                        />
+                        € <FormattedNumber value={result.total_price} minimumFractionDigits={2} maximumFractionDigits={2} />
                       </td>
                     </tr>
                   </tbody>
@@ -161,9 +136,27 @@ class PriceField extends React.Component {
                       <td className="column">
                         <ul>
                           {result.optional_house_costs.map(cost => {
-                            return (
-                              <li key={cost.id}>{cost[`name_${locale}`]}</li>
-                            );
+                            return <li key={cost.id}>
+                                {cost[`name_${locale}`]}
+                              </li>;
+                          })}
+                        </ul>
+                      </td>
+                      <td className="column">
+                        <ul>
+                          {result.optional_house_costs.map(cost => {
+                            return <li key={cost.id}>
+                                € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} />
+                              </li>;
+                          })}
+                        </ul>
+                      </td>
+                      <td className="column">
+                        <ul>
+                          {result.optional_house_costs.map(cost => {
+                            return <li key={cost.id}>
+                                <FormattedMessage id={cost.method} />
+                              </li>;
                           })}
                         </ul>
                       </td>
@@ -176,36 +169,23 @@ class PriceField extends React.Component {
                   <FormattedMessage id="booking_from_til" />
                 </div>
                 <div className="data">
-                  {format(startsAt, "DD-MM-YYYY")} /{" "}
-                  {format(endsAt, "DD-MM-YYYY")}
+                  {format(startsAt, "DD-MM-YYYY")} / {format(endsAt, "DD-MM-YYYY")}
                 </div>
                 <div className="price">
-                  €{" "}
-                  <FormattedNumber
-                    value={result.total_price}
-                    minimumFractionDigits={2}
-                    maximumFractionDigits={2}
-                  />
+                  € <FormattedNumber value={result.total_price} minimumFractionDigits={2} maximumFractionDigits={2} />
                 </div>
-                <button
-                  className="button"
-                  onClick={() => {
+                <button className="button" onClick={() => {
                     this.props.onStartBooking("true");
-                  }}
-                >
+                  }}>
                   <FormattedMessage id="book" />
                 </button>
-                <a
-                  className="option"
-                  onClick={() => {
+                <a className="option" onClick={() => {
                     this.props.onStartBooking("false");
-                  }}
-                >
+                  }}>
                   <FormattedMessage id="choose_for_option" />
                 </a>
               </div>
-            </React.Fragment>
-          );
+            </React.Fragment>;
         }}
       </Query>
     );

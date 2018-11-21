@@ -13,6 +13,9 @@
     }
     tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        &.hidden {
+            display: none;
+        }
     }
     td {
         padding: 4px;
@@ -30,15 +33,17 @@
         text-align: right;
     }
     ul {
+        padding: 0;
+        list-style: none;
         li {
-            padding: 2px 0;
+            padding: 4px 0;
         }
     }
     &--build {
         display: flex;
         flex-direction: row;
         /* width: 30%; */
-        flex: 1;
+        flex: 3;
         justify-content: center;
         flex-wrap: wrap;
         align-items: flex-start;
@@ -51,11 +56,11 @@
         display: flex;
         padding: 16px;
         flex-direction: column;
-        flex: 1;
+        flex: 3;
         /* width: 30%; */
     }
     &--book {
-        flex: 1;
+        flex: 2;
         /* width: 30%; */
         padding: 16px;
         display: flex;
