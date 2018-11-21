@@ -117,7 +117,7 @@ class FormCreator extends React.Component {
 
   calculateRentPrice(values) {
     const {
-      rent_price,
+      base_price,
       discount,
       person_percentages
     } = this.props.house.booking_price;
@@ -131,7 +131,7 @@ class FormCreator extends React.Component {
       }
     }
 
-    let price = rent_price * (percentage.percentage / 100);
+    let price = base_price * (percentage.percentage / 100);
 
     let new_rent = {
       rent_price: price,

@@ -13,6 +13,7 @@ function translatedOption(id, value) {
   );
 }
 
+
 function damage_insurance(house) {
   if (house.damage_insurance && !house.damage_insurance_required) {
     return (
