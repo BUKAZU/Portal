@@ -2,6 +2,7 @@
     "next": "volgende",
     "previous": "vorige",
     "price": "Prijs",
+    "calculate": "Bereken uw prijs",
     "book": "Boeken",
     "booking": "Boeking",
     "option": "Optie",
@@ -40,5 +41,6 @@
     "choose": "Kies",
     "yes": "Ja",
     "booking_details": "Boekingsgegevens",
+    "based_on_one_person": "Gebaseerd op 1 persoon",
     "return_to_calendar": "Terug naar de kalender"
 }
