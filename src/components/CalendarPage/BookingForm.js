@@ -12,6 +12,8 @@ class BookingForm extends React.Component {
         }
     }
 
+
+
     render() {
         const { booking } = this.props
         return (
@@ -31,7 +33,8 @@ class BookingForm extends React.Component {
                     const result = data.PortalSite.houses[0];
                     const options = data.PortalSite.options;
 
-                    return <FormCreator house={result} options={options} booking={this.state.booking} />;
+
+                        return  <FormCreator house={result} options={options} booking={this.state.booking} onReturn={() => {this.props.onReturn(this.props.booking)}} />;
                 }}
             </Query>
         )

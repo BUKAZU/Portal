@@ -112,6 +112,33 @@ export const CREATE_BOOKING_MUTATION = gql`
     $departure_date: String!,
     $costs: Json
   ) {
-    booking_nr
+    createBooking(
+      first_name: $first_name
+      last_name:$last_name
+      is_option: $is_option
+      address: $address
+      zipcode: $zipcode
+      city: $city
+      phone: $phone
+      email: $email
+      house_code: $house_code
+      portal_code: $portal_code
+      country: $country
+      adults: $adults
+      children: $children
+      babies: $babies
+      pets: $pets
+      discount: $discount
+      damage_insurance: $damage_insurance
+      cancel_insurance: $cancel_insurance
+      travel_insurance: $travel_insurance
+      discount_reason: $discount_reason
+      arrival_date: $arrival_date
+      departure_date: $departure_date
+      costs: $costs
+    ) {
+      booking_nr
+
+    }
   }
 `;

@@ -22,8 +22,8 @@ class CalendarPage extends Component {
     super(props);
 
     this.onBooking = this.onBooking.bind(this);
+    this.onReturn = this.onReturn.bind(this);
 
-    // TODO Remove booking data
     this.state = {
       bookingStarted: false,
       booking: {
@@ -43,6 +43,13 @@ class CalendarPage extends Component {
   onBooking(booking) {
     this.setState({
       bookingStarted: true,
+      booking
+    });
+  }
+
+  onReturn(booking) {
+    this.setState({
+      bookingStarted: false,
       booking
     });
   }
@@ -84,7 +91,7 @@ class CalendarPage extends Component {
 
   bookingForm() {
 
-    return <BookingForm booking={this.state.booking} />;
+    return <BookingForm booking={this.state.booking} onReturn={this.onReturn}/>;
   }
 
   pageRendering() {

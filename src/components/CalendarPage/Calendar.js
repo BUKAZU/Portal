@@ -179,7 +179,7 @@ class Calendar extends React.Component {
         .scrollIntoView({
           behavior: "smooth"
         });
-      }, 500);
+      }, 1000);
       return <PriceField portalCode={portalCode} objectCode={objectCode} locale={locale} startsAt={arrivalDate.date} endsAt={departureDate.date} onStartBooking={this.bookingStart} />;
     } else {
       return <div></div>
