@@ -69,7 +69,7 @@ function travel_insurance(house) {
 }
 
 export const Insurances = ({ house }) => {
-  if (house.damage_insurance || house.damage_insurance_required || house.cancel_insurance || house.travel_insurance) {
+  if ((house.damage_insurance && !house.damage_insurance_required) || house.cancel_insurance || house.travel_insurance) {
     return <div className="form-section">
         <h2>
           <FormattedMessage id="insurances" />
