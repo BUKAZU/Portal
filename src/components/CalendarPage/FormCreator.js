@@ -488,19 +488,33 @@ class FormCreator extends React.Component {
                         );
                       })}
                       {bookingPrice.required_house_costs.map(cost => {
-                        return (
-                          <tr key={cost.id}>
-                            <td>{cost[`name_${window.__localeId__}`]}</td>
-                            <td className="price">
-                              €{"  "}
-                              <FormattedNumber
-                                value={this.calculateCost(cost, values)}
-                                minimumFractionDigits={2}
-                                maximumFractionDigits={2}
-                              />
-                            </td>
-                          </tr>
-                        );
+                        if (cost.method === 'none') {
+                          return (
+                            <tr key={cost.id}>
+                              <td>{cost[`name_${window.__localeId__}`]}</td>
+                              <td className="price">
+                                <FormattedMessage id="included"
+                                />
+                              </td>
+                            </tr>
+                          );
+
+                        } else {
+                          return (
+                            <tr key={cost.id}>
+                              <td>{cost[`name_${window.__localeId__}`]}</td>
+                              <td className="price">
+                                €{"  "}
+                                <FormattedNumber
+                                  value={this.calculateCost(cost, values)}
+                                  minimumFractionDigits={2}
+                                  maximumFractionDigits={2}
+                                />
+                              </td>
+                            </tr>
+                          );
+
+                        }
                       })}
                     </tbody>
                   </table>
@@ -509,19 +523,32 @@ class FormCreator extends React.Component {
                   <table>
                     <tbody>
                       {bookingPrice.optional_house_costs.map(cost => {
-                        return (
-                          <tr key={cost.id}>
-                            <td>{cost[`name_${window.__localeId__}`]}</td>
-                            <td className="price">
-                              €{" "}
-                              <FormattedNumber
-                                value={this.calculateCost(cost, values)}
-                                minimumFractionDigits={2}
-                                maximumFractionDigits={2}
-                              />
-                            </td>
-                          </tr>
+                        if (cost.method === 'none') {
+                            return (
+                              <tr key={cost.id}>
+                                <td>{cost[`name_${window.__localeId__}`]}</td>
+                                <td className="price">
+                                  <FormattedMessage id="included"
+                                  />
+                                </td>
+                              </tr>
+                            );
+
+                        } else {
+                          return (
+                            <tr key={cost.id}>
+                              <td>{cost[`name_${window.__localeId__}`]}</td>
+                              <td className="price">
+                                €{" "}
+                                <FormattedNumber
+                                  value={this.calculateCost(cost, values)}
+                                  minimumFractionDigits={2}
+                                  maximumFractionDigits={2}
+                                />
+                              </td>
+                            </tr>
                         );
+                        }
                       })}
                     </tbody>
                   </table>
