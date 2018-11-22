@@ -341,7 +341,7 @@ class FormCreator extends React.Component {
                       return (
                         <div className="form-row inline" key={cost.id}>
                           <label htmlFor={cost.id}>
-                            {cost[`name_${window.__localeId__}`]}
+                            {cost.name}
                           </label>
                           <Field
                             component="select"
@@ -505,7 +505,7 @@ class FormCreator extends React.Component {
                         if (cost.method === 'none') {
                           return (
                             <tr key={cost.id}>
-                              <td>{cost[`name_${window.__localeId__}`]}</td>
+                              <td>{cost.name}</td>
                               <td className="price">
                                 {cost.method_name}
                               </td>
@@ -539,7 +539,7 @@ class FormCreator extends React.Component {
                         if (cost.method === 'none') {
                             return (
                               <tr key={cost.id}>
-                                <td>{cost[`name_${window.__localeId__}`]}</td>
+                                <td>{cost.name}</td>
                                 <td className="price">
                                   {cost.method_name}
                                 </td>
