@@ -98,6 +98,7 @@ export const CREATE_BOOKING_MUTATION = gql`
     $email: String!,
     $house_code: String!,
     $portal_code: String,
+    $language: String,
     $country: String!,
     $adults: Int!,
     $children: Int,
@@ -123,6 +124,7 @@ export const CREATE_BOOKING_MUTATION = gql`
       email: $email
       house_code: $house_code
       portal_code: $portal_code
+      language: $language
       country: $country
       adults: $adults
       children: $children
