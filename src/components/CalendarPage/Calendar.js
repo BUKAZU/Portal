@@ -122,7 +122,7 @@ class Calendar extends React.Component {
     let month = dateFns.addMonths(this.state.currentMonth, count);
     let monthStart = dateFns.startOfMonth(month);
     let monthEnd = dateFns.endOfMonth(month);
-    const variables = { id: this.props.portalCode, house_id: this.props.objectCode, starts_at: dateFns.startOfWeek(monthStart), ends_at: dateFns.endOfWeek(monthEnd) };
+    const variables = { id: this.props.portalCode, house_id: this.props.objectCode, starts_at: dateFns.startOfWeek(monthStart), ends_at: dateFns.endOfWeek(monthEnd), locale: this.props.locale };
 
     return <div className="calendar" key={month}>
         {this.renderHeader(month)}

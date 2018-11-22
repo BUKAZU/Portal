@@ -15,7 +15,7 @@ class BookingForm extends React.Component {
 
 
     render() {
-        const { booking } = this.props
+        const { booking, locale } = this.props
         return (
             <Query
                 query={BOOKING_PRICE_QUERY}
@@ -23,7 +23,8 @@ class BookingForm extends React.Component {
                     id: booking.portalCode,
                     house_id: booking.objectCode,
                     starts_at: booking.arrivalDate.date,
-                    ends_at: booking.departureDate.date
+                    ends_at: booking.departureDate.date,
+                    locale
                 }}
             >
                 {({ loading, error, data }) => {

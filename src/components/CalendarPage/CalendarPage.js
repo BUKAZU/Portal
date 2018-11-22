@@ -58,7 +58,8 @@ class CalendarPage extends Component {
     const { objectCode, PortalSite, locale } = this.props;
     const variables = {
       id: PortalSite.portal_code,
-      house_id: objectCode
+      house_id: objectCode,
+      locale
     };
     return (
       <Query query={HOUSE_QUERY} variables={variables}>
@@ -90,8 +91,7 @@ class CalendarPage extends Component {
   }
 
   bookingForm() {
-
-    return <BookingForm booking={this.state.booking} onReturn={this.onReturn}/>;
+    return <BookingForm booking={this.state.booking} locale={this.props.locale} onReturn={this.onReturn}/>;
   }
 
   pageRendering() {

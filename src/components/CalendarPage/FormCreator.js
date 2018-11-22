@@ -194,18 +194,9 @@ class FormCreator extends React.Component {
     })
   }
 
-  render() {
-    const adults = this.createPeronsArray(this.state.max_persons);
-    const children = this.createPeronsArray(this.state.max_persons - 1);
-    const bookingPrice = this.props.house.booking_price;
-    const { options, house } = this.props;
+  bookingComplete() {
     const { formValues, formSubmit } = this.state;
 
-    let costs = {};
-
-    for (const val of bookingPrice.optional_house_costs) {
-      costs[val.id] = 0;
-    }
     if (formSubmit) {
       return <div style={{ display: "fixed", top: 0 }}>
           <Mutation mutation={CREATE_BOOKING_MUTATION} variables={formValues}>
@@ -222,7 +213,29 @@ class FormCreator extends React.Component {
           </Mutation>
         </div>;
     } else {
-      return (
+      return <div style={{
+        position: "absolute",
+        right: 0,
+        bottom: 0,
+        background: 'red',
+        width: 20,
+        height: 20
+      }}></div>
+    }
+  }
+
+  render() {
+    const adults = this.createPeronsArray(this.state.max_persons);
+    const children = this.createPeronsArray(this.state.max_persons - 1);
+    const bookingPrice = this.props.house.booking_price;
+    const { options, house } = this.props;
+
+    let costs = {};
+
+    for (const val of bookingPrice.optional_house_costs) {
+      costs[val.id] = 0;
+    }
+    return (
         <Formik
           validate={this.validate}
           initialValues={{
@@ -246,6 +259,7 @@ class FormCreator extends React.Component {
             handleBlur
           }) => (
             <Form className="form">
+              {this.bookingComplete()}
               <div className="form-section">
                 <a
                   className="return-link"
@@ -351,7 +365,7 @@ class FormCreator extends React.Component {
                               minimumFractionDigits={2}
                               maximumFractionDigits={2}
                             />{" "}
-                            <FormattedMessage id={cost.method} />
+                            {cost.method_name}
                           </div>
                         </div>
                       );
@@ -493,8 +507,7 @@ class FormCreator extends React.Component {
                             <tr key={cost.id}>
                               <td>{cost[`name_${window.__localeId__}`]}</td>
                               <td className="price">
-                                <FormattedMessage id="included"
-                                />
+                                {cost.method_name}
                               </td>
                             </tr>
                           );
@@ -528,8 +541,7 @@ class FormCreator extends React.Component {
                               <tr key={cost.id}>
                                 <td>{cost[`name_${window.__localeId__}`]}</td>
                                 <td className="price">
-                                  <FormattedMessage id="included"
-                                  />
+                                  {cost.method_name}
                                 </td>
                               </tr>
                             );
@@ -586,7 +598,7 @@ class FormCreator extends React.Component {
           )}
         />
       );
-    }
+
   }
 }
 
