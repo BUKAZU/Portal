@@ -430,13 +430,13 @@ class FormCreator extends React.Component {
                       <Field
                         component={RadioButton}
                         name="is_option"
-                        id="false"
+                        id="true"
                         label={<FormattedMessage id="option" />}
                       />
                       <Field
                         component={RadioButton}
                         name="is_option"
-                        id="true"
+                        id="false"
                         label={<FormattedMessage id="booking" />}
                       />
                     </RadioButtonGroup>
