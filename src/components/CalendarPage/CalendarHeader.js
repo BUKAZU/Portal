@@ -6,10 +6,15 @@ class CalendarHeader extends Component {
     super(props);
     this.goPrev = this.goPrev.bind(this);
     this.goNext = this.goNext.bind(this);
+    this.resetDate = this.resetDate.bind(this);
   }
 
   goPrev() {
     this.props.onGoPrev();
+  }
+
+  resetDate() {
+    this.props.onReset();
   }
 
   goNext() {
@@ -20,6 +25,11 @@ class CalendarHeader extends Component {
     return <div className="calendars-header">
         <div className="col" style={{ textAlign: "center" }} onClick={this.goPrev}>
         <div className="icon"> <FormattedMessage id="previous" /></div>
+        </div>
+        <div className="col" onClick={this.resetDate} style={{ textAlign: "center" }}>
+          <div className="icon">
+            <FormattedMessage id="reset" />
+          </div>
         </div>
         <div className="col" onClick={this.goNext} style={{ textAlign: "center" }}>
           <div className="icon">

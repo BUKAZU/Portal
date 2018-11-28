@@ -209,7 +209,7 @@ class FormCreator extends React.Component {
     }
     return (
       <Mutation mutation={CREATE_BOOKING_MUTATION}>
-        {(createBooking, { loading, error }) => (
+        {(createBooking, { loading, error, data }) => (
           <Formik
             validate={this.validate}
             initialValues={{
@@ -221,6 +221,8 @@ class FormCreator extends React.Component {
               persons: 2
             }}
             onSubmit={(values, {setSubmitting}) => {
+              // console.log({ costs: JSON.stringify(values.costs)});
+
               let variables = {
                 first_name: values.first_name,
                 last_name: values.last_name,
@@ -233,7 +235,7 @@ class FormCreator extends React.Component {
                 house_code: values.objectCode,
                 portal_code: values.portalCode,
                 language: locale,
-                country: values.country,
+                country: values.country.toUpperCase(),
                 adults: Number(values.adults),
                 children: Number(values.children) || 0,
                 babies: Number(values.babies) || 0,
@@ -263,8 +265,10 @@ class FormCreator extends React.Component {
               handleBlur
             }) => (
               <Form className="form">
-                {loading && <p>Loading...</p>}
-                {error && <p>Error :( Please try again</p>}
+                {loading && <div className="return-message">Loading...</div>}
+                {error && <div className="return-message">Error :( Please try again</div>}
+
+                <div className="form-content">
                 <div className="form-section">
                   <a
                     className="return-link"
@@ -420,6 +424,7 @@ class FormCreator extends React.Component {
                       );
                     }
                   })}
+                </div>
                 </div>
 
                 <div className="form-sum">
