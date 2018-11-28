@@ -100,7 +100,7 @@ class PriceField extends React.Component {
                   </i>
                 </div>
                 <button className="button" onClick={() => {
-                    this.props.onStartBooking("true");
+                    this.props.onStartBooking("false");
                   }}>
                   <FormattedMessage id="calculate" />
                 </button>
