@@ -8,6 +8,7 @@ import PriceField from './PriceField'
 import differenceInCalendarDays from "date-fns/difference_in_calendar_days";
 
 import { CALENDAR_QUERY } from "../../_lib/queries";
+import { FormattedMessage } from "react-intl";
 
 class Calendar extends React.Component {
   constructor(props) {
@@ -207,6 +208,24 @@ class Calendar extends React.Component {
     return <div>
         <CalendarHeader onGoNext={this.nextMonth} onGoPrev={this.prevMonth} />
         <div className="calendars-row">{this.renderMonths()}</div>
+        <div className='legend'>
+          <div>
+            <span className="legend-field arrival"></span>
+            <FormattedMessage id="arrival_date" />
+          </div>
+          <div>
+          <span className="legend-field booked"></span>
+            <FormattedMessage id="booked" />
+          </div>
+          <div>
+          <span className="legend-field departure"></span>
+            <FormattedMessage id="departure_date" />
+          </div>
+          <div>
+          <span className="legend-field last_minute_discount"></span>
+            <FormattedMessage id="last_minute_discount" />
+          </div>
+        </div>
         <div className={`price-overview ${startBooking ? 'open' : ''}`}>{this.showBooking()}</div>
       </div>;
   }

@@ -104,11 +104,6 @@ class PriceField extends React.Component {
                   }}>
                   <FormattedMessage id="calculate" />
                 </button>
-                {/* <a className="option" onClick={() => {
-                    this.props.onStartBooking("false");
-                  }}>
-                  <FormattedMessage id="choose_for_option" />
-                </a> */}
               </div>
             </React.Fragment>;
         }}

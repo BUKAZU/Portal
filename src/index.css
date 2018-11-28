@@ -1,107 +1,142 @@
 #bukazu-app .calendars-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-    #bukazu-app .calendars-header .col .icon {
-        padding: 8px 40px;
-        background: rgba(23, 190, 187, 0.75);
-        -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-                box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-        cursor: pointer;
-      }
-    #bukazu-app .calendars-header .col .icon:hover {
-          -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-                  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    }
+        #bukazu-app .calendars-header .col .icon {
+                padding: 8px 40px;
+                background: rgba(23, 190, 187, 0.75);
+                -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+                        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+                cursor: pointer;
+            }
+        #bukazu-app .calendars-header .col .icon:hover {
+                    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+                            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+                }
+    #bukazu-app .calendars-row {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+    }
+    #bukazu-app .calendar {
+        min-width: 48%;
+        padding: 16px;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        background: #fff;
+        -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+                box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+        margin: 16px 0;
         }
-  #bukazu-app .calendars-row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-  }
-  #bukazu-app .calendar {
-    min-width: 48%;
-    padding: 16px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    background: #fff;
-    -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
-            box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
-    margin: 16px 0;
-  }
-  #bukazu-app .calendar .header {
-      background-color: rgba(211, 211, 211, 0.2);
+    #bukazu-app .calendar .header {
+            background-color: rgba(211, 211, 211, 0.2);
+        }
+    #bukazu-app .calendar .row {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex: 1;
+                -ms-flex: 1 1;
+                    flex: 1 1;
+        }
+    #bukazu-app .calendar .row.days {
+                border-bottom: 1px solid rgba(211, 211, 211, 0.5);
+            }
+    #bukazu-app .calendar .col {
+            width: 100%;
+            /* border: solid 1px #fff; */
+            padding: 8px;
+            text-transform: capitalize;
+            text-align: center;
+            -webkit-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+    #bukazu-app .calendar .col-center {
+                text-align: center;
+            }
+    #bukazu-app .calendar .col-start {
+                text-align: left;
+            }
+    #bukazu-app .calendar .col-end {
+                text-align: right;
+            }
+    #bukazu-app .calendar .cell {
+            background: #6eeb83;
+            background: var(--bukazu-cell);
+        }
+    #bukazu-app .calendar .disabled {
+            opacity: 0;
+        }
+    #bukazu-app .calendar .arrival {
+            background: #6eeb83;
+            background: var(--bukazu-arrival);
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+          }
+    #bukazu-app .calendar .icon {
+            cursor: pointer;
+          }
+    #bukazu-app .calendar .discount {
+            background: var(--bukazu-discount);
+          }
+    #bukazu-app .calendar .departure {
+            font-weight: bold;
+            background: yellow;
+            background: var(--bukazu-departure);
+            cursor: pointer;
+          }
+    #bukazu-app .calendar .selected {
+            background: rgba(23, 190, 187, 0.75);
+            background: var(--bukazu-button);
+          }
+    #bukazu-app .calendar .booked {
+            background: #ea2b1f;
+            background: var(--bukazu-booked);
+            color: #fff;
+          }
+    #bukazu-app .legend {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          padding: 8px 32px;
     }
-  #bukazu-app .calendar .row {
-      width: 100%;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-flex: 1;
-          -ms-flex: 1 1;
-              flex: 1 1;
-    }
-  #bukazu-app .calendar .row.days {
-        border-bottom: 1px solid rgba(211, 211, 211, 0.5);
-      }
-  #bukazu-app .calendar .col {
-      width: 100%;
-      /* border: solid 1px #fff; */
-      padding: 8px;
-      text-transform: capitalize;
-      text-align: center;
-      -webkit-transition: all 0.5s ease;
-      transition: all 0.5s ease;
-    }
-  #bukazu-app .calendar .col-center {
-        text-align: center;
-      }
-  #bukazu-app .calendar .col-start {
-        text-align: left;
-      }
-  #bukazu-app .calendar .col-end {
-        text-align: right;
-      }
-  #bukazu-app .calendar .cell {
-      background: #6eeb83;
-    }
-  #bukazu-app .calendar .disabled {
-      opacity: 0;
-    }
-  #bukazu-app .calendar .arrival {
-      background: #6eeb83;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-  #bukazu-app .calendar .icon {
-      cursor: pointer;
-    }
-  #bukazu-app .calendar .discount {
-      background: orange;
-    }
-  #bukazu-app .calendar .departure {
-      font-weight: bold;
-      background: yellow;
-      cursor: pointer;
-    }
-  #bukazu-app .calendar .selected {
-      background: rgba(23, 190, 187, 0.75);
-    }
-  #bukazu-app .calendar .booked {
-      background: #ea2b1f;
-      color: #fff;
-    }
+    #bukazu-app .legend>div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 0 16px;
+          }
+    #bukazu-app .legend-field {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 0 8px 0 0;
+          }
+    #bukazu-app .legend-field.booked {
+              background: var(--bukazu-booked);
+            }
+    #bukazu-app .legend-field.arrival {
+              background: var(--bukazu-arrival);
+            }
+    #bukazu-app .legend-field.departure {
+              background: var(--bukazu-departure);
+            }
+    #bukazu-app .legend-field.last_minute_discount {
+              background: var(--bukazu-discount);
+            }
 #bukazu-app .form {
     max-width: 1400px;
     margin: 0 auto;
