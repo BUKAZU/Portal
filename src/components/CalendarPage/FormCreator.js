@@ -46,6 +46,8 @@ class FormCreator extends React.Component {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
     }
 
+    console.log({ costs: JSON.stringify(values.costs) });
+
     return errors;
   };
 
@@ -161,40 +163,40 @@ class FormCreator extends React.Component {
     return total;
   }
 
-  submitForm(values) {
-    // console.log(JSON.stringify(values.costs));
+  // submitForm(values) {
+  //   // console.log(JSON.stringify(values.costs));
 
-    let variables = {
-      first_name: values.first_name,
-      last_name: values.last_name,
-      is_option: values.is_option,
-      address: values.address || "",
-      zipcode: values.zipcode || "",
-      city: values.city || "",
-      phone: values.phone || "",
-      email: values.email,
-      house_code: values.objectCode,
-      portal_code: values.portalCode,
-      country: values.country,
-      adults: values.adults,
-      children: values.children || 0,
-      babies: values.babies || 0,
-      pets: values.pets || 0,
-      discount: values.discount || 0,
-      damage_insurance: Number(values.damage_insurance) || 0,
-      cancel_insurance: Number(values.cancel_insurance) || 0,
-      travel_insurance: Number(values.travel_insurance) || 0,
-      discount_reason: values.discount_reason || "",
-      arrival_date: values.arrivalDate.date,
-      departure_date: values.departureDate.date,
-      costs: values.costs
-    };
+  //   let variables = {
+  //     first_name: values.first_name,
+  //     last_name: values.last_name,
+  //     is_option: values.is_option,
+  //     address: values.address || "",
+  //     zipcode: values.zipcode || "",
+  //     city: values.city || "",
+  //     phone: values.phone || "",
+  //     email: values.email,
+  //     house_code: values.objectCode,
+  //     portal_code: values.portalCode,
+  //     country: values.country,
+  //     adults: values.adults,
+  //     children: values.children || 0,
+  //     babies: values.babies || 0,
+  //     pets: values.pets || 0,
+  //     discount: values.discount || 0,
+  //     damage_insurance: Number(values.damage_insurance) || 0,
+  //     cancel_insurance: Number(values.cancel_insurance) || 0,
+  //     travel_insurance: Number(values.travel_insurance) || 0,
+  //     discount_reason: values.discount_reason || "",
+  //     arrival_date: values.arrivalDate.date,
+  //     departure_date: values.departureDate.date,
+  //     costs: values.costs
+  //   };
 
-    this.setState({
-      formValues: variables,
-      formSubmit: true
-    });
-  }
+  //   this.setState({
+  //     formValues: variables,
+  //     formSubmit: true
+  //   });
+  // }
 
   render() {
     const adults = this.createPeronsArray(this.state.max_persons);
@@ -205,7 +207,7 @@ class FormCreator extends React.Component {
     let costs = {};
 
     for (const val of bookingPrice.optional_house_costs) {
-      costs[val.id] = 0;
+      costs[val.id] = "0";
     }
     return (
       <Mutation mutation={CREATE_BOOKING_MUTATION}>
@@ -221,7 +223,7 @@ class FormCreator extends React.Component {
               persons: 2
             }}
             onSubmit={(values, {setSubmitting}) => {
-              // console.log({ costs: JSON.stringify(values.costs)});
+              console.log({ costs: JSON.stringify(values.costs)});
 
               let variables = {
                 first_name: values.first_name,
@@ -241,9 +243,9 @@ class FormCreator extends React.Component {
                 babies: Number(values.babies) || 0,
                 pets: Number(values.pets) || 0,
                 discount: values.discount || 0,
-                damage_insurance: values.damage_insurance || 0,
-                cancel_insurance: values.cancel_insurance || 0,
-                travel_insurance: values.travel_insurance || 0,
+                damage_insurance: Number(values.damage_insurance) || 0,
+                cancel_insurance: Number(values.cancel_insurance) || 0,
+                travel_insurance: Number(values.travel_insurance) || 0,
                 discount_reason: values.discount_reason || "",
                 arrival_date: values.arrivalDate.date,
                 departure_date: values.departureDate.date,
