@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage} from 'react-intl'
 import PropTypes from "prop-types";
 
 class Modal extends React.Component {
@@ -53,7 +54,7 @@ class Modal extends React.Component {
           {this.props.children}
 
           <div className="footer">
-            <button onClick={this.closeModal}>Close</button>
+            <button onClick={this.closeModal}><FormattedMessage id="close" /></button>
           </div>
         </div>
       </div>

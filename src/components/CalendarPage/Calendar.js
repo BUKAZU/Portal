@@ -71,13 +71,15 @@ class Calendar extends React.Component {
     let day = startDate;
     let formattedDate = "";
     let dayz = availabilities;
+    let prevBooked = false;
 
     while (day <= endDate) {
       // for (let daz of dayz) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         let date = dateFns.format(day, "YYYY-MM-DD");
-        let daz = dayz.find(x => x.date === date);
+        let daz = dayz.find(x => x.date === date);       
+
         const cloneDay = daz;
         const minimum =
           differenceInCalendarDays(daz.date, selectedDate) >= daz.min_nights;
@@ -92,10 +94,10 @@ class Calendar extends React.Component {
           daz.departure && isAfter(daz.date, selectedDate)
             ? minimum
               ? maximum
-                ? "departure"
+                ? !prevBooked ? "departure" : null
                 : ""
               : ""
-            : "";
+            : "";        
 
         days.push(
           <div
@@ -114,16 +116,18 @@ class Calendar extends React.Component {
                   ? "selected"
                   : ""
               }
+              ${last_minute || daz.special_offer > 0 ? "discount" : ""}
               ${
                 daz.arrival
                   ? dateFns.isAfter(daz.date, new Date())
-                    ? "arrival"
+                    ? daz.max_nights !== 0
+                      ? prevBooked ? "departure-arrival" : "arrival"
+                      : ""
                     : ""
                   : ""
               }
-              ${last_minute || daz.special_offer > 0 ? "discount" : ""}
               ${highlight}
-              ${daz.max_nights === 0 ? "booked" : ""}`}
+              ${daz.max_nights === 0 ? !prevBooked ? "booked-departure" : "booked" : ""}`}
             key={day}
             date={daz.date}
             onClick={() => this.onDateClick(cloneDay)}
@@ -133,6 +137,7 @@ class Calendar extends React.Component {
             </span>
           </div>
         );
+        prevBooked = daz.max_nights === 0 ? true : false;  
         day = dateFns.addDays(day, 1);
       }
       rows.push(
