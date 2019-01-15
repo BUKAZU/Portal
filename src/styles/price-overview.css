@@ -1,115 +1,109 @@
 .price-overview {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
+  table {
+    width: 100%;
+  }
+  th {
+    text-align: left;
+  }
+  tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    &.hidden {
+      display: none;
+    }
+  }
+  td {
+    padding: 4px;
+    width: 50%;
+    &.price {
+      text-align: right;
+    }
+  }
+  td.column {
+    width: 30%;
+  }
+  .price-list {
+    list-style: none;
+    padding: 0;
+    text-align: right;
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      padding: 4px 0;
+    }
+  }
+  &--build {
+    display: flex;
+    flex-direction: row;
+    /* width: 30%; */
+    min-height: 200px;
+    flex: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 16px;
+    @media screen and (max-width: 992px) {
+      padding: 16px 0;
+    }
+  }
+  &--extra {
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    /* width: 30%; */
+    .data-label {
+      font-size: 18px;
+    }
+    .data {
+      padding: 16px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+  &--book {
+    flex: 1;
+    /* width: 30%; */
     padding: 16px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     @media screen and (max-width: 992px) {
-        flex-direction: column;
+      padding: 16px 0;
     }
-    table {
-        width: 100%;
+    & > div {
+      padding: 8px 0;
     }
-    th {
-        text-align: left;
+    .price {
+      font-size: 32px;
+      font-weight: bold;
     }
-    tr {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-        &.hidden {
-            display: none;
-        }
+
+    .button {
+      background: #e28413;
+      color: #fff;
+      padding: 12px 32px;
+      margin: 8px 0;
+      font-weight: bold;
+      width: 75%;
+      text-align: center;
+      border: 0;
+      font-size: 20px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      &:hover {
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+      }
     }
-    td {
-        padding: 4px;
-        width: 50%;
-        &.price {
-            text-align: right;
-        }
-    }
-    td.column {
-        width: 30%;
-    }
-    .price-list {
-        list-style: none;
-        padding: 0;
-        text-align: right;
-    }
-    ul {
-        padding: 0;
-        list-style: none;
-        li {
-            padding: 4px 0;
-        }
-    }
-    &--build {
-        display: flex;
-        flex-direction: row;
-        /* width: 30%; */
-        min-height: 200px;
-        flex: 1;
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        padding: 16px;
-        @media screen and (max-width: 992px) {
-            padding: 16px 0;
-        }
-    }
-    &--extra {
-        display: flex;
-        padding: 16px;
-        flex-direction: column;
-        flex: 1;
-        justify-content: center;
-        align-items: center;
-        /* width: 30%; */
-        .data-label {
-            font-size: 18px;
-        }
-        .data {
-            padding: 16px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    }
-    &--book {
-        flex: 1;
-        /* width: 30%; */
-        padding: 16px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        @media screen and (max-width: 992px) {
-            padding: 16px 0;
-        }
-        &>div {
-            padding: 8px 0;
-        }
-        .price {
-            font-size: 32px;
-            font-weight: bold;
-        }
-        .option {
-            display: block;
-            color: #004fa7;
-            text-decoration: underline;
-            padding: 8px 0;
-            cursor: pointer;
-        }
-        .button {
-            background: #e28413;
-            color: #fff;
-            padding: 12px 32px;
-            margin: 8px 0;
-            font-weight: bold;
-            width: 75%;
-            text-align: center;
-            border: 0;
-            font-size: 20px;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
-            &:hover {
-                box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
-            }
-        }
-    }
+  }
 }

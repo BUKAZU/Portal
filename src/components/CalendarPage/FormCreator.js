@@ -8,6 +8,8 @@ import { Countries } from "../../_lib/countries";
 import { Insurances } from "./formParts/insurances";
 import { Summary } from "./formParts/summary";
 import { RadioButton, RadioButtonGroup } from "./formParts/radioButtons";
+import Icon from '../icons/info.svg'
+import Modal from "./formParts/Modal";
 
 class FormCreator extends React.Component {
   state = {
@@ -162,41 +164,6 @@ class FormCreator extends React.Component {
 
     return total;
   }
-
-  // submitForm(values) {
-  //   // console.log(JSON.stringify(values.costs));
-
-  //   let variables = {
-  //     first_name: values.first_name,
-  //     last_name: values.last_name,
-  //     is_option: values.is_option,
-  //     address: values.address || "",
-  //     zipcode: values.zipcode || "",
-  //     city: values.city || "",
-  //     phone: values.phone || "",
-  //     email: values.email,
-  //     house_code: values.objectCode,
-  //     portal_code: values.portalCode,
-  //     country: values.country,
-  //     adults: values.adults,
-  //     children: values.children || 0,
-  //     babies: values.babies || 0,
-  //     pets: values.pets || 0,
-  //     discount: values.discount || 0,
-  //     damage_insurance: Number(values.damage_insurance) || 0,
-  //     cancel_insurance: Number(values.cancel_insurance) || 0,
-  //     travel_insurance: Number(values.travel_insurance) || 0,
-  //     discount_reason: values.discount_reason || "",
-  //     arrival_date: values.arrivalDate.date,
-  //     departure_date: values.departureDate.date,
-  //     costs: values.costs
-  //   };
-
-  //   this.setState({
-  //     formValues: variables,
-  //     formSubmit: true
-  //   });
-  // }
 
   render() {
     const adults = this.createPeronsArray(this.state.max_persons);
@@ -375,6 +342,13 @@ class FormCreator extends React.Component {
                                 maximumFractionDigits={2}
                               />{" "}
                               {cost.method_name}
+                            </div>
+                            <div>                              
+                              {cost.description ? <div>                                
+                                <Modal buttonText={<Icon />}>
+                                  <p>{cost.description}</p>
+                                </Modal>
+                              </div> : null}
                             </div>
                           </div>
                         );

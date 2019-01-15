@@ -22,7 +22,7 @@ class App extends Component {
 
 
           root.style.setProperty("--bukazu-discount", `${options.colors ? options.colors.discount : "orange"}`);
-          root.style.setProperty("--bukazu-cell", `${options.colors ? options.colors.cell : "#6eeb83"}`);
+          root.style.setProperty("--bukazu-cell", `${options.colors ? options.colors.cell : "#fff"}`);
           root.style.setProperty("--bukazu-arrival", `${options.colors ? options.colors.arrival : "#6eeb83"}`);
           root.style.setProperty("--bukazu-booked", `${options.colors ? options.colors.booked : "#ea2b1f"}`);
           root.style.setProperty("--bukazu-button", `${options.colors ? options.colors.button : "rgba(23, 190, 187, 0.75)"}`);

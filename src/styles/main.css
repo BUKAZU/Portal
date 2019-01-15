@@ -1,10 +1,52 @@
-@import 'calendar.css';
-@import 'form.css';
-@import 'price-overview.css';
+@import "calendar.css";
+@import "form.css";
+@import "price-overview.css";
 
 #bukazu-app {
-    background: #FBFBFB;
-    div {
-        box-sizing: border-box;
+  background: #fbfbfb;
+  div {
+    box-sizing: border-box;
+  }
+  .info-button {
+      border: none;
+      background: rgba(0,0,0,0);
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    .modal {
+      background-color: #fff;
+      border-radius: 5px;
+      max-width: 500px;
+      min-height: 300px;
+      margin: 0 auto;
+      padding: 30px 30px 80px;
+      position: relative;
+      .footer {
+          position: absolute;
+          height: 50px;
+          width: 100%;
+          left: 0;
+          bottom: 0;
+          button {
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            font-weight: bold;
+            background: #004fa7;
+            border: 0;
+            appearance: none;
+            box-shadow: 0 -2px 8px rgba(0,0,0,.25);
+            border-radius: 0 0 5px 5px;
+          }
+      }
     }
+  }
 }
