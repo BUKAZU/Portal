@@ -10,6 +10,8 @@ import { Summary } from "./formParts/summary";
 import { RadioButton, RadioButtonGroup } from "./formParts/radioButtons";
 import Icon from '../icons/info.svg'
 import Modal from "./formParts/Modal";
+import DefaultBookingFields from "./formParts/DefaultBookingFields"
+
 
 class FormCreator extends React.Component {
   state = {
@@ -18,7 +20,8 @@ class FormCreator extends React.Component {
     rentPrice: this.props.house.booking_price.rent_price,
     discountedPrice: this.props.house.booking_price.discounted_price,
     formValues: {},
-    formSubmit: false
+    formSubmit: false,
+    bookingFields: this.props.options.bookingFields || DefaultBookingFields
   };
 
   createPeronsArray(persons) {
@@ -28,12 +31,10 @@ class FormCreator extends React.Component {
   validate = values => {
     let errors = {};
 
-    const options = this.props.options;
-
     values.persons =
       Number(values.children) + Number(values.adults) + Number(values.babies);
 
-    for (let field of options.bookingFields) {
+    for (let field of this.state.bookingFields) {
       if (field.required) {
         if (!values[field.id]) {
           errors[field.id] = <FormattedMessage id="required" />;
@@ -343,8 +344,8 @@ class FormCreator extends React.Component {
                               />{" "}
                               {cost.method_name}
                             </div>
-                            <div>                              
-                              {cost.description ? <div>                                
+                            <div>
+                              {cost.description ? <div>
                                 <Modal buttonText={<Icon />}>
                                   <p>{cost.description}</p>
                                 </Modal>
@@ -362,7 +363,7 @@ class FormCreator extends React.Component {
                   <h2>
                     <FormattedMessage id="personal_details" />
                   </h2>
-                  {options.bookingFields.map(input => {
+                  {this.state.bookingFields.map(input => {
                     if (input.id === "country") {
                       return (
                         <div className="form-row" key={input.id}>
@@ -579,5 +580,6 @@ class FormCreator extends React.Component {
     );
   }
 }
+
 
 export default FormCreator;
