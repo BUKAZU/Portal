@@ -1,6 +1,8 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Field } from "formik";
+import Modal from './Modal'
+import Icon from "../../icons/info.svg";
 
 function translatedOption(id, value) {
   return (
@@ -16,8 +18,7 @@ function translatedOption(id, value) {
 
 function damage_insurance(house) {
   if (house.damage_insurance && !house.damage_insurance_required) {
-    return (
-      <div className="form-row inline">
+    return <div className="form-row inline">
         <label htmlFor="damage_insurance">
           <FormattedMessage id="damage_insurance" />
         </label>
@@ -26,8 +27,7 @@ function damage_insurance(house) {
           {translatedOption("yes", 1)}
           {translatedOption("none", 0)}
         </Field>
-      </div>
-    );
+      </div>;
   } else {
     return "";
   }
@@ -35,8 +35,7 @@ function damage_insurance(house) {
 
 function cancel_insurance(house) {
   if (house.cancel_insurance) {
-    return (
-      <div className="form-row inline">
+    return <div className="form-row inline">
         <label htmlFor="cancel_insurance">
           <FormattedMessage id="cancel_insurance" />
         </label>
@@ -46,8 +45,19 @@ function cancel_insurance(house) {
           {translatedOption("cancel_insurance_normal", 1)}
           {translatedOption("none", 0)}
         </Field>
-      </div>
-    );
+        <Modal buttonText={<Icon />}>
+          <h2>
+            <FormattedMessage id="cancel_insurance" />
+          </h2>
+          <p>
+            Er kunnen zich helaas altijd situaties voordoen, waardoor u uw
+            vakantie moet afzeggen. Of het kan noodzakelijk zijn dat u later
+            vertrekt of eerder terugkeert. Met een annuleringsverzekering
+            hoeft u zelf niet voor deze kosten op te draaien. U heeft de
+            keuze uit twee annuleringsverzekeringen:
+          </p>
+        </Modal>
+      </div>;
   }
 }
 
