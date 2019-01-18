@@ -113,6 +113,7 @@
     .icon {
       cursor: pointer;
     }
+    .discount.arrival.departure,
     .departure {
       font-weight: bold;
       background: yellow;

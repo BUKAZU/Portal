@@ -130,7 +130,8 @@
   #bukazu-app .calendar .icon {
       cursor: pointer;
     }
-  #bukazu-app .calendar .departure {
+  #bukazu-app .calendar .discount.arrival.departure,
+    #bukazu-app .calendar .departure {
       font-weight: bold;
       background: yellow;
       background: var(--bukazu-departure);
