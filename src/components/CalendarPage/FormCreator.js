@@ -170,7 +170,7 @@ class FormCreator extends React.Component {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
     const bookingPrice = this.props.house.booking_price;
-    const { options, house, locale } = this.props;
+    const { house, locale } = this.props;
 
     let costs = {};
 
