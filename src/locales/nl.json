@@ -45,5 +45,6 @@
     "booking_details": "Boekingsgegevens",
     "based_on_one_person": "Gebaseerd op 1 persoon",
     "return_to_calendar": "Terug naar de kalender",
-    "close": "sluiten"
+    "close": "Sluiten",
+    "reset": "Herstellen"
 }

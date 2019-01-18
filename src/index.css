@@ -96,21 +96,22 @@
         var(--bukazu-arrival) 50%
       );
     }
-  #bukazu-app .calendar .discount.booked-departure {
-      background: linear-gradient(
-        45deg,
-        var(--bukazu-discount) 50%,
-        var(--bukazu-booked) 50%
-      ) !important;
-    }
   #bukazu-app .calendar .booked-departure {
       background: linear-gradient(
         45deg,
         var(--bukazu-cell) 50%,
         var(--bukazu-booked) 50%
-      ) !important;
+      );
     }
-  #bukazu-app .calendar .departure.booked-departure,
+  #bukazu-app .calendar .discount.booked-departure {
+      background: linear-gradient(
+        45deg,
+        var(--bukazu-discount) 50%,
+        var(--bukazu-booked) 50%
+      );
+    }
+  #bukazu-app .calendar .departure.discount.booked-departure,
+    #bukazu-app .calendar .departure.booked-departure,
     #bukazu-app .calendar .departure.booked {
       background: linear-gradient(
         45deg,

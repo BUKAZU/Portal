@@ -79,20 +79,21 @@
         var(--bukazu-arrival) 50%
       );
     }
-    .discount.booked-departure {
-      background: linear-gradient(
-        45deg,
-        var(--bukazu-discount) 50%,
-        var(--bukazu-booked) 50%
-      ) !important;
-    }
     .booked-departure {
       background: linear-gradient(
         45deg,
         var(--bukazu-cell) 50%,
         var(--bukazu-booked) 50%
-      ) !important;
+      );
     }
+    .discount.booked-departure {
+      background: linear-gradient(
+        45deg,
+        var(--bukazu-discount) 50%,
+        var(--bukazu-booked) 50%
+      );
+    }
+    .departure.discount.booked-departure,
     .departure.booked-departure,
     .departure.booked {
       background: linear-gradient(

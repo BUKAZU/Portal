@@ -57,7 +57,7 @@ class Calendar extends React.Component {
   }
 
   renderCells(availabilities, month) {
-    const { selectedDate, departureDate, house } = this.state;
+    const { selectedDate, departureDate, house, arrivalDate } = this.state;
     const monthStart = dateFns.startOfMonth(month);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -78,13 +78,17 @@ class Calendar extends React.Component {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         let date = dateFns.format(day, "YYYY-MM-DD");
-        let daz = dayz.find(x => x.date === date);       
+        let daz = dayz.find(x => x.date === date);
 
         const cloneDay = daz;
         const minimum =
           differenceInCalendarDays(daz.date, selectedDate) >= daz.min_nights;
         const maximum =
-          differenceInCalendarDays(daz.date, selectedDate) <= house.max_nights;
+          differenceInCalendarDays(daz.date, selectedDate) <=
+            house.max_nights &&
+          differenceInCalendarDays(daz.date, selectedDate) <=
+            arrivalDate.max_nights;
+        console.log({ date: daz.date, daz, maximum });
 
         const daysFromToday = differenceInCalendarDays(daz.date, today);
         const last_minute =
@@ -94,10 +98,12 @@ class Calendar extends React.Component {
           daz.departure && isAfter(daz.date, selectedDate)
             ? minimum
               ? maximum
-                ? !prevBooked ? "departure" : null
+                ? !prevBooked
+                  ? "departure"
+                  : null
                 : ""
               : ""
-            : "";        
+            : "";
 
         days.push(
           <div
@@ -121,13 +127,21 @@ class Calendar extends React.Component {
                 daz.arrival
                   ? dateFns.isAfter(daz.date, new Date())
                     ? daz.max_nights !== 0
-                      ? prevBooked ? "departure-arrival" : "arrival"
+                      ? prevBooked
+                        ? "departure-arrival"
+                        : "arrival"
                       : ""
                     : ""
                   : ""
               }
               ${highlight}
-              ${daz.max_nights === 0 ? !prevBooked ? "booked-departure" : "booked" : ""}`}
+              ${
+                daz.max_nights === 0
+                  ? !prevBooked
+                    ? "booked-departure"
+                    : "booked"
+                  : ""
+              }`}
             key={day}
             date={daz.date}
             onClick={() => this.onDateClick(cloneDay)}
@@ -137,7 +151,7 @@ class Calendar extends React.Component {
             </span>
           </div>
         );
-        prevBooked = daz.max_nights === 0 ? true : false;  
+        prevBooked = daz.max_nights === 0 ? true : false;
         day = dateFns.addDays(day, 1);
       }
       rows.push(
@@ -189,7 +203,13 @@ class Calendar extends React.Component {
   }
 
   onDateClick = day => {
-    if (day.departure && isAfter(day.date, this.state.selectedDate)) {
+    const { arrivalDate, selectedDate, house } = this.state;
+    if (
+      day.departure &&
+      isAfter(day.date, selectedDate) &&
+      differenceInCalendarDays(day.date, selectedDate) <= house.max_nights &&
+      differenceInCalendarDays(day.date, selectedDate) <= arrivalDate.max_nights
+    ) {
       this.setState({
         departureDate: day,
         startBooking: true
