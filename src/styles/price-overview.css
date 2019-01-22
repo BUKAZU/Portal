@@ -90,7 +90,7 @@
     }
 
     .button {
-      background: #e28413;
+      background: var(--bukazu-button_cta);
       color: #fff;
       padding: 12px 32px;
       margin: 8px 0;

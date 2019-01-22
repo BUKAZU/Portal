@@ -102,6 +102,17 @@
                 width: 40%;
             }
         }
+        .terms {
+            padding: 8px 0;
+            button {
+                padding: 0 4px;
+                background: 0;
+                display: inline;
+                width: 0;
+                font-size: 1rem;
+                color: var(--bukazu-button);
+            }
+        }
         button {
             width: 100%;
             padding: 16px;

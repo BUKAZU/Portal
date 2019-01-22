@@ -76,6 +76,7 @@ export const BOOKING_PRICE_QUERY = gql`
         persons
         image_url
         house_type
+        rental_terms
         cancel_insurance
         damage_insurance
         damage_insurance_required

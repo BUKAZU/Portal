@@ -8,11 +8,10 @@ import { Countries } from "../../_lib/countries";
 import { Insurances } from "./formParts/insurances";
 import { Summary } from "./formParts/summary";
 import { RadioButton, RadioButtonGroup } from "./formParts/radioButtons";
-import Icon from '../icons/info.svg'
+import Icon from "../icons/info.svg";
 import Modal from "./formParts/Modal";
-import DefaultBookingFields from "./formParts/DefaultBookingFields"
-import SuccessMessage from './formParts/SuccessMessage';
-
+import DefaultBookingFields from "./formParts/DefaultBookingFields";
+import SuccessMessage from "./formParts/SuccessMessage";
 
 class FormCreator extends React.Component {
   state = {
@@ -189,8 +188,8 @@ class FormCreator extends React.Component {
               babies: 0,
               persons: 2
             }}
-            onSubmit={(values, {setSubmitting}) => {
-              console.log({ costs: JSON.stringify(values.costs)});
+            onSubmit={(values, { setSubmitting }) => {
+              console.log({ costs: JSON.stringify(values.costs) });
 
               let variables = {
                 first_name: values.first_name,
@@ -235,177 +234,186 @@ class FormCreator extends React.Component {
             }) => (
               <Form className="form">
                 {loading && <div className="return-message">Loading...</div>}
-                {error && <Modal show={true}><FormattedMessage id="something_went_wrong_please_try_again" /></Modal>}
-                  {data && <Modal show={true}>
+                {error && (
+                  <Modal show={true}>
+                    <FormattedMessage id="something_went_wrong_please_try_again" />
+                  </Modal>
+                )}
+                {data && (
+                  <Modal show={true}>
                     <SuccessMessage />
-                  </Modal>}
-                
-
+                  </Modal>
+                )}
 
                 <div className="form-content">
-                <div className="form-section">
-                  <a
-                    className="return-link"
-                    onClick={() => {
-                      this.props.onReturn();
-                    }}
-                  >
-                    <FormattedMessage id="return_to_calendar" />
-                  </a>
-                  <h2>
-                    <FormattedMessage id="stay_details" />
-                  </h2>
-                  <div className="form-row inline">
-                    <label htmlFor="adults">
-                      <FormattedMessage id="adults" />
-                    </label>
-                    <Field
-                      component="select"
-                      name="adults"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
+                  <div className="form-section">
+                    <a
+                      className="return-link"
+                      onClick={() => {
+                        this.props.onReturn();
+                      }}
                     >
-                      {adults.map(opt => {
-                        return (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        );
-                      })}
-                    </Field>
-                    {errors.adults && touched.adults && (
-                      <div className="error-message">{errors.adults}</div>
+                      <FormattedMessage id="return_to_calendar" />
+                    </a>
+                    <h2>
+                      <FormattedMessage id="stay_details" />
+                    </h2>
+                    <div className="form-row inline">
+                      <label htmlFor="adults">
+                        <FormattedMessage id="adults" />
+                      </label>
+                      <Field
+                        component="select"
+                        name="adults"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
+                        {adults.map(opt => {
+                          return (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          );
+                        })}
+                      </Field>
+                      {errors.adults && touched.adults && (
+                        <div className="error-message">{errors.adults}</div>
+                      )}
+                    </div>
+                    <div className="form-row inline">
+                      <label htmlFor="children">
+                        <FormattedMessage id="children" />
+                      </label>
+                      <Field component="select" name="children">
+                        {children.map(opt => {
+                          return (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          );
+                        })}
+                      </Field>
+                    </div>
+                    <div className="form-row inline">
+                      <label htmlFor="babies">
+                        <FormattedMessage id="babies" />
+                      </label>
+                      <Field component="select" name="babies">
+                        {children.map(opt => {
+                          return (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          );
+                        })}
+                      </Field>
+                    </div>
+                    {errors.max_persons && (
+                      <div className="error-message">{errors.max_persons}</div>
                     )}
                   </div>
-                  <div className="form-row inline">
-                    <label htmlFor="children">
-                      <FormattedMessage id="children" />
-                    </label>
-                    <Field component="select" name="children">
-                      {children.map(opt => {
-                        return (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        );
-                      })}
-                    </Field>
-                  </div>
-                  <div className="form-row inline">
-                    <label htmlFor="babies">
-                      <FormattedMessage id="babies" />
-                    </label>
-                    <Field component="select" name="babies">
-                      {children.map(opt => {
-                        return (
-                          <option key={opt} value={opt}>
-                            {opt}
-                          </option>
-                        );
-                      })}
-                    </Field>
-                  </div>
-                  {errors.max_persons && (
-                    <div className="error-message">{errors.max_persons}</div>
-                  )}
-                </div>
-                <Insurances
-                  house={house}
-                  Field={Field}
-                  FormattedMessage={FormattedMessage}
-                />
-                <div className="form-section">
-                  <h2>
-                    <FormattedMessage id="extra_costs_bookable" />
-                  </h2>
-                  <div>
-                    {bookingPrice.optional_house_costs.map(cost => {
-                      if (!["none", "total"].includes(cost.method) && cost.max_available > 0) {
-                        return (
-                          <div className="form-row inline" key={cost.id}>
-                            <label htmlFor={cost.id}>{cost.name}</label>
-                            <Field
-                              component="select"
-                              name={`costs[` + cost.id + `]`}
-                            >
-                              {this.createPeronsArray(cost.max_available).map(
-                                opt => {
-                                  return (
-                                    <option key={opt} value={opt}>
-                                      {opt}
-                                    </option>
-                                  );
-                                }
-                              )}
-                            </Field>
+                  <Insurances
+                    house={house}
+                    Field={Field}
+                    FormattedMessage={FormattedMessage}
+                  />
+                  <div className="form-section">
+                    <h2>
+                      <FormattedMessage id="extra_costs_bookable" />
+                    </h2>
+                    <div>
+                      {bookingPrice.optional_house_costs.map(cost => {
+                        if (
+                          !["none", "total"].includes(cost.method) &&
+                          cost.max_available > 0
+                        ) {
+                          return (
+                            <div className="form-row inline" key={cost.id}>
+                              <label htmlFor={cost.id}>{cost.name}</label>
+                              <Field
+                                component="select"
+                                name={`costs[` + cost.id + `]`}
+                              >
+                                {this.createPeronsArray(cost.max_available).map(
+                                  opt => {
+                                    return (
+                                      <option key={opt} value={opt}>
+                                        {opt}
+                                      </option>
+                                    );
+                                  }
+                                )}
+                              </Field>
 
-                            <div className="price_per">
-                              €{" "}
-                              <FormattedNumber
-                                value={cost.amount}
-                                minimumFractionDigits={2}
-                                maximumFractionDigits={2}
-                              />{" "}
-                              {cost.method_name}
+                              <div className="price_per">
+                                €{" "}
+                                <FormattedNumber
+                                  value={cost.amount}
+                                  minimumFractionDigits={2}
+                                  maximumFractionDigits={2}
+                                />{" "}
+                                {cost.method_name}
+                              </div>
+                              <div>
+                                {cost.description ? (
+                                  <div>
+                                    <Modal buttonText={<Icon />}>
+                                      <p>{cost.description}</p>
+                                    </Modal>
+                                  </div>
+                                ) : null}
+                              </div>
                             </div>
-                            <div>
-                              {cost.description ? <div>
-                                <Modal buttonText={<Icon />}>
-                                  <p>{cost.description}</p>
-                                </Modal>
-                              </div> : null}
-                            </div>
+                          );
+                        } else {
+                          return "";
+                        }
+                      })}
+                    </div>
+                  </div>
+                  <div className="form-section">
+                    <h2>
+                      <FormattedMessage id="personal_details" />
+                    </h2>
+                    {this.state.bookingFields.map(input => {
+                      if (input.id === "country") {
+                        return (
+                          <div className="form-row" key={input.id}>
+                            <label htmlFor={input.id}>{input.label}</label>
+                            <Field component="select" name={input.id}>
+                              {Countries[window.__localeId__].map(country => {
+                                return (
+                                  <option
+                                    value={country.alpha2}
+                                    key={country.alpha2}
+                                  >
+                                    {country.name}
+                                  </option>
+                                );
+                              })}
+                            </Field>
+                            {errors[input.id] && (
+                              <div className="error-message">
+                                {errors[input.id]}
+                              </div>
+                            )}
                           </div>
                         );
                       } else {
-                        return "";
+                        return (
+                          <div className="form-row" key={input.id}>
+                            <label htmlFor={input.id}>{input.label}</label>
+                            <Field type={input.type} name={input.id} />
+                            {errors[input.id] && (
+                              <div className="error-message">
+                                {errors[input.id]}
+                              </div>
+                            )}
+                          </div>
+                        );
                       }
                     })}
                   </div>
-                </div>
-                <div className="form-section">
-                  <h2>
-                    <FormattedMessage id="personal_details" />
-                  </h2>
-                  {this.state.bookingFields.map(input => {
-                    if (input.id === "country") {
-                      return (
-                        <div className="form-row" key={input.id}>
-                          <label htmlFor={input.id}>{input.label}</label>
-                          <Field component="select" name={input.id}>
-                            {Countries[window.__localeId__].map(country => {
-                              return (
-                                <option
-                                  value={country.alpha2}
-                                  key={country.alpha2}
-                                >
-                                  {country.name}
-                                </option>
-                              );
-                            })}
-                          </Field>
-                          {errors[input.id] && (
-                            <div className="error-message">
-                              {errors[input.id]}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    } else {
-                      return (
-                        <div className="form-row" key={input.id}>
-                          <label htmlFor={input.id}>{input.label}</label>
-                          <Field type={input.type} name={input.id} />
-                          {errors[input.id] && (
-                            <div className="error-message">
-                              {errors[input.id]}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
                 </div>
 
                 <div className="form-sum">
@@ -572,7 +580,24 @@ class FormCreator extends React.Component {
                     </table>
                   </div>
                   {status && status.msg && <div>{status.msg}</div>}
-                  <button type="submit" disabled={isSubmitting}>
+                  <div className="terms">
+                    <FormattedMessage id="agree_with" />
+                    <FormattedMessage
+                      id="terms"
+                      children={fm => (
+                        <Modal buttonText={fm}>
+                          <iframe
+                            scr={house.rental_terms}
+                            title={fm}
+                            width="100%"
+                            height="100%"
+                            frameborder="0"
+                          />
+                        </Modal>
+                      )}
+                    />
+                  </div>
+                  <button className="button" type="submit" disabled={isSubmitting}>
                     <FormattedMessage id="book" />
                   </button>
                 </div>
@@ -584,6 +609,5 @@ class FormCreator extends React.Component {
     );
   }
 }
-
 
 export default FormCreator;
