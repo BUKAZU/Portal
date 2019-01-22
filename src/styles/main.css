@@ -1,6 +1,7 @@
 @import "calendar.css";
 @import "form.css";
 @import "price-overview.css";
+@import "success.css";
 
 #bukazu-app {
   background: #fbfbfb;

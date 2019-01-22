@@ -11,6 +11,7 @@ import { RadioButton, RadioButtonGroup } from "./formParts/radioButtons";
 import Icon from '../icons/info.svg'
 import Modal from "./formParts/Modal";
 import DefaultBookingFields from "./formParts/DefaultBookingFields"
+import SuccessMessage from './formParts/SuccessMessage';
 
 
 class FormCreator extends React.Component {
@@ -25,7 +26,7 @@ class FormCreator extends React.Component {
   };
 
   createPeronsArray(persons) {
-    return Array.apply(null, { length: persons }).map(Number.call, Number);
+    return Array.apply(null, { length: persons + 1 }).map(Number.call, Number);
   }
 
   validate = values => {
@@ -48,8 +49,6 @@ class FormCreator extends React.Component {
     if (values.persons > this.state.max_persons) {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
     }
-
-    // console.log({ costs: JSON.stringify(values.costs) });
 
     return errors;
   };
@@ -236,7 +235,12 @@ class FormCreator extends React.Component {
             }) => (
               <Form className="form">
                 {loading && <div className="return-message">Loading...</div>}
-                {error && <div className="return-message">Error :( Please try again</div>}
+                {error && <Modal show={true}><FormattedMessage id="something_went_wrong_please_try_again" /></Modal>}
+                  {data && <Modal show={true}>
+                    <SuccessMessage />
+                  </Modal>}
+                
+
 
                 <div className="form-content">
                 <div className="form-section">
@@ -316,7 +320,7 @@ class FormCreator extends React.Component {
                   </h2>
                   <div>
                     {bookingPrice.optional_house_costs.map(cost => {
-                      if (!["none", "total"].includes(cost.method)) {
+                      if (!["none", "total"].includes(cost.method) && cost.max_available > 0) {
                         return (
                           <div className="form-row inline" key={cost.id}>
                             <label htmlFor={cost.id}>{cost.name}</label>

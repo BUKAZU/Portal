@@ -78,5 +78,8 @@
     "9persons_4addresses": "De verzekering keert uit voor meer dan 9 personen die op maximaal 4 verschillende adressen wonen.",
     "poliscosts": "Poliskosten",
     "poliscosts_are": "De kosten voor het opmaken van een verzekeringspolis zijn eenmalig € 6,95. Ongeacht of u 1 of meerdere verzekeringen heeft afgesloten.",
-    "youwillrecieve": "U ontvangt aansluitend op uw boekingsbevestiging de verzekeringspapieren per email toegestuurd. De verzekering treedt in werking zodra u de (aan)betaling gedaan heeft."
+    "youwillrecieve": "U ontvangt aansluitend op uw boekingsbevestiging de verzekeringspapieren per email toegestuurd. De verzekering treedt in werking zodra u de (aan)betaling gedaan heeft.",
+    "thank_you_for_your_request": "Hartelijk dank voor uw boekings/optie-aanvraag.",
+    "we_sent_confirmation_check_email": "Een kopie van uw aanvraag is naar uw e-mailadres verstuurd. Kijk ook in uw spambox als u geen mail van ons heeft ontvangen.",
+    "something_went_wrong_please_try_again": "Oeps, er is iets mis gegaan, probeert u het later nogmaals."
 }

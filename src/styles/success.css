@@ -1,0 +1,9 @@
+.success-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    p {
+        max-width: 75ch;
+    }
+}

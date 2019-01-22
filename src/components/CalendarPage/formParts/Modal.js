@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class Modal extends React.Component {
   state = {
-    show: false
+    show: this.props.show
   };
 
   showModal = () => {
@@ -63,6 +63,10 @@ class Modal extends React.Component {
     );
   }
 }
+
+Modal.defaultProps = {
+  show: false
+};
 
 Modal.propTypes = {
   // onClose: PropTypes.func.isRequired,
