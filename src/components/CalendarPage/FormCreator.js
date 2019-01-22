@@ -49,7 +49,7 @@ class FormCreator extends React.Component {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
     }
 
-    console.log({ costs: JSON.stringify(values.costs) });
+    // console.log({ costs: JSON.stringify(values.costs) });
 
     return errors;
   };

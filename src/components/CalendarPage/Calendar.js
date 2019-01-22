@@ -88,7 +88,7 @@ class Calendar extends React.Component {
             house.max_nights &&
           differenceInCalendarDays(daz.date, selectedDate) <=
             arrivalDate.max_nights;
-        console.log({ date: daz.date, daz, maximum });
+        // console.log({ date: daz.date, daz, maximum });
 
         const daysFromToday = differenceInCalendarDays(daz.date, today);
         const last_minute =

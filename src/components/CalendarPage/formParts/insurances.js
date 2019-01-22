@@ -4,6 +4,8 @@ import { Field } from "formik";
 import Modal from "./Modal";
 import Icon from "../../icons/info.svg";
 import CancelInsurance from "./CancelInsurance";
+import DamageInsurance from "./DamageInsurance";
+import TravelInsurance from "./TravelInsurance";
 
 function translatedOption(id, value) {
   return (
@@ -18,8 +20,7 @@ function translatedOption(id, value) {
 
 function damage_insurance(house) {
   if (house.damage_insurance && !house.damage_insurance_required) {
-    return (
-      <div className="form-row inline">
+    return <div className="form-row inline">
         <label htmlFor="damage_insurance">
           <FormattedMessage id="damage_insurance" />
         </label>
@@ -28,8 +29,10 @@ function damage_insurance(house) {
           {translatedOption("yes", 1)}
           {translatedOption("none", 0)}
         </Field>
-      </div>
-    );
+        <Modal buttonText={<Icon />}>
+          <DamageInsurance />
+        </Modal>
+      </div>;
   } else {
     return "";
   }
@@ -58,8 +61,7 @@ function cancel_insurance(house) {
 
 function travel_insurance(house) {
   if (house.travel_insurance) {
-    return (
-      <div className="form-row inline">
+    return <div className="form-row inline">
         <label htmlFor="travel_insurance">
           <FormattedMessage id="travel_insurance" />
         </label>
@@ -68,8 +70,10 @@ function travel_insurance(house) {
           {translatedOption("yes", 1)}
           {translatedOption("none", 0)}
         </Field>
-      </div>
-    );
+        <Modal buttonText={<Icon />}>
+          <TravelInsurance />
+        </Modal>
+      </div>;
   }
 }
 

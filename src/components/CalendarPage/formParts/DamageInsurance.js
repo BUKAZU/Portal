@@ -8,47 +8,16 @@ const DamageInsurance = () => (
     </h2>
     <hr />
     <p>
-      <FM id="travel_insurance_desc" />
+      <FM id="damage_insurance_desc" />
     </p>
-
-    <h3>
-      <FM id="travel_ins_begin_end" />
-    </h3>
-    <ul>
-      <li>
-        <FM id="24_hour_help" />
-      </li>
-      <li>
-        <FM id="quick_bagage_help" />
-      </li>
-      <li>
-        <FM id="legal_aid" />
-      </li>
-      <li>
-        <FM id="no_own_risk" />
-      </li>
-      <li>
-        <FM id="2_years_bagage" />
-      </li>
-      <li>
-        <FM id="incl_help_coverage" />
-      </li>
-    </ul>
-
+    
     <h3>
       <FM id="terms_and_costs" />
     </h3>
-
+    
     <p>
-      <FM id="228_ppd" />
-    </p>
-    <h3>
-      <FM id="remark" />
-    </h3>
-
-    <p>
-      <FM id="optimal" />
-    </p>
+      <FM id="181_costs" />
+    </p>    
     <p>
       <FM id="more_information" />
     </p>
@@ -58,7 +27,7 @@ const DamageInsurance = () => (
       rel="noopener noreferrer"
     >
       <FM id="show_terms" />
-    </a>
+    </a>    
 
     <hr />
     <h2>
