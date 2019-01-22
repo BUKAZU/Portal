@@ -186,7 +186,8 @@ class FormCreator extends React.Component {
               adults: 2,
               children: 0,
               babies: 0,
-              persons: 2
+              persons: 2,
+              country: 'nl'
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log({ costs: JSON.stringify(values.costs) });

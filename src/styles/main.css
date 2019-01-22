@@ -8,6 +8,9 @@
   div {
     box-sizing: border-box;
   }
+  select {
+    background: #fff;
+  }
   .info-button {
       border: none;
       background: rgba(0,0,0,0);
@@ -23,6 +26,9 @@
     padding: 50px;
     display: flex;
     align-items: center;
+    @media screen and (max-width: 992px) {
+        padding: 50px 16px;
+      }
     .modal {
       background-color: #fff;
       border-radius: 5px;
