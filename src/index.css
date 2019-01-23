@@ -638,6 +638,9 @@
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
   }
+#bukazu-app .house-name {
+    padding: 16px;
+  }
 #bukazu-app select {
     background: #fff;
   }

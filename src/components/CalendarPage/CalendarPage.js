@@ -73,7 +73,7 @@ class CalendarPage extends Component {
             <div id="calendar-container">
               {Results.map(result => (
                 <div key={result.id}>
-                  <div>{result.name}</div>
+                  <div className="house-name">{result.name}</div>
                   <Calendar
                     portalCode={variables.id}
                     objectCode={variables.house_id}

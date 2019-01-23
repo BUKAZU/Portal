@@ -8,6 +8,9 @@
   div {
     box-sizing: border-box;
   }
+  .house-name {
+    padding: 16px;
+  }
   select {
     background: #fff;
   }
