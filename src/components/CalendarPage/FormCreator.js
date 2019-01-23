@@ -74,7 +74,7 @@ class FormCreator extends React.Component {
     } = values;
 
     let insurances = [];
-    if (house.damage_insurance_required || damage_insurance === 1) {
+    if (house.damage_insurance_required || damage_insurance === "1") {
       let ins = {};
       ins.name = "damage_insurance";
       ins.price = prices.discounted_price * (1.81 / 100);
@@ -187,7 +187,7 @@ class FormCreator extends React.Component {
               children: 0,
               babies: 0,
               persons: 2,
-              country: 'nl'
+              country: "nl"
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log({ costs: JSON.stringify(values.costs) });
@@ -318,60 +318,62 @@ class FormCreator extends React.Component {
                     Field={Field}
                     FormattedMessage={FormattedMessage}
                   />
-                  <div className="form-section">
-                    <h2>
-                      <FormattedMessage id="extra_costs_bookable" />
-                    </h2>
-                    <div>
-                      {bookingPrice.optional_house_costs.map(cost => {
-                        if (
-                          !["none", "total"].includes(cost.method) &&
-                          cost.max_available > 0
-                        ) {
-                          return (
-                            <div className="form-row inline" key={cost.id}>
-                              <label htmlFor={cost.id}>{cost.name}</label>
-                              <Field
-                                component="select"
-                                name={`costs[` + cost.id + `]`}
-                              >
-                                {this.createPeronsArray(cost.max_available).map(
-                                  opt => {
+                  {bookingPrice.optional_house_costs.length > 0 ? (
+                    <div className="form-section">
+                      <h2>
+                        <FormattedMessage id="extra_costs_bookable" />
+                      </h2>
+                      <div>
+                        {bookingPrice.optional_house_costs.map(cost => {
+                          if (
+                            !["none", "total"].includes(cost.method) &&
+                            cost.max_available > 0
+                          ) {
+                            return (
+                              <div className="form-row inline" key={cost.id}>
+                                <label htmlFor={cost.id}>{cost.name}</label>
+                                <Field
+                                  component="select"
+                                  name={`costs[` + cost.id + `]`}
+                                >
+                                  {this.createPeronsArray(
+                                    cost.max_available
+                                  ).map(opt => {
                                     return (
                                       <option key={opt} value={opt}>
                                         {opt}
                                       </option>
                                     );
-                                  }
-                                )}
-                              </Field>
+                                  })}
+                                </Field>
 
-                              <div className="price_per">
-                                €{" "}
-                                <FormattedNumber
-                                  value={cost.amount}
-                                  minimumFractionDigits={2}
-                                  maximumFractionDigits={2}
-                                />{" "}
-                                {cost.method_name}
+                                <div className="price_per">
+                                  €{" "}
+                                  <FormattedNumber
+                                    value={cost.amount}
+                                    minimumFractionDigits={2}
+                                    maximumFractionDigits={2}
+                                  />{" "}
+                                  {cost.method_name}
+                                </div>
+                                <div>
+                                  {cost.description ? (
+                                    <div>
+                                      <Modal buttonText={<Icon />}>
+                                        <p>{cost.description}</p>
+                                      </Modal>
+                                    </div>
+                                  ) : null}
+                                </div>
                               </div>
-                              <div>
-                                {cost.description ? (
-                                  <div>
-                                    <Modal buttonText={<Icon />}>
-                                      <p>{cost.description}</p>
-                                    </Modal>
-                                  </div>
-                                ) : null}
-                              </div>
-                            </div>
-                          );
-                        } else {
-                          return "";
-                        }
-                      })}
+                            );
+                          } else {
+                            return "";
+                          }
+                        })}
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                   <div className="form-section">
                     <h2>
                       <FormattedMessage id="personal_details" />
@@ -598,7 +600,11 @@ class FormCreator extends React.Component {
                       )}
                     />
                   </div>
-                  <button className="button" type="submit" disabled={isSubmitting}>
+                  <button
+                    className="button"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
                     <FormattedMessage id="book" />
                   </button>
                 </div>
