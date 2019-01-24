@@ -41,6 +41,14 @@ const DefaultBookingFields = [
     placeholder: ""
   },
   {
+    id: "city",
+    label: "Plaats",
+    type: "text",
+    options: ["text"],
+    required: true,
+    placeholder: ""
+  },
+  {
     id: "country",
     label: "Land",
     type: "select",
@@ -69,14 +77,6 @@ const DefaultBookingFields = [
   {
     id: "telephone",
     label: "Telefoonnummer",
-    type: "text",
-    options: ["text"],
-    required: true,
-    placeholder: ""
-  },
-  {
-    id: "city",
-    label: "Plaats",
     type: "text",
     options: ["text"],
     required: true,

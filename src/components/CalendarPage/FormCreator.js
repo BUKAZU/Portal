@@ -420,9 +420,14 @@ class FormCreator extends React.Component {
                       <tbody>
                         {bookingPrice.optional_house_costs.map(cost => {
                           if (cost.method === "none") {
+                            console.log(cost);
+                            
                             return <tr key={cost.id}>
                                 <td>{cost.name}</td>
                                 <td className="price">
+                                  {cost.amount && <span>
+                                      € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} />
+                                    </span>}
                                   {cost.method_name}
                                 </td>
                               </tr>;
