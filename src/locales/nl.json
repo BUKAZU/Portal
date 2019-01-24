@@ -82,5 +82,7 @@
     "thank_you_for_your_request": "Hartelijk dank voor uw boekings/optie-aanvraag.",
     "we_sent_confirmation_check_email": "Een kopie van uw aanvraag is naar uw e-mailadres verstuurd. Kijk ook in uw spambox als u geen mail van ons heeft ontvangen.",
     "something_went_wrong_please_try_again": "Oeps, er is iets mis gegaan, probeert u het later nogmaals.",
-    "agree_with": "Door te klikken op boeken gaat u akkoord met de"
+    "agree_with": "Door te klikken op boeken gaat u akkoord met de",
+    "discount_reason": "Reden korting",
+    "you_need_to_give_reason": "U dient een reden voor de korting op te geven"
 }

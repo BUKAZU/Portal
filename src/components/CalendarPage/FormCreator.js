@@ -6,6 +6,7 @@ import { CREATE_BOOKING_MUTATION } from "../../_lib/queries";
 import * as calc from "../../_lib/costs";
 import { Countries } from "../../_lib/countries";
 import { Insurances } from "./formParts/insurances";
+import Discount from "./formParts/discount";
 import { Summary } from "./formParts/summary";
 import { RadioButton, RadioButtonGroup } from "./formParts/radioButtons";
 import Icon from "../icons/info.svg";
@@ -44,6 +45,9 @@ class FormCreator extends React.Component {
 
     if (values.adults < 1) {
       errors.adults = <FormattedMessage id="at_least_1_adult" />;
+    }
+    if (Number(values.discount) > 0 && !values.discount_reason) {
+      errors.discount_reason = <FormattedMessage id="you_need_to_give_reason" />;
     }
     if (values.persons > this.state.max_persons) {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
@@ -122,10 +126,11 @@ class FormCreator extends React.Component {
   calculateRentPrice(values) {
     const {
       base_price,
-      discount,
       person_percentages
     } = this.props.house.booking_price;
+    let discount = this.props.house.booking_price.discount
     const { persons } = values;
+
     let percentage = {
       persons: 5000
     };
@@ -137,8 +142,13 @@ class FormCreator extends React.Component {
 
     let price = base_price * (percentage.percentage / 100);
 
+    if (Number(values.discount) > 0 && Number(values.discount) > discount) {
+      discount = values.discount
+    }
+
     let new_rent = {
       rent_price: price,
+      discount,
       discounted_price: price - price * (discount / 100)
     };
 
@@ -187,6 +197,7 @@ class FormCreator extends React.Component {
               children: 0,
               babies: 0,
               persons: 2,
+              discount: 0,
               country: "nl"
             }}
             onSubmit={(values, { setSubmitting }) => {
@@ -313,6 +324,7 @@ class FormCreator extends React.Component {
                       <div className="error-message">{errors.max_persons}</div>
                     )}
                   </div>
+                  <Discount errors={errors} />
                   <Insurances
                     house={house}
                     Field={Field}
@@ -460,7 +472,7 @@ class FormCreator extends React.Component {
                             <FormattedMessage id="discount" />
                           </td>
                           <td className="price">
-                            <FormattedNumber value={bookingPrice.discount} /> %
+                              <FormattedNumber value={this.calculateRentPrice(values).discount} /> %
                           </td>
                         </tr>
                         <tr>
