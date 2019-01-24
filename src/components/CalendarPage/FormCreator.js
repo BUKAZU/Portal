@@ -47,7 +47,9 @@ class FormCreator extends React.Component {
       errors.adults = <FormattedMessage id="at_least_1_adult" />;
     }
     if (Number(values.discount) > 0 && !values.discount_reason) {
-      errors.discount_reason = <FormattedMessage id="you_need_to_give_reason" />;
+      errors.discount_reason = (
+        <FormattedMessage id="you_need_to_give_reason" />
+      );
     }
     if (values.persons > this.state.max_persons) {
       errors.max_persons = <FormattedMessage id="max_persons_reached" />;
@@ -99,10 +101,10 @@ class FormCreator extends React.Component {
     }
     if (
       house.damage_insurance_required ||
-      values.damage_insurance === 1 ||
-      values.cancel_insurance === 1 ||
-      values.cancel_insurance === 2 ||
-      values.travel_insurance === 1
+      values.damage_insurance === "1" ||
+      values.cancel_insurance === "1" ||
+      values.cancel_insurance === "2" ||
+      values.travel_insurance === "1"
     ) {
       let ins = {};
       ins.name = "insurance_costs";
@@ -124,11 +126,8 @@ class FormCreator extends React.Component {
   }
 
   calculateRentPrice(values) {
-    const {
-      base_price,
-      person_percentages
-    } = this.props.house.booking_price;
-    let discount = this.props.house.booking_price.discount
+    const { base_price, person_percentages } = this.props.house.booking_price;
+    let discount = this.props.house.booking_price.discount;
     const { persons } = values;
 
     let percentage = {
@@ -143,7 +142,7 @@ class FormCreator extends React.Component {
     let price = base_price * (percentage.percentage / 100);
 
     if (Number(values.discount) > 0 && Number(values.discount) > discount) {
-      discount = values.discount
+      discount = values.discount;
     }
 
     let new_rent = {
@@ -472,7 +471,10 @@ class FormCreator extends React.Component {
                             <FormattedMessage id="discount" />
                           </td>
                           <td className="price">
-                              <FormattedNumber value={this.calculateRentPrice(values).discount} /> %
+                            <FormattedNumber
+                              value={this.calculateRentPrice(values).discount}
+                            />{" "}
+                            %
                           </td>
                         </tr>
                         <tr>
