@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App';
 import { IntlProvider } from 'react-intl';
 import { addLocaleData } from 'react-intl';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 
 import { ApolloProvider } from "react-apollo";
 import { ApolloClient } from "apollo-client";
