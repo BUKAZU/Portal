@@ -48,19 +48,17 @@ class Modal extends React.Component {
       padding: 30
     };
 
-    return (
-      <div className="backdrop" style={{ backdropStyle }}>
-        <div className="modal" style={{ modalStyle }}>
-          <div className="content">
-            {this.props.children}
-          </div>
+    return <div className="backdrop" style={{ backdropStyle }}>
+        <div className="bukazu-modal" style={{ modalStyle }}>
+          <div className="bukazu-modal-content">{this.props.children}</div>
 
           <div className="footer">
-            <button onClick={this.closeModal}><FormattedMessage id="close" /></button>
+            <button onClick={this.closeModal}>
+              <FormattedMessage id="close" />
+            </button>
           </div>
         </div>
-      </div>
-    );
+      </div>;
   }
 }
 

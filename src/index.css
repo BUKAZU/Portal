@@ -667,7 +667,7 @@
         padding: 50px 16px
   }
       }
-#bukazu-app .backdrop .modal {
+#bukazu-app .backdrop .bukazu-modal {
       background-color: #fff;
       border-radius: 5px;
       max-width: 1000px;
@@ -685,7 +685,7 @@
           -ms-flex-direction: column;
               flex-direction: column;
     }
-#bukazu-app .backdrop .modal .content {
+#bukazu-app .backdrop .bukazu-modal .bukazu-modal-content {
         -webkit-box-flex: 1;
             -ms-flex: 1 1 auto;
                 flex: 1 1 auto;
@@ -693,14 +693,14 @@
         overflow-y: auto;
 
       }
-#bukazu-app .backdrop .modal .footer {
+#bukazu-app .backdrop .bukazu-modal .footer {
           position: absolute;
           height: 50px;
           width: 100%;
           left: 0;
           bottom: 0;
       }
-#bukazu-app .backdrop .modal .footer button {
+#bukazu-app .backdrop .bukazu-modal .footer button {
             height: 100%;
             width: 100%;
             color: #fff;
