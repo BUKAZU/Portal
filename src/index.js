@@ -59,4 +59,4 @@ ReactDOM.render(
   </ApolloProvider>,
   element
 );
-registerServiceWorker()
+// registerServiceWorker()
