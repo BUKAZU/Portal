@@ -1,5 +1,5 @@
 import React from "react";
-import { FormattedMessage} from 'react-intl'
+import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 
 class Modal extends React.Component {
@@ -19,12 +19,14 @@ class Modal extends React.Component {
     });
   };
 
-
-
   render() {
     // Render nothing if the "show" prop is false
     if (!this.state.show) {
-      return <button className="info-button" onClick={this.showModal}>{this.props.buttonText}</button>;
+      return (
+        <button className="info-button" onClick={this.showModal}>
+          {this.props.buttonText}
+        </button>
+      );
     }
 
     // The gray background
@@ -48,17 +50,19 @@ class Modal extends React.Component {
       padding: 30
     };
 
-    return <div className="backdrop" style={{ backdropStyle }}>
+    return (
+      <div className="backdrop" style={{ backdropStyle }}>
         <div className="bukazu-modal" style={{ modalStyle }}>
           <div className="bukazu-modal-content">{this.props.children}</div>
 
-          <div className="footer">
+          <div className="bukazu-modal-footer">
             <button onClick={this.closeModal}>
               <FormattedMessage id="close" />
             </button>
           </div>
         </div>
-      </div>;
+      </div>
+    );
   }
 }
 
