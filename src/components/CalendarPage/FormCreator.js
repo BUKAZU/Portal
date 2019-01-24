@@ -186,32 +186,86 @@ class FormCreator extends React.Component {
     for (const val of bookingPrice.optional_house_costs) {
       costs[val.id] = "0";
     }
-    return <Mutation mutation={CREATE_BOOKING_MUTATION}>
-        {(createBooking, { loading, error, data }) => <Formik validate={this.validate} initialValues={{ ...this.props.booking, costs, adults: 2, children: 0, babies: 0, persons: 2, discount: 0, country: "nl" }} onSubmit={(values, { setSubmitting }) => {
+    return (
+      <Mutation mutation={CREATE_BOOKING_MUTATION}>
+        {(createBooking, { loading, error, data }) => (
+          <Formik
+            validate={this.validate}
+            initialValues={{
+              ...this.props.booking,
+              costs,
+              adults: 2,
+              children: 0,
+              babies: 0,
+              persons: 2,
+              discount: 0,
+              country: "nl"
+            }}
+            onSubmit={(values, { setSubmitting }) => {
               // console.log({ costs: JSON.stringify(values.costs) });
 
-              let variables = { first_name: values.first_name, last_name: values.last_name, is_option: JSON.parse(values.is_option), address: values.address || "", zipcode: values.zipcode || "", city: values.city || "", phone: values.phone || "", email: values.email, house_code: values.objectCode, portal_code: values.portalCode, language: locale, country: values.country.toUpperCase(), adults: Number(values.adults), children: Number(values.children) || 0, babies: Number(values.babies) || 0, pets: Number(values.pets) || 0, discount: values.discount || 0, damage_insurance: Number(values.damage_insurance) || 0, cancel_insurance: Number(values.cancel_insurance) || 0, travel_insurance: Number(values.travel_insurance) || 0, discount_reason: values.discount_reason || "", arrival_date: values.arrivalDate.date, departure_date: values.departureDate.date, costs: JSON.stringify(values.costs) };
+              let variables = {
+                first_name: values.first_name,
+                last_name: values.last_name,
+                is_option: JSON.parse(values.is_option),
+                address: values.address || "",
+                zipcode: values.zipcode || "",
+                city: values.city || "",
+                phone: values.phone || "",
+                email: values.email,
+                house_code: values.objectCode,
+                portal_code: values.portalCode,
+                language: locale,
+                country: values.country.toUpperCase(),
+                adults: Number(values.adults),
+                children: Number(values.children) || 0,
+                babies: Number(values.babies) || 0,
+                pets: Number(values.pets) || 0,
+                discount: values.discount || 0,
+                damage_insurance: Number(values.damage_insurance) || 0,
+                cancel_insurance: Number(values.cancel_insurance) || 0,
+                travel_insurance: Number(values.travel_insurance) || 0,
+                discount_reason: values.discount_reason || "",
+                arrival_date: values.arrivalDate.date,
+                departure_date: values.departureDate.date,
+                costs: JSON.stringify(values.costs)
+              };
               createBooking({ variables });
 
               setTimeout(() => {
                 setSubmitting(false);
               }, 1000);
-            }} render={({ errors, touched, values, status, isSubmitting, handleChange, handleBlur }) => <Form className="form">
-                {loading && <div className="return-message">
-                    Loading...
-                  </div>}
-                {error && <Modal show={true}>
+            }}
+            render={({
+              errors,
+              touched,
+              values,
+              status,
+              isSubmitting,
+              handleChange,
+              handleBlur
+            }) => (
+              <Form className="form">
+                {loading && <div className="return-message">Loading...</div>}
+                {error && (
+                  <Modal show={true}>
                     <FormattedMessage id="something_went_wrong_please_try_again" />
-                  </Modal>}
-                {data && <Modal show={true}>
+                  </Modal>
+                )}
+                {data && (
+                  <Modal show={true}>
                     <SuccessMessage />
-                  </Modal>}
+                  </Modal>
+                )}
 
                 <div className="form-content">
                   <div className="form-section">
-                    <a className="return-link" onClick={() => {
+                    <a
+                      className="return-link"
+                      onClick={() => {
                         this.props.onReturn();
-                      }}>
+                      }}
+                    >
                       <FormattedMessage id="return_to_calendar" />
                     </a>
                     <h2>
@@ -221,16 +275,23 @@ class FormCreator extends React.Component {
                       <label htmlFor="adults">
                         <FormattedMessage id="adults" />
                       </label>
-                      <Field component="select" name="adults" onChange={handleChange} onBlur={handleBlur}>
+                      <Field
+                        component="select"
+                        name="adults"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      >
                         {adults.map(opt => {
-                          return <option key={opt} value={opt}>
+                          return (
+                            <option key={opt} value={opt}>
                               {opt}
-                            </option>;
+                            </option>
+                          );
                         })}
                       </Field>
-                      {errors.adults && touched.adults && <div className="error-message">
-                          {errors.adults}
-                        </div>}
+                      {errors.adults && touched.adults && (
+                        <div className="error-message">{errors.adults}</div>
+                      )}
                     </div>
                     <div className="form-row inline">
                       <label htmlFor="children">
@@ -238,9 +299,11 @@ class FormCreator extends React.Component {
                       </label>
                       <Field component="select" name="children">
                         {children.map(opt => {
-                          return <option key={opt} value={opt}>
+                          return (
+                            <option key={opt} value={opt}>
                               {opt}
-                            </option>;
+                            </option>
+                          );
                         })}
                       </Field>
                     </div>
@@ -250,90 +313,120 @@ class FormCreator extends React.Component {
                       </label>
                       <Field component="select" name="babies">
                         {children.map(opt => {
-                          return <option key={opt} value={opt}>
+                          return (
+                            <option key={opt} value={opt}>
                               {opt}
-                            </option>;
+                            </option>
+                          );
                         })}
                       </Field>
                     </div>
-                    {errors.max_persons && <div className="error-message">
-                        {errors.max_persons}
-                      </div>}
+                    {errors.max_persons && (
+                      <div className="error-message">{errors.max_persons}</div>
+                    )}
                   </div>
                   <Discount errors={errors} />
-                  <Insurances house={house} Field={Field} FormattedMessage={FormattedMessage} />
-                  {bookingPrice.optional_house_costs.length > 0 ? <div className="form-section">
+                  <Insurances
+                    house={house}
+                    Field={Field}
+                    FormattedMessage={FormattedMessage}
+                  />
+                  {bookingPrice.optional_house_costs.length > 0 ? (
+                    <div className="form-section">
                       <h2>
                         <FormattedMessage id="extra_costs_bookable" />
                       </h2>
                       <div>
                         {bookingPrice.optional_house_costs.map(cost => {
-                          if (!["none", "total"].includes(cost.method) && cost.max_available > 0) {
-                            return <div className="form-row inline" key={cost.id}>
+                          if (
+                            !["none", "total"].includes(cost.method) &&
+                            cost.max_available > 0
+                          ) {
+                            return (
+                              <div className="form-row inline" key={cost.id}>
                                 <label htmlFor={cost.id}>{cost.name}</label>
-                                <Field component="select" name={`costs[` + cost.id + `]`}>
-                                  {this.createPeronsArray(cost.max_available).map(
-                                    opt => {
-                                      return (
-                                        <option key={opt} value={opt}>
-                                          {opt}
-                                        </option>
-                                      );
-                                    }
-                                  )}
+                                <Field
+                                  component="select"
+                                  name={`costs[` + cost.id + `]`}
+                                >
+                                  {this.createPeronsArray(
+                                    cost.max_available
+                                  ).map(opt => {
+                                    return (
+                                      <option key={opt} value={opt}>
+                                        {opt}
+                                      </option>
+                                    );
+                                  })}
                                 </Field>
 
                                 <div className="price_per">
-                                  € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} /> {cost.method_name}
+                                  €{" "}
+                                  <FormattedNumber
+                                    value={cost.amount}
+                                    minimumFractionDigits={2}
+                                    maximumFractionDigits={2}
+                                  />{" "}
+                                  {cost.method_name}
                                 </div>
                                 <div>
-                                  {cost.description ? <div>
+                                  {cost.description ? (
+                                    <div>
                                       <Modal buttonText={<Icon />}>
                                         <p>{cost.description}</p>
                                       </Modal>
-                                    </div> : null}
+                                    </div>
+                                  ) : null}
                                 </div>
-                              </div>;
+                              </div>
+                            );
                           } else {
                             return "";
                           }
                         })}
                       </div>
-                    </div> : null}
+                    </div>
+                  ) : null}
                   <div className="form-section">
                     <h2>
                       <FormattedMessage id="personal_details" />
                     </h2>
                     {this.state.bookingFields.map(input => {
                       if (input.id === "country") {
-                        return <div className="form-row" key={input.id}>
+                        return (
+                          <div className="form-row" key={input.id}>
                             <label htmlFor={input.id}>{input.label}</label>
                             <Field component="select" name={input.id}>
-                              {Countries[window.__localeId__].map(
-                                country => {
-                                  return (
-                                    <option
-                                      value={country.alpha2}
-                                      key={country.alpha2}
-                                    >
-                                      {country.name}
-                                    </option>
-                                  );
-                                }
-                              )}
+                              {Countries[window.__localeId__].map(country => {
+                                return (
+                                  <option
+                                    value={country.alpha2}
+                                    key={country.alpha2}
+                                  >
+                                    {country.name}
+                                  </option>
+                                );
+                              })}
                             </Field>
-                            {errors[input.id] && <div className="error-message">
+                            {errors[input.id] && (
+                              <div className="error-message">
                                 {errors[input.id]}
-                              </div>}
-                          </div>;
+                              </div>
+                            )}
+                          </div>
+                        );
                       } else {
-                        return <div className="form-row" key={input.id}>
+                        return (
+                          <div className="form-row" key={input.id}>
                             <label htmlFor={input.id}>{input.label}</label>
                             <Field type={input.type} name={input.id} />
-                            {errors[input.id] && <div className="error-message">
+                            {errors[input.id] && (
+                              <div className="error-message">
                                 {errors[input.id]}
-                              </div>}
-                          </div>;
+                              </div>
+                            )}
+                          </div>
+                        );
                       }
                     })}
                   </div>
@@ -344,8 +437,18 @@ class FormCreator extends React.Component {
 
                   <div>
                     <RadioButtonGroup id="is_option" className="booking_option">
-                      <Field component={RadioButton} name="is_option" id="true" label={<FormattedMessage id="option" />} />
-                      <Field component={RadioButton} name="is_option" id="false" label={<FormattedMessage id="booking" />} />
+                      <Field
+                        component={RadioButton}
+                        name="is_option"
+                        id="true"
+                        label={<FormattedMessage id="option" />}
+                      />
+                      <Field
+                        component={RadioButton}
+                        name="is_option"
+                        id="false"
+                        label={<FormattedMessage id="booking" />}
+                      />
                     </RadioButtonGroup>
                   </div>
 
@@ -357,7 +460,12 @@ class FormCreator extends React.Component {
                             <FormattedMessage id="rent_price" />
                           </td>
                           <td className="price">
-                            € <FormattedNumber value={this.calculateRentPrice(values).rent_price} minimumFractionDigits={2} maximumFractionDigits={2} />
+                            €{" "}
+                            <FormattedNumber
+                              value={this.calculateRentPrice(values).rent_price}
+                              minimumFractionDigits={2}
+                              maximumFractionDigits={2}
+                            />
                           </td>
                         </tr>
                         <tr>
@@ -365,7 +473,10 @@ class FormCreator extends React.Component {
                             <FormattedMessage id="discount" />
                           </td>
                           <td className="price">
-                            <FormattedNumber value={this.calculateRentPrice(values).discount} /> %
+                            <FormattedNumber
+                              value={this.calculateRentPrice(values).discount}
+                            />{" "}
+                            %
                           </td>
                         </tr>
                         <tr>
@@ -374,7 +485,13 @@ class FormCreator extends React.Component {
                           </td>
                           <td className="price">
                             €{"  "}
-                            <FormattedNumber value={this.calculateRentPrice(values).discounted_price} minimumFractionDigits={2} maximumFractionDigits={2} />
+                            <FormattedNumber
+                              value={
+                                this.calculateRentPrice(values).discounted_price
+                              }
+                              minimumFractionDigits={2}
+                              maximumFractionDigits={2}
+                            />
                           </td>
                         </tr>
                       </tbody>
@@ -384,32 +501,44 @@ class FormCreator extends React.Component {
                     <table>
                       <tbody>
                         {this.calculateInsurances(values).map(ins => {
-                          return <tr key={ins.name}>
+                          return (
+                            <tr key={ins.name}>
                               <td>
                                 <FormattedMessage id={ins.name} />
                               </td>
                               <td className="price">
                                 €{"  "}
-                                <FormattedNumber value={ins.price} minimumFractionDigits={2} maximumFractionDigits={2} />
+                                <FormattedNumber
+                                  value={ins.price}
+                                  minimumFractionDigits={2}
+                                  maximumFractionDigits={2}
+                                />
                               </td>
-                            </tr>;
+                            </tr>
+                          );
                         })}
                         {bookingPrice.required_house_costs.map(cost => {
                           if (cost.method === "none") {
-                            return <tr key={cost.id}>
+                            return (
+                              <tr key={cost.id}>
                                 <td>{cost.name}</td>
-                                <td className="price">
-                                  {cost.method_name}
-                                </td>
-                              </tr>;
+                                <td className="price">{cost.method_name}</td>
+                              </tr>
+                            );
                           } else {
-                            return <tr key={cost.id}>
+                            return (
+                              <tr key={cost.id}>
                                 <td>{cost.name}</td>
                                 <td className="price">
                                   €{"  "}
-                                  <FormattedNumber value={this.calculateCost(cost, values)} minimumFractionDigits={2} maximumFractionDigits={2} />
+                                  <FormattedNumber
+                                    value={this.calculateCost(cost, values)}
+                                    minimumFractionDigits={2}
+                                    maximumFractionDigits={2}
+                                  />
                                 </td>
-                              </tr>;
+                              </tr>
+                            );
                           }
                         })}
                       </tbody>
@@ -420,24 +549,38 @@ class FormCreator extends React.Component {
                       <tbody>
                         {bookingPrice.optional_house_costs.map(cost => {
                           if (cost.method === "none") {
-                            console.log(cost);
-                            
-                            return <tr key={cost.id}>
+                            return (
+                              <tr key={cost.id}>
                                 <td>{cost.name}</td>
                                 <td className="price">
-                                  {cost.amount && <span>
-                                      € <FormattedNumber value={cost.amount} minimumFractionDigits={2} maximumFractionDigits={2} />
-                                    </span>}
+                                  {cost.amount && (
+                                    <span>
+                                      €{" "}
+                                      <FormattedNumber
+                                        value={cost.amount}
+                                        minimumFractionDigits={2}
+                                        maximumFractionDigits={2}
+                                      />
+                                    </span>
+                                  )}
                                   {cost.method_name}
                                 </td>
-                              </tr>;
+                              </tr>
+                            );
                           } else {
-                            return <tr key={cost.id}>
+                            return (
+                              <tr key={cost.id}>
                                 <td>{cost.name}</td>
                                 <td className="price">
-                                  € <FormattedNumber value={this.calculateCost(cost, values)} minimumFractionDigits={2} maximumFractionDigits={2} />
+                                  €{" "}
+                                  <FormattedNumber
+                                    value={this.calculateCost(cost, values)}
+                                    minimumFractionDigits={2}
+                                    maximumFractionDigits={2}
+                                  />
                                 </td>
-                              </tr>;
+                              </tr>
+                            );
                           }
                         })}
                       </tbody>
@@ -447,11 +590,21 @@ class FormCreator extends React.Component {
                     <table>
                       <tbody>
                         <tr>
-                          <th style={{ textAlign: "left", testTransform: "capitalize" }}>
+                          <th
+                            style={{
+                              textAlign: "left",
+                              testTransform: "capitalize"
+                            }}
+                          >
                             <FormattedMessage id="total" />
                           </th>
                           <td className="price">
-                            € <FormattedNumber value={this.calculateTotal(values)} minimumFractionDigits={2} maximumFractionDigits={2} />
+                            €{" "}
+                            <FormattedNumber
+                              value={this.calculateTotal(values)}
+                              minimumFractionDigits={2}
+                              maximumFractionDigits={2}
+                            />
                           </td>
                         </tr>
                       </tbody>
@@ -460,16 +613,42 @@ class FormCreator extends React.Component {
                   {status && status.msg && <div>{status.msg}</div>}
                   <div className="terms">
                     <FormattedMessage id="agree_with" />
-                    <FormattedMessage id="terms" children={fm => <Modal buttonText={fm}>
-                    <embed scr={house.rental_terms} title={fm} width="100%" height="100%" frameborder="0" type="application/pdf" />
-                        </Modal>} />
+                    <FormattedMessage
+                      id="terms"
+                      children={fm => (
+                        <Modal buttonText={fm}>
+                          <div
+                            style={{
+                              width: "90vh",
+                              height: "90vh"
+                            }}
+                          >
+                            <iframe
+                              src={house.rental_terms}
+                              width="100%"
+                              height="100%"
+                              title="Terms"
+                              frameBorder="0"
+                            />
+                          </div>
+                        </Modal>
+                      )}
+                    />
                   </div>
-                  <button className="button" type="submit" disabled={isSubmitting}>
+                  <button
+                    className="button"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
                     <FormattedMessage id="book" />
                   </button>
                 </div>
-              </Form>} />}
-      </Mutation>;
+              </Form>
+            )}
+          />
+        )}
+      </Mutation>
+    );
   }
 }
 
