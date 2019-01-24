@@ -631,9 +631,7 @@
 .success-message p {
         max-width: 75ch;
     }
-#bukazu-app {
-  background: #fbfbfb;
-}
+/* background: #fbfbfb; */
 #bukazu-app div {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;

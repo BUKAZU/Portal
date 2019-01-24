@@ -131,13 +131,16 @@ class FormCreator extends React.Component {
     const { persons } = values;
 
     let percentage = {
-      persons: 5000
+      persons: 5000,
+      // percentage: 100
     };
+    
     for (let perc of person_percentages) {
-      if (persons < perc.persons && perc.persons < percentage.persons) {
+      if (persons <= perc.persons && perc.persons < percentage.persons) {
         percentage = perc;
       }
     }
+    console.log({ percentage});
 
     let price = base_price * (percentage.percentage / 100);
 
@@ -150,6 +153,9 @@ class FormCreator extends React.Component {
       discount,
       discounted_price: price - price * (discount / 100)
     };
+
+    console.log({new_rent});
+    
 
     return new_rent;
   }
