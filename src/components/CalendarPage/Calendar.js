@@ -146,7 +146,7 @@ class Calendar extends React.Component {
             date={daz.date}
             onClick={() => this.onDateClick(cloneDay)}
           >
-            <span className="bg">
+            <span >
               {!dateFns.isSameMonth(day, monthStart) ? "" : formattedDate}
             </span>
           </div>
