@@ -19,8 +19,8 @@ class Field extends Component {
       const value = this.props.value;
       const countries = this.props.filters.countries
       const regions = this.props.filters.regions;
-      const layouts = this.props.filters.layouts || [];
-      const properties = this.props.filters.properties || [];
+    //   const layouts = this.props.filters.layouts || [];
+    //   const properties = this.props.filters.properties || [];
 
       if (field.type === 'select') {
           if (options.constructor === Array) {

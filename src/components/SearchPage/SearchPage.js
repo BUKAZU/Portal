@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Filters from './Filters'
 import Results from './Results'
 
-import './SearchPage.css'
+// import './SearchPage.css'
 
 class SearchPage extends Component {
   constructor(props) {

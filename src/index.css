@@ -622,3 +622,218 @@
 .success-message p {
         max-width: 75ch;
     }
+.bukazu-result {
+  width: 300px;
+  margin: 16px;
+  overflow: hidden;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  text-decoration: none;
+  display: block;
+}
+.bukazu-result:hover .bukazu-result-inner {
+        -webkit-box-shadow: 2px 2px 16px rgba(0,0,0,.25);
+                box-shadow: 2px 2px 16px rgba(0,0,0,.25);
+      }
+.bukazu-result-inner {
+    overflow: hidden;
+    color: rgba(26, 25, 25, 1);
+    border: 1px solid rgba(69, 74, 83, 0.2);
+    border-radius: 5px;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+.bukazu-result-inner .image-holder {
+      padding-top: 56.25%;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+.bukazu-result-inner .image-holder img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+      }
+.bukazu-result-inner .result {
+        -webkit-box-flex: 1;
+            -ms-flex: 1 1;
+                flex: 1 1;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        font-size: 14px;
+    }
+.bukazu-result-inner .result-title {
+            padding: 8px;
+            font-weight: bold;
+        }
+.bukazu-result-inner .result-description {
+            padding: 8px;
+            -webkit-box-flex: 1;
+                -ms-flex: 1;
+                    flex: 1;
+        }
+.bukazu-result-inner .result-details {
+            padding: 8px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: space-evenly;
+                -ms-flex-pack: space-evenly;
+                    justify-content: space-evenly;
+        }
+.bukazu-result-inner .result-price {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
+            padding: 16px 8px;
+        }
+.bukazu-result-inner .result-price span.price {
+                font-size: 16px;
+                font-weight: bold;
+            }
+.bukazu-result-inner .result-button {
+            background: var(--bukazu-button_cta);
+            text-align: center;
+            padding: 16px;
+
+        }
+#bukazu-app #search-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+#bukazu-app #search-page .filters {
+    padding: 16px;
+    width: 20%;
+    min-width: 200px;
+}
+@media (max-width: 825px) {
+    #bukazu-app #search-page {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    #bukazu-app #search-page .filters {
+        width: 100%;
+    }
+
+}
+#bukazu-app div {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+#bukazu-app .house-name {
+    padding: 16px;
+  }
+#bukazu-app select {
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, #ccc, #ccc);
+    background-position: calc(100% - 20px) calc(1em),
+      calc(100% - 15px) calc(1em), calc(100% - 2.5em);
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+    background: #fff;
+  }
+#bukazu-app .info-button {
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    cursor: pointer;
+  }
+#bukazu-app .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+@media screen and (max-width: 992px) {
+#bukazu-app .backdrop {
+      padding: 50px 16px
+  }
+    }
+#bukazu-app .backdrop .bukazu-modal {
+      background-color: #fff;
+      border-radius: 5px;
+      max-width: 1000px;
+      min-height: 150px;
+      margin: 0 auto;
+      padding: 30px 30px 80px;
+      position: relative;
+      max-height: 90%;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+#bukazu-app .backdrop .bukazu-modal .bukazu-modal-content {
+        -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+        height: 100%;
+        overflow-y: auto;
+      }
+#bukazu-app .backdrop .bukazu-modal .bukazu-modal-footer {
+        position: absolute;
+        height: 50px;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+      }
+#bukazu-app .backdrop .bukazu-modal .bukazu-modal-footer button {
+          height: 100%;
+          width: 100%;
+          color: #fff;
+          font-weight: bold;
+          background: #004fa7;
+          border: 0;
+          -webkit-appearance: none;
+             -moz-appearance: none;
+                  appearance: none;
+          cursor: pointer;
+          -webkit-box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
+                  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
+          border-radius: 0 0 5px 5px;
+        }

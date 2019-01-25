@@ -7,6 +7,7 @@ export const HOUSES_QUERY = gql`
         id
         name
         persons
+        bedrooms        
         description
         image_url
         house_url
