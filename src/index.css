@@ -10,10 +10,7 @@
         justify-content: space-around;
   }
     @media screen and (max-width: 992px) {#bukazu-app .calendars-header {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column
+      /* flex-direction: column; */
   }
       #bukazu-app .calendars-header .col {
         margin: 4px 8px;
@@ -25,7 +22,19 @@
         -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
                 box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
         cursor: pointer;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
       }
+    #bukazu-app .calendars-header .col .icon svg {
+          height: 18px;
+        }
     #bukazu-app .calendars-header .col .icon:hover {
           -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
                   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
@@ -633,7 +642,7 @@
   display: block;
   -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
+    border-radius: 16px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
