@@ -1,5 +1,6 @@
 import React from "react";
 import { FormattedMessage, FormattedNumber } from "react-intl";
+import ArrowRight from '../icons/ArrowRight.svg'
 
 const SingleResult = ({ result }) => {
   console.log({ result });
@@ -36,7 +37,7 @@ const SingleResult = ({ result }) => {
             </span>
           </div>
           <div className='result-button'>
-            ->
+            <ArrowRight />
           </div>
         </div>
       </div>
