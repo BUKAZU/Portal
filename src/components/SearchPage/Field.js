@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Field.css'
 import ListItem from './inputs/listItem.css'
 
-
 class Field extends Component {
     constructor(props) {
         super(props)
@@ -19,15 +18,43 @@ class Field extends Component {
       let input;
       const value = this.props.value;
       const countries = this.props.filters.countries
+      const regions = this.props.filters.regions;
+      const layouts = this.props.filters.layouts || [];
+      const properties = this.props.filters.properties || [];
 
       if (field.type === 'select') {
           if (options.constructor === Array) {
-              input = <select  name={field.id} onChange={this.handleChange} value={value}>
-                  <option value=''>Maak een keuze</option>
-                  {options.map(opt =>
-                      <option key={opt.id} value={opt.id} disabled={countries ? !countries.includes(opt.country_id) : false }>{opt.name}</option>
-                  )}
+
+              input = (
+                  <select name={field.id} onChange={this.handleChange} value={value}>
+                      <option value=""></option>
+                      {options.map(opt => {
+                          let hidden = false;
+                          if (['cities', 'regions'].includes(field.id)) {
+                              if (countries && !countries.includes(opt.country_id)) {
+                                  hidden = true;
+                              }
+                              if (field.id === 'cities') {
+                                  if (regions && !regions.includes(opt.region)) {
+                                      hidden = true;
+                                  }
+                              }
+                          }
+
+                          return (
+                              <option
+                                  key={opt.id}
+                                  value={opt.id}
+                                  id={opt.region}
+                                  disabled={hidden}
+                                  hidden={hidden}
+                              >
+                                  {opt.name}
+                              </option>
+                          );
+                      })}
                   </select>
+              );
           } else {
               input = <input value={value} onChange={this.handleChange} />
           }

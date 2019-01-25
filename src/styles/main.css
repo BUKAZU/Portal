@@ -2,9 +2,9 @@
 @import "form.css";
 @import "price-overview.css";
 @import "success.css";
+@import "result.css"
 
 #bukazu-app {
-  /* background: #fbfbfb; */
   div {
     box-sizing: border-box;
   }
@@ -19,8 +19,7 @@
     calc(100% - 15px) calc(1em), calc(100% - 2.5em);
     background-size: 5px 5px, 5px 5px, 1px 1.5em;
     background-repeat: no-repeat;
-    background: #fff;
-  
+    background: #fff;  
   }
   .info-button {
     border: none;
