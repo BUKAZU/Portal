@@ -559,7 +559,7 @@ class FormCreator extends React.Component {
                               <tr key={cost.id}>
                                 <td>{cost.name}</td>
                                 <td className="price">
-                                  {cost.amount && (
+                                  {cost.amount && cost.amount > 0 && (
                                     <span>
                                       €{" "}
                                       <FormattedNumber
