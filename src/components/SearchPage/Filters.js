@@ -14,13 +14,27 @@ class Filters extends Component {
     }
 
   render() {
-    const PortalSite = this.props.PortalSite
-    const filters = this.props.filters
+    const { PortalSite, filters }= this.props
+    const searchFields = PortalSite.options.searchFields || [
+        {
+            "label": "Land",
+            "id": "countries",
+            "type": "select",
+            "required": false,
+            "mandatory": true,
+            "options": [
+                "select",
+                "list",
+                "radio",
+                "text"
+            ]
+        }
+    ]
 
     return (
         <div className="filters"
             >
-            {PortalSite.options.searchFields.map(field =>
+            {searchFields.map(field =>
                 <div key={field.id}>
                     <label style={{
                             width: '100%',

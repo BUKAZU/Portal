@@ -1,31 +1,15 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import Loading from "../icons/loading.svg";
 import SingleResult from "./SingleResult";
 import "./Results.css";
-
-export const HOUSES_QUERY = gql`
-  query PortalSiteHousesQuery($id: ID!, $country_id: ID!) {
-    PortalSite(id: $id) {
-      houses(country_id: $country_id) {
-        id
-        name
-        persons
-        description
-        image_url
-        house_url
-        minimum_week_price
-      }
-    }
-  }
-`;
+import { HOUSES_QUERY } from '../../_lib/SearchQueries'
 
 class Results extends Component {
   render() {
     let variables = {
       id: this.props.PortalSite.portal_code,
-      country_id: this.props.filters.countries
+      country_id: this.props.filters.countries || ''
     };
     console.log(this.props);
 

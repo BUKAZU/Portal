@@ -8,18 +8,7 @@ class SearchPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filters: {
-        countries: "1",
-        cities: "",
-        regions: "",
-        max_persons: "",
-        max_weekprice: "",
-        max_nights: "",
-        max_bedrooms: "",
-        max_bathrooms: "",
-        extra_search: "",
-        max_price: ""
-      }
+      filters: {}
     }
     this.onFilterChange = this.onFilterChange.bind(this)
   }
