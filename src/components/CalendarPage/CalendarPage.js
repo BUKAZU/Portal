@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Calendar from "./Calendar";
 import BookingForm from './BookingForm'
+import Loading from '../icons/loading.svg'
 
 export const HOUSE_QUERY = gql`
          query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
@@ -12,6 +13,8 @@ export const HOUSE_QUERY = gql`
                name
                max_nights
                last_minute_days
+               discounts
+               discounts_info
              }
            }
          }
@@ -64,7 +67,7 @@ class CalendarPage extends Component {
     return (
       <Query query={HOUSE_QUERY} variables={variables}>
         {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>;
+          if (loading) return <div><Loading /></div>;
           if (error) return <div>Error</div>;
 
           const Results = data.PortalSite.houses;

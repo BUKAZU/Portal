@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Query } from "react-apollo";
+import Loading from "./icons/loading.svg";
 
 import { PORTAL_QUERY } from '../_lib/queries'
 
@@ -12,7 +13,7 @@ class App extends Component {
 
     return <Query query={PORTAL_QUERY} variables={{ id: portalCode }}>
         {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>;
+        if (loading) return <div><Loading /></div>;
           if (error) return <div>Error</div>;
 
           const PortalSite = data.PortalSite;

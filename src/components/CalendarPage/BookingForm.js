@@ -1,5 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
+import Loading from "../icons/loading.svg";
 import FormCreator from "./FormCreator";
 import { BOOKING_PRICE_QUERY } from "../../_lib/queries";
 
@@ -26,7 +27,12 @@ class BookingForm extends React.Component {
         }}
       >
         {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>;
+          if (loading)
+            return (
+              <div>
+                <Loading />
+              </div>
+            );
           if (error) return <div>Error</div>;
 
           const result = data.PortalSite.houses[0];

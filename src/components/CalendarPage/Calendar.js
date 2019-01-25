@@ -1,6 +1,7 @@
 import React from "react";
 import dateFns from "date-fns";
 import { Query } from "react-apollo";
+import Loading from "../icons/loading.svg";
 import format from "../../_lib/format";
 import isAfter from "date-fns/is_after";
 import CalendarHeader from "./CalendarHeader";
@@ -190,7 +191,9 @@ class Calendar extends React.Component {
         {this.renderDays()}
         <Query query={CALENDAR_QUERY} variables={variables}>
           {({ loading, error, data }) => {
-            if (loading) return <div>Fetching</div>;
+            if (loading) return <div>
+                             <Loading />
+                           </div>;
             if (error) return <div>Error</div>;
 
             const results = data.PortalSite.houses[0].availabilities;

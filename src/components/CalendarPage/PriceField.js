@@ -1,6 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Loading from "../icons/loading.svg";
 import format from "../../_lib/format";
 import { FormattedMessage, FormattedNumber } from "react-intl";
 
@@ -35,7 +36,9 @@ class PriceField extends React.Component {
         }}
       >
         {({ loading, error, data }) => {
-          if (loading) return <div className="price-overview--build">Fetching</div>;
+          if (loading) return <div className="price-overview--build">
+                           <Loading />
+                         </div>;
           // if (error) return <div>Error</div>;
 
           const result = data.PortalSite.houses[0].booking_price;
