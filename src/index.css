@@ -748,7 +748,6 @@
                 justify-content: center;
       }
 .bukazu-result-inner .result-button svg {
-          /* height: 24px; */
           width: 18px;
         }
 .bukazu-result-inner .result-button:before {
@@ -761,8 +760,8 @@
           left: 0;
           top: 0;
           bottom: 0;
-          -webkit-transition: all 0.5s ease;
-          transition: all 0.5s ease;
+          -webkit-transition: all 0.8s ease;
+          transition: all 0.8s ease;
         }
 .bukazu-result-inner .result-button:hover:before {
             width: 100%;

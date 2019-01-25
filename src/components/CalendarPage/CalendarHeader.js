@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import ArrowRight from "../icons/ArrowRight.svg";
 import ArrowLeft from "../icons/ArrowLeft.svg";
 import Reload from "../icons/Reload.svg";

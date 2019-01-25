@@ -74,7 +74,6 @@
         align-items: center;
         justify-content: center;
         svg {
-          /* height: 24px; */
           width: 18px;
         }
         &:before {
@@ -87,7 +86,7 @@
           left: 0;
           top: 0;
           bottom: 0;
-          transition: all 0.5s ease;
+          transition: all 0.8s ease;
         }
         &:hover {
           &:before {
