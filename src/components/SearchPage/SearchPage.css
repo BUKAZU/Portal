@@ -6,6 +6,7 @@
 #bukazu-app #search-page .filters {
     padding: 16px;
     width: 20%;
+    min-width: 200px;
 }
 @media (max-width: 825px) {
     #bukazu-app #search-page {
