@@ -633,7 +633,7 @@
     }
 .bukazu-result {
   width: 300px;
-  margin: 16px;
+  margin: 8px;
   overflow: hidden;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -792,6 +792,13 @@
     }
 
 }
+#bukazu-app .filters-reload {
+            background: var(--bukazu-button);
+            border: 0;
+            border-radius: 5px;
+            padding: 4px 8px;
+            float: right;
+        }
 #bukazu-app div {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -800,6 +807,7 @@
     padding: 16px;
   }
 #bukazu-app select {
+    background: #fff;
     background-image: linear-gradient(45deg, transparent 50%, gray 50%),
       linear-gradient(135deg, gray 50%, transparent 50%),
       linear-gradient(to right, #ccc, #ccc);
@@ -807,7 +815,6 @@
       calc(100% - 15px) calc(1em), calc(100% - 2.5em);
     background-size: 5px 5px, 5px 5px, 1px 1.5em;
     background-repeat: no-repeat;
-    background: #fff;
   }
 #bukazu-app .info-button {
     border: none;

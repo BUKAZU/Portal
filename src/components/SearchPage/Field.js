@@ -12,9 +12,31 @@ class Field extends Component {
         this.props.onFilterChange(this.props.field.id, event.target.value);
     }
 
+    createNumberArray(max_number) {
+        return Array.apply(null, { length: max_number }).map(Number.call, Number);
+    }
+
+    createPriceArray(max_price) {
+        let rounded = Math.ceil(max_price / 100);
+        console.log({rounded, max_price})
+        return Array.from({ length: rounded }, (v, k) => k * 100);
+    }
+
   render() {
       const field = this.props.field
-      const options = this.props.options;
+      const { PortalSite } = this.props;
+    //   console.log({PortalSite})
+      let options = [];
+      if (['countries', 'cities', 'regions'].includes(field.id)) {
+          options = PortalSite[field.id];
+      } else if (field.id === 'min_persons') {
+          options = this.createNumberArray(PortalSite.max_persons)
+        } else if (field.id === 'max_weekprice') {
+            options = this.createPriceArray(PortalSite.max_weekprice)
+            console.log({options})
+      } else {
+          options = this.createNumberArray(PortalSite[field.id])
+      }
       let input;
       const value = this.props.value;
       const countries = this.props.filters.countries
@@ -23,7 +45,7 @@ class Field extends Component {
     //   const properties = this.props.filters.properties || [];
 
       if (field.type === 'select') {
-          if (options.constructor === Array) {
+          if (options && ['countries', 'cities', 'regions'].includes(field.id)) {
 
               input = (
                   <select name={field.id} onChange={this.handleChange} value={value}>
@@ -38,7 +60,7 @@ class Field extends Component {
                                   if (regions && !regions.includes(opt.region)) {
                                       hidden = true;
                                   }
-                              }
+                                } 
                           }
 
                           return (
@@ -56,7 +78,25 @@ class Field extends Component {
                   </select>
               );
           } else {
-              input = <input value={value} onChange={this.handleChange} />
+              input = (
+                  <select name={field.id} onChange={this.handleChange} value={value}>
+                      <option value=""></option>
+                      {options.map(opt => {
+                          let hidden = false;                         
+
+                          return (
+                              <option
+                                  key={opt}
+                                  value={opt}
+                                  disabled={hidden}
+                                  hidden={hidden}
+                              >
+                                  {opt}
+                              </option>
+                          );
+                      })}
+                  </select>
+              );
           }
       } else if(field.type === 'list')  {
           input = <ul className='radioList'>

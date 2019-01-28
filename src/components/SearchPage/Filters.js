@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Field from './Field';
+import Reload from '../icons/Reload.svg'
 
 class Filters extends Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class Filters extends Component {
     return (
         <div className="filters"
             >
+            <button onClick={() => {this.props.onFilterChange({})}} className='filters-reload'><Reload /></button>
             {searchFields.map(field =>
                 <div key={field.id}>
                     <label style={{
@@ -41,7 +43,7 @@ class Filters extends Component {
                             display: 'block'
                         }}
                         >{field.label}</label>
-                    <Field field={field} options={PortalSite[field.id]} filters={filters} value={filters[field.id]} onFilterChange={this.saveFilters} />
+                    <Field field={field} PortalSite={PortalSite} filters={filters} value={filters[field.id]} onFilterChange={this.saveFilters} />
                 </div>
             )}
         </div>

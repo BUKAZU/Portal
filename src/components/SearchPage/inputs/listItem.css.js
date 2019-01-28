@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 const ListItem = styled.li `
-    opacity: ${props => props.disabled ? '0.3' : '1'};
-    display: flex;
+    display: ${props => props.disabled ? 'none' : 'flex'};
     align-items: center;
     cursor: pointer;
     label {

@@ -17,3 +17,15 @@
     }
 
 }
+
+#bukazu-app {
+    .filters {
+        &-reload {
+            background: var(--bukazu-button);
+            border: 0;
+            border-radius: 5px;
+            padding: 4px 8px;
+            float: right;
+        }
+    }
+}
