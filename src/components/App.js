@@ -29,7 +29,7 @@ class App extends Component {
           root.style.setProperty("--bukazu-departure", `${options.colors ? options.colors.departure : "yellow"}`);
           
           root.style.setProperty("--bukazu-button", `${options.colors ? options.colors.button : "rgba(23, 190, 187, 0.75)"}`);
-        root.style.setProperty("--bukazu-button_cta", `${options.colors ? options.colors.button : "#e28413"}`);
+          root.style.setProperty("--bukazu-button_cta", `${options.colors ? options.colors.buttonCta : "#e28413"}`);
 
           if (objectCode !== null) {
             return <CalendarPage PortalSite={PortalSite} objectCode={objectCode} locale={locale} />;
