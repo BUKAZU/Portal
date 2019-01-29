@@ -1,17 +1,48 @@
-import React, { Component } from 'react';
-import Result from './SingleResult.css'
+import React from "react";
+import { FormattedMessage, FormattedNumber } from "react-intl";
+import ArrowRight from '../icons/ArrowRight.svg'
 
-class SingleResult extends Component {
+const SingleResult = ({ result }) => {
+  console.log({ result });
 
-  render() {
-      const result = this.props.result
-      return <Result>
-          <div className="inner">
-            <img src={result.image_url} alt={result.name} />
-            {result.name}
+  return (
+    <a className="bukazu-result" href={result.house_url}>
+      <div className="bukazu-result-inner">
+        <div className="image-holder">
+          <img src={result.image_url} alt={result.name} />
+        </div>
+        <div className="result">
+          <div className="result-title">{result.name}</div>
+          <div
+            className="result-description"
+            dangerouslySetInnerHTML={{ __html: result.description }}
+          />
+          <div className="result-details">
+            <div>
+              {result.persons} <FormattedMessage id="persons" />
+            </div>
+            <div>
+              {result.bedrooms} <FormattedMessage id="bedrooms" />
+            </div>
           </div>
-        </Result>;
-  }
-}
+          <div className="result-price">
+            <FormattedMessage id="minimum_week_price" />
+            <span className="price">
+              €{" "}
+              <FormattedNumber
+                value={result.minimum_week_price}
+                minimumFractionDigits={0}
+                maximumFractionDigits={0}
+              />
+            </span>
+          </div>
+          <div className='result-button'>
+            <ArrowRight />
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+};
 
 export default SingleResult;

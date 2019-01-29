@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import React, { Component } from "react";
+import ArrowRight from "../icons/ArrowRight.svg";
+import ArrowLeft from "../icons/ArrowLeft.svg";
+import Reload from "../icons/Reload.svg";
 
 class CalendarHeader extends Component {
   constructor(props) {
@@ -22,21 +24,38 @@ class CalendarHeader extends Component {
   }
 
   render() {
-    return <div className="calendars-header">
-        <div className="col" style={{ textAlign: "center" }} onClick={this.goPrev}>
-        <div className="icon"> <FormattedMessage id="previous" /></div>
-        </div>
-        <div className="col" onClick={this.resetDate} style={{ textAlign: "center" }}>
+    return (
+      <div className="calendars-header">
+        <div
+          className="col"
+          style={{ textAlign: "center" }}
+          onClick={this.goPrev}
+        >
           <div className="icon">
-            <FormattedMessage id="reset" />
+            {" "}
+            <ArrowLeft />
           </div>
         </div>
-        <div className="col" onClick={this.goNext} style={{ textAlign: "center" }}>
+        <div
+          className="col"
+          onClick={this.resetDate}
+          style={{ textAlign: "center" }}
+        >
           <div className="icon">
-            <FormattedMessage id="next" />
+            <Reload />
           </div>
         </div>
-      </div>;
+        <div
+          className="col"
+          onClick={this.goNext}
+          style={{ textAlign: "center" }}
+        >
+          <div className="icon">
+            <ArrowRight />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

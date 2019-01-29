@@ -10,7 +10,8 @@
     margin: 4px 0 8px;
 }
 
-#bukazu-app input[type=radio] {
+#bukazu-app input[type=radio],
+#bukazu-app input[type=checkbox] {
     width: 8px;
     height: 8px;
     padding: 8px;
@@ -18,11 +19,16 @@
     position: relative;
     border-radius: 16px;
 }
+#bukazu-app input[type=checkbox] {    
+    border-radius: 0;
+}
 
+#bukazu-app input[type=checkbox]:checked+label,
 #bukazu-app input[type=radio]:checked+label {
     font-weight: bold;
 }
 
+#bukazu-app input[type=checkbox]:checked::after,
 #bukazu-app input[type=radio]:checked::after {
     content: '';
     position: absolute;

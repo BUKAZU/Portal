@@ -2,24 +2,13 @@ import React, { Component } from 'react';
 import Filters from './Filters'
 import Results from './Results'
 
-import './SearchPage.css'
+// import './SearchPage.css'
 
 class SearchPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      filters: {
-        countries: "1",
-        cities: "",
-        regions: "",
-        max_persons: "",
-        max_weekprice: "",
-        max_nights: "",
-        max_bedrooms: "",
-        max_bathrooms: "",
-        extra_search: "",
-        max_price: ""
-      }
+      filters: {}
     }
     this.onFilterChange = this.onFilterChange.bind(this)
   }
@@ -31,11 +20,11 @@ class SearchPage extends Component {
 
   render() {
     let filters = this.state.filters
+    const { options } = this.props;
 
     return (
-        <div id='search-page'
-            >
-            <Filters PortalSite={this.props.PortalSite} filters={filters} onFilterChange={this.onFilterChange} />
+      <div id='search-page' className={options.filtersForm.location === 'right' ? 'bu-reverse' : options.filtersForm.location === 'top' ? 'bu-column' : null}>
+            <Filters PortalSite={this.props.PortalSite} filters={filters} onFilterChange={this.onFilterChange} options={options} />
             <Results PortalSite={this.props.PortalSite} filters={filters}/>
         </div>
     )
