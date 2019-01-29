@@ -11,7 +11,7 @@ class Results extends Component {
       id: this.props.PortalSite.portal_code,
       country_id: this.props.filters.countries || ''
     };
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <Query query={HOUSES_QUERY} variables={variables}>

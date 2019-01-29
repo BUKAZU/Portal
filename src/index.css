@@ -792,6 +792,12 @@
     }
 
 }
+#bukazu-app .filters-hidden {
+        display: none;
+    }
+/* &.filters-right {
+            order: 2;
+        } */
 #bukazu-app .filters-reload {
             background: var(--bukazu-button);
             border: 0;
@@ -802,6 +808,41 @@
 #bukazu-app .SingleDatePickerInput {
         width: 100%;
     }
+#bukazu-app #search-page.bu-reverse {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: reverse;
+          -ms-flex-direction: row-reverse;
+              flex-direction: row-reverse;
+    }
+#bukazu-app #search-page.bu-column {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+    }
+#bukazu-app #search-page.bu-column .filters {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+      }
+/* justify-content: space-evenly; */
+#bukazu-app #search-page.bu-column .filters .filters-reload {
+          max-height: 24px;
+          -webkit-box-ordinal-group: 4;
+              -ms-flex-order: 3;
+                  order: 3;
+        }
+#bukazu-app #search-page.bu-column .filters .bu-field {
+          /* flex: 1 1; */
+          padding: 16px;
+          width: 200px;
+        }
 #bukazu-app div {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;

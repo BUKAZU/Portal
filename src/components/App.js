@@ -36,7 +36,7 @@ class App extends Component {
           if (objectCode !== null) {
             return <CalendarPage PortalSite={PortalSite} objectCode={objectCode} locale={locale} />;
           } else {
-            return <SearchPage PortalSite={PortalSite} locale={locale} />;
+            return <SearchPage PortalSite={PortalSite} locale={locale} options={options} />;
           }
         }}
       </Query>;

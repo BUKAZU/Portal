@@ -20,11 +20,11 @@ class SearchPage extends Component {
 
   render() {
     let filters = this.state.filters
+    const { options } = this.props;
 
     return (
-        <div id='search-page'
-            >
-            <Filters PortalSite={this.props.PortalSite} filters={filters} onFilterChange={this.onFilterChange} />
+      <div id='search-page' className={options.filtersForm.location === 'right' ? 'bu-reverse' : options.filtersForm.location === 'top' ? 'bu-column' : null}>
+            <Filters PortalSite={this.props.PortalSite} filters={filters} onFilterChange={this.onFilterChange} options={options} />
             <Results PortalSite={this.props.PortalSite} filters={filters}/>
         </div>
     )

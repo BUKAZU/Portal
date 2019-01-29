@@ -19,7 +19,13 @@
 }
 
 #bukazu-app {
+    .filters-hidden {
+        display: none;
+    }
     .filters {
+        /* &.filters-right {
+            order: 2;
+        } */
         &-reload {
             background: var(--bukazu-button);
             border: 0;

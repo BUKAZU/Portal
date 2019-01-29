@@ -15,7 +15,7 @@ class Filters extends Component {
     }
 
   render() {
-    const { PortalSite, filters }= this.props
+    const { PortalSite, filters, options }= this.props
     const searchFields = PortalSite.options.searchFields || [
         {
             "label": "Land",
@@ -33,11 +33,11 @@ class Filters extends Component {
     ]
 
     return (
-        <div className="filters"
+        <div className={options.filtersForm.show ? `filters filters-${options.filtersForm.location}` : 'filters-hidden'}
             >
             <button onClick={() => {this.props.onFilterChange({})}} className='filters-reload'><Reload /></button>
             {searchFields.map(field =>
-                <div key={field.id}>
+                <div key={field.id} className="bu-field">
                     <label style={{
                             width: '100%',
                             display: 'block'

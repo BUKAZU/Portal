@@ -6,6 +6,29 @@
 @import "filters.css";
 
 #bukazu-app {
+  #search-page {
+    &.bu-reverse {
+      flex-direction: row-reverse;
+    }
+    &.bu-column {
+      flex-direction: column;
+      .filters {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* justify-content: space-evenly; */
+        .filters-reload {
+          max-height: 24px;
+          order: 3;
+        }
+        .bu-field {
+          /* flex: 1 1; */
+          padding: 16px;
+          width: 200px;
+        }
+      }
+    }
+  }
   div {
     box-sizing: border-box;
   }
