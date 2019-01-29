@@ -93,7 +93,7 @@ class Calendar extends React.Component {
 
         const daysFromToday = differenceInCalendarDays(daz.date, today);
         const last_minute =
-          daysFromToday <= house.last_minute_days && daysFromToday >= 0;
+          daysFromToday <= house.last_minute_days && daysFromToday > 0;
 
         const highlight =
           daz.departure && isAfter(daz.date, selectedDate)
