@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import Calendar from "./Calendar";
-import BookingForm from './BookingForm'
-import Loading from '../icons/loading.svg'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Calendar from './Calendar';
+import BookingForm from './BookingForm';
+import Loading from '../icons/loading.svg';
 
 export const HOUSE_QUERY = gql`
-         query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
-           PortalSite(id: $id) {
-             houses(house_code: $house_id) {
-               id
-               name
-               max_nights
-               last_minute_days
-               discounts
-               discounts_info
-             }
-           }
-         }
-       `;
+  query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
+    PortalSite(id: $id) {
+      houses(house_code: $house_id) {
+        id
+        name
+        max_nights
+        last_minute_days
+        discounts
+        discounts_info
+      }
+    }
+  }
+`;
 
 class CalendarPage extends Component {
   constructor(props) {
@@ -30,30 +31,26 @@ class CalendarPage extends Component {
     this.state = {
       bookingStarted: false,
       booking: {
-        objectCode: "",
-        portalCode: "",
-        arrivalDate: {
-
-        },
-        departureDate: {
-
-        },
-        in_option: false
-      }
+        objectCode: '',
+        portalCode: '',
+        arrivalDate: {},
+        departureDate: {},
+        in_option: false,
+      },
     };
   }
 
   onBooking(booking) {
     this.setState({
       bookingStarted: true,
-      booking
+      booking,
     });
   }
 
   onReturn(booking) {
     this.setState({
       bookingStarted: false,
-      booking
+      booking,
     });
   }
 
@@ -62,12 +59,17 @@ class CalendarPage extends Component {
     const variables = {
       id: PortalSite.portal_code,
       house_id: objectCode,
-      locale
+      locale,
     };
     return (
       <Query query={HOUSE_QUERY} variables={variables}>
         {({ loading, error, data }) => {
-          if (loading) return <div><Loading /></div>;
+          if (loading)
+            return (
+              <div>
+                <Loading />
+              </div>
+            );
           if (error) return <div>Error</div>;
 
           const Results = data.PortalSite.houses;
@@ -94,7 +96,13 @@ class CalendarPage extends Component {
   }
 
   bookingForm() {
-    return <BookingForm booking={this.state.booking} locale={this.props.locale} onReturn={this.onReturn}/>;
+    return (
+      <BookingForm
+        booking={this.state.booking}
+        locale={this.props.locale}
+        onReturn={this.onReturn}
+      />
+    );
   }
 
   pageRendering() {
@@ -109,5 +117,12 @@ class CalendarPage extends Component {
     return this.pageRendering();
   }
 }
+
+CalendarPage.propTypes = {
+  objectCode: PropTypes.string.isRequired,
+  // portalCode: PropTypes.string.isRequired,
+  PortalSite: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
+};
 
 export default CalendarPage;

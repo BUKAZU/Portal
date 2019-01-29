@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const HOUSES_QUERY = gql`
   query PortalSiteHousesQuery($id: ID!, $country_id: ID!) {
@@ -7,7 +7,7 @@ export const HOUSES_QUERY = gql`
         id
         name
         persons
-        bedrooms        
+        bedrooms
         description
         image_url
         house_url

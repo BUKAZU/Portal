@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const PORTAL_QUERY = gql`
   query PortalSiteQuery($id: ID!) {
@@ -93,32 +93,32 @@ export const CREATE_BOOKING_MUTATION = gql`
   mutation CreateBooking(
     $first_name: String!
     $last_name: String!
-    $is_option: Boolean!,
-    $address: String,
-    $zipcode: String,
-    $city: String,
-    $phone: String,
-    $email: String!,
-    $house_code: String!,
-    $portal_code: String,
-    $language: String,
-    $country: String!,
-    $adults: Int!,
-    $children: Int,
-    $babies: Int,
-    $pets: Int,
-    $discount: Int,
-    $damage_insurance: Int,
-    $cancel_insurance: Int,
-    $travel_insurance: Int,
-    $discount_reason: String,
-    $arrival_date: String!,
-    $departure_date: String!,
+    $is_option: Boolean!
+    $address: String
+    $zipcode: String
+    $city: String
+    $phone: String
+    $email: String!
+    $house_code: String!
+    $portal_code: String
+    $language: String
+    $country: String!
+    $adults: Int!
+    $children: Int
+    $babies: Int
+    $pets: Int
+    $discount: Int
+    $damage_insurance: Int
+    $cancel_insurance: Int
+    $travel_insurance: Int
+    $discount_reason: String
+    $arrival_date: String!
+    $departure_date: String!
     $costs: Json
   ) {
     createBooking(
       first_name: $first_name
-      last_name:$last_name
+      last_name: $last_name
       is_option: $is_option
       address: $address
       zipcode: $zipcode
@@ -143,7 +143,6 @@ export const CREATE_BOOKING_MUTATION = gql`
       costs: $costs
     ) {
       booking_nr
-
     }
   }
 `;

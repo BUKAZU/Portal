@@ -1,21 +1,21 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import PropTypes from "prop-types";
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 class Modal extends React.Component {
   state = {
-    show: this.props.show
+    show: this.props.show,
   };
 
   showModal = () => {
     this.setState({
-      show: true
+      show: true,
     });
   };
 
   closeModal = () => {
     this.setState({
-      show: false
+      show: false,
     });
   };
 
@@ -31,23 +31,23 @@ class Modal extends React.Component {
 
     // The gray background
     const backdropStyle = {
-      position: "fixed",
+      position: 'fixed',
       top: 0,
       bottom: 0,
       left: 0,
       right: 0,
-      backgroundColor: "rgba(0,0,0,0.3)",
-      padding: 50
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      padding: 50,
     };
 
     // The modal "window"
     const modalStyle = {
-      backgroundColor: "#fff",
+      backgroundColor: '#fff',
       borderRadius: 5,
       maxWidth: 500,
       minHeight: 300,
-      margin: "0 auto",
-      padding: 30
+      margin: '0 auto',
+      padding: 30,
     };
 
     return (
@@ -67,13 +67,14 @@ class Modal extends React.Component {
 }
 
 Modal.defaultProps = {
-  show: false
+  show: false,
 };
 
 Modal.propTypes = {
   // onClose: PropTypes.func.isRequired,
   show: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
+  buttonText: PropTypes.node,
 };
 
 export default Modal;

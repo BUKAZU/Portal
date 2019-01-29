@@ -1,7 +1,7 @@
 /**
  * Booking cost calculations in JavaScript. latest update 13-07-2018
  */
-
+/* eslint-disable */
 export function none(price, quantity, totalPersons, nrOfNights) {
   return 0.0;
 }
@@ -71,7 +71,7 @@ export function per_m3(price, quantity, totalPersons, nrOfNights) {
 }
 
 export function per_kWh(price, quantity, totalPersons, nrOfNights) {
-    return price * quantity;
+  return price * quantity;
 }
 
 export function per_liter(price, quantity, totalPersons, nrOfNights) {
@@ -102,3 +102,4 @@ export function per_piece_per_week(price, quantity, totalPersons, nrOfNights) {
   var weeks = Math.ceil(nrOfNights / 7);
   return price * quantity * weeks;
 }
+/* eslint-enable */

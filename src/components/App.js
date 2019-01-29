@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import Loading from './icons/loading.svg';
 import 'react-dates/initialize';
@@ -25,23 +26,9 @@ class App extends Component {
           if (error) return <div>Error</div>;
 
           const PortalSite = data.PortalSite;
-          const options = data.PortalSite.options;
+          let options = data.PortalSite.options;
 
           let root = document.documentElement;
-
-          if (!options.bookingForm) {
-            options.bookingForm = {
-              children: true,
-              babies: true,
-            };
-          }
-          if (!options.filtersForm) {
-            options.filtersForm = {
-              show: true,
-              location: 'left',
-              fixedMobile: true,
-            };
-          }
 
           root.style.setProperty(
             '--bukazu-discount',
@@ -99,5 +86,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  portalCode: PropTypes.string.isRequired,
+  objectCode: PropTypes.string.isRequired,
+  locale: PropTypes.string.isRequired,
+};
 
 export default App;

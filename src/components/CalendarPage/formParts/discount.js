@@ -1,11 +1,11 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import { Field } from "formik";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { Field } from 'formik';
 
 const Discount = ({ errors, house }) => {
-  console.log({ house });
   if (house.discounts) {
-    let discounts = house.discounts.split(',')
+    let discounts = house.discounts.split(',');
     return (
       <div className="form-section">
         <div className="form-row inline">
@@ -14,10 +14,10 @@ const Discount = ({ errors, house }) => {
           </label>
           <Field component="select" name="discount">
             {discounts.map(discount => (
-              <option value={discount} key={discount}>{discount}%</option>
-
+              <option value={discount} key={discount}>
+                {discount}%
+              </option>
             ))}
-            
           </Field>
         </div>
         <div className="form-row inline">
@@ -34,6 +34,11 @@ const Discount = ({ errors, house }) => {
   } else {
     return null;
   }
+};
+
+Discount.propTypes = {
+  house: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default Discount;

@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import Loading from "../icons/loading.svg";
-import SingleResult from "./SingleResult";
-import "./Results.css";
-import { HOUSES_QUERY } from '../../_lib/SearchQueries'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import Loading from '../icons/loading.svg';
+import SingleResult from './SingleResult';
+import './Results.css';
+import { HOUSES_QUERY } from '../../_lib/SearchQueries';
 
 class Results extends Component {
   render() {
     let variables = {
       id: this.props.PortalSite.portal_code,
-      country_id: this.props.filters.countries || ''
+      country_id: this.props.filters.countries || '',
     };
     // console.log(this.props);
 
@@ -38,5 +39,10 @@ class Results extends Component {
     );
   }
 }
+
+Results.propTypes = {
+  PortalSite: PropTypes.object.isRequired,
+  filters: PropTypes.array.isRequired,
+};
 
 export default Results;
