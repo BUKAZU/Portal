@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Query } from "react-apollo";
 import Loading from "./icons/loading.svg";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 import { PORTAL_QUERY } from '../_lib/queries'
 

@@ -28,4 +28,7 @@
             float: right;
         }
     }
+    .SingleDatePickerInput {
+        width: 100%;
+    }
 }

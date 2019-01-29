@@ -178,34 +178,34 @@ class Field extends Component {
           onChange={this.handleChange}
         />
       );
-    // } else if (field.type === 'date') {
-    //   let tempval;
-    //   if (value === '' || !value) {
-    //     tempval = null;
-    //   } else {
-    //     tempval = moment(value);
-    //   }
-    //   input = (
-    //     <SingleDatePicker
-    //       date={tempval}
-    //       onDateChange={
-    //         this.handleDateChange
-    //       }
-    //       focused={
-    //         this.state.focused
-    //       }
-    //       onFocusChange={({ focused }) =>
-    //         this.setState({              
-    //           focused,
-    //         })
-    //       }
-    //       id={field.id}
-    //       displayFormat="DD-MM-YYYY"
-    //       showClearDate={false}
-    //       numberOfMonths={1}
-    //       noBorder={true}
-    //     />
-    //   );
+    } else if (field.type === 'date') {
+      let tempval;
+      if (value === '' || !value) {
+        tempval = null;
+      } else {
+        tempval = moment(value);
+      }
+      input = (
+        <SingleDatePicker
+          date={tempval}
+          onDateChange={
+            this.handleDateChange
+          }
+          focused={
+            this.state.focused
+          }
+          onFocusChange={({ focused }) =>
+            this.setState({              
+              focused,
+            })
+          }
+          id={field.id}
+          displayFormat="DD-MM-YYYY"
+          showClearDate={false}
+          numberOfMonths={1}
+          noBorder={true}
+        />
+      );
     } else {
       input = <input value={value} onChange={this.handleChange} />;
     }

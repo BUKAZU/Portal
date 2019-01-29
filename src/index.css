@@ -799,6 +799,9 @@
             padding: 4px 8px;
             float: right;
         }
+#bukazu-app .SingleDatePickerInput {
+        width: 100%;
+    }
 #bukazu-app div {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
