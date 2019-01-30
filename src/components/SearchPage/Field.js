@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import './Field.css';
@@ -8,6 +9,7 @@ class Field extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
       focused: false,
@@ -18,13 +20,16 @@ class Field extends Component {
     this.props.onFilterChange(this.props.field.id, event.target.value);
   }
 
+  handleCheckboxChange(event) {
+    this.props.onFilterChange(this.props.field.id, event.target.value);
+  }
+
   createNumberArray(max_number) {
     return Array.apply(null, { length: max_number }).map(Number.call, Number);
   }
 
   createPriceArray(max_price) {
     let rounded = Math.ceil(max_price / 100);
-    console.log({ rounded, max_price });
     return Array.from({ length: rounded }, (v, k) => k * 100);
   }
 
@@ -45,9 +50,8 @@ class Field extends Component {
       options = PortalSite[field.id];
     } else if (field.id === 'min_persons') {
       options = this.createNumberArray(PortalSite.max_persons);
-    } else if (field.id === 'max_weekprice') {
+    } else if (field.id === 'weekprice_max') {
       options = this.createPriceArray(PortalSite.max_weekprice);
-      console.log({ options });
     } else {
       options = this.createNumberArray(PortalSite[field.id]);
     }
@@ -58,20 +62,25 @@ class Field extends Component {
     //   const layouts = this.props.filters.layouts || [];
     //   const properties = this.props.filters.properties || [];
 
-      moment.locale('nl', {
-          months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split(
-              '_'
-          ),
-          weekdaysMin: 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
-          week: {
-              dow: 1,
-          },
-      });
+    moment.updateLocale('nl', {
+      months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split(
+        '_'
+      ),
+      weekdaysMin: 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
+      week: {
+        dow: 1,
+      },
+    });
 
     if (field.type === 'select') {
       if (options && ['countries', 'cities', 'regions'].includes(field.id)) {
         input = (
-          <select name={field.id} onChange={this.handleChange} value={value}>
+          <select
+            name={field.id}
+            onBlur={this.handleChange}
+            onChange={this.handleChange}
+            value={value}
+          >
             <option value="" />
             {options.map(opt => {
               let hidden = false;
@@ -102,7 +111,12 @@ class Field extends Component {
         );
       } else {
         input = (
-          <select name={field.id} onChange={this.handleChange} value={value}>
+          <select
+            name={field.id}
+            onBlur={this.handleChange}
+            onChange={this.handleChange}
+            value={value}
+          >
             <option value="" />
             {options.map(opt => {
               let hidden = false;
@@ -133,7 +147,8 @@ class Field extends Component {
                   countries ? !countries.includes(opt.country_id) : false
                 }
                 checked={value === opt.id}
-                onChange={this.handleChange}
+                onBlur={this.handleCheckboxChange}
+                onChange={this.handleCheckboxChange}
               />
               <label htmlFor={opt.id}>{opt.name}</label>
             </ListItem>
@@ -156,7 +171,8 @@ class Field extends Component {
                 disabled={
                   countries ? !countries.includes(opt.country_id) : false
                 }
-                checked={value === opt.id || opt}
+                // checked={value === opt.id || opt}
+                onBlur={this.handleChange}
                 onChange={this.handleChange}
               />
               <label htmlFor={opt.id || opt}>{opt.name || opt}</label>
@@ -175,7 +191,7 @@ class Field extends Component {
               ? PortalSite.max_persons
               : PortalSite[field.id]
           }
-          onChange={this.handleChange}
+          onBlur={this.handleChange}
         />
       );
     } else if (field.type === 'date') {
@@ -188,14 +204,10 @@ class Field extends Component {
       input = (
         <SingleDatePicker
           date={tempval}
-          onDateChange={
-            this.handleDateChange
-          }
-          focused={
-            this.state.focused
-          }
+          onDateChange={this.handleDateChange}
+          focused={this.state.focused}
           onFocusChange={({ focused }) =>
-            this.setState({              
+            this.setState({
               focused,
             })
           }
@@ -204,13 +216,22 @@ class Field extends Component {
           showClearDate={false}
           numberOfMonths={1}
           noBorder={true}
+          placeholder=""
         />
       );
     } else {
-      input = <input value={value} onChange={this.handleChange} />;
+      input = <input value={value} onBlur={this.handleChange} />;
     }
     return input;
   }
 }
+
+Field.propTypes = {
+  field: PropTypes.object.isRequired,
+  PortalSite: PropTypes.object.isRequired,
+  value: PropTypes.string,
+  filters: PropTypes.object.isRequired,
+  onFilterChange: PropTypes.func.isRequired,
+};
 
 export default Field;

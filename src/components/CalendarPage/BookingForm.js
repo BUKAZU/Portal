@@ -1,15 +1,16 @@
-import React from "react";
-import { Query } from "react-apollo";
-import Loading from "../icons/loading.svg";
-import FormCreator from "./FormCreator";
-import { BOOKING_PRICE_QUERY } from "../../_lib/queries";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Query } from 'react-apollo';
+import Loading from '../icons/loading.svg';
+import FormCreator from './FormCreator';
+import { BOOKING_PRICE_QUERY } from '../../_lib/queries';
 
 class BookingForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      booking: this.props.booking
+      booking: this.props.booking,
     };
   }
 
@@ -23,7 +24,7 @@ class BookingForm extends React.Component {
           house_id: booking.objectCode,
           starts_at: booking.arrivalDate.date,
           ends_at: booking.departureDate.date,
-          locale
+          locale,
         }}
       >
         {({ loading, error, data }) => {
@@ -53,4 +54,11 @@ class BookingForm extends React.Component {
     );
   }
 }
+
+BookingForm.propTypes = {
+  booking: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
+  onReturn: PropTypes.func.isRequired,
+};
+
 export default BookingForm;

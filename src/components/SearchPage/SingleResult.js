@@ -1,9 +1,10 @@
-import React from "react";
-import { FormattedMessage, FormattedNumber } from "react-intl";
-import ArrowRight from '../icons/ArrowRight.svg'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
+import ArrowRight from '../icons/ArrowRight.svg';
 
 const SingleResult = ({ result }) => {
-  console.log({ result });
+  // console.log({ result });
 
   return (
     <a className="bukazu-result" href={result.house_url}>
@@ -28,7 +29,7 @@ const SingleResult = ({ result }) => {
           <div className="result-price">
             <FormattedMessage id="minimum_week_price" />
             <span className="price">
-              €{" "}
+              €{' '}
               <FormattedNumber
                 value={result.minimum_week_price}
                 minimumFractionDigits={0}
@@ -36,13 +37,17 @@ const SingleResult = ({ result }) => {
               />
             </span>
           </div>
-          <div className='result-button'>
+          <div className="result-button">
             <ArrowRight />
           </div>
         </div>
       </div>
     </a>
   );
+};
+
+SingleResult.propTypes = {
+  result: PropTypes.object.isRequired,
 };
 
 export default SingleResult;

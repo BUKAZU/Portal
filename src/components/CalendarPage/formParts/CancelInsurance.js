@@ -1,5 +1,5 @@
-import React from "react";
-import { FormattedMessage as FM } from "react-intl";
+import React from 'react';
+import { FormattedMessage as FM } from 'react-intl';
 
 const CancelInsurance = () => (
   <React.Fragment>

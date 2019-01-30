@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import ArrowRight from "../icons/ArrowRight.svg";
-import ArrowLeft from "../icons/ArrowLeft.svg";
-import Reload from "../icons/Reload.svg";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import ArrowRight from '../icons/ArrowRight.svg';
+import ArrowLeft from '../icons/ArrowLeft.svg';
+import Reload from '../icons/Reload.svg';
 
 class CalendarHeader extends Component {
   constructor(props) {
@@ -28,18 +29,24 @@ class CalendarHeader extends Component {
       <div className="calendars-header">
         <div
           className="col"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: 'center' }}
           onClick={this.goPrev}
+          onKeyPress={this.goPrev}
+          tabIndex={0}
+          role="button"
         >
           <div className="icon">
-            {" "}
+            {' '}
             <ArrowLeft />
           </div>
         </div>
         <div
           className="col"
           onClick={this.resetDate}
-          style={{ textAlign: "center" }}
+          onKeyPress={this.resetDate}
+          style={{ textAlign: 'center' }}
+          tabIndex={0}
+          role="button"
         >
           <div className="icon">
             <Reload />
@@ -48,7 +55,10 @@ class CalendarHeader extends Component {
         <div
           className="col"
           onClick={this.goNext}
-          style={{ textAlign: "center" }}
+          onKeyPress={this.goNext}
+          style={{ textAlign: 'center' }}
+          tabIndex={0}
+          role="button"
         >
           <div className="icon">
             <ArrowRight />
@@ -58,5 +68,11 @@ class CalendarHeader extends Component {
     );
   }
 }
+
+CalendarHeader.propTypes = {
+  onGoNext: PropTypes.func.isRequired,
+  onGoPrev: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+};
 
 export default CalendarHeader;

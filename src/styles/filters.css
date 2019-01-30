@@ -6,7 +6,7 @@
 #bukazu-app #search-page .filters {
     padding: 16px;
     /* width: 20%; */
-    min-width: 250px;
+    width: 300px;
 }
 @media (max-width: 825px) {
     #bukazu-app #search-page {
@@ -34,7 +34,8 @@
             float: right;
         }
     }
-    .SingleDatePickerInput {
+    .SingleDatePicker, .SingleDatePickerInput, .DateInput {
         width: 100%;
+        display: block;
     }
 }

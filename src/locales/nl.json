@@ -84,5 +84,8 @@
     "something_went_wrong_please_try_again": "Oeps, er is iets mis gegaan, probeert u het later nogmaals.",
     "agree_with": "Door te klikken op boeken gaat u akkoord met de",
     "discount_reason": "Reden korting",
-    "you_need_to_give_reason": "U dient een reden voor de korting op te geven"
+    "you_need_to_give_reason": "U dient een reden voor de korting op te geven",
+    "persons": "Personen",
+    "bedrooms": "Slaapkamers",
+    "minimum_week_price": "Weekprijs vanaf"
 }

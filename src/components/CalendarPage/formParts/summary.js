@@ -1,6 +1,7 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import format from "../../../_lib/format";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import format from '../../../_lib/format';
 
 export const Summary = ({ house, bookingPrice }) => (
   <React.Fragment>
@@ -17,7 +18,7 @@ export const Summary = ({ house, bookingPrice }) => (
               <FormattedMessage id="arrival_date" />
             </th>
             <td className="price">
-              {format(bookingPrice.arrival_date, "DD-MM-YYYY")}
+              {format(bookingPrice.arrival_date, 'DD-MM-YYYY')}
             </td>
           </tr>
           <tr>
@@ -25,7 +26,7 @@ export const Summary = ({ house, bookingPrice }) => (
               <FormattedMessage id="departure_date" />
             </th>
             <td className="price">
-              {format(bookingPrice.departure_date, "DD-MM-YYYY")}
+              {format(bookingPrice.departure_date, 'DD-MM-YYYY')}
             </td>
           </tr>
         </tbody>
@@ -33,3 +34,8 @@ export const Summary = ({ house, bookingPrice }) => (
     </div>
   </React.Fragment>
 );
+
+Summary.propTypes = {
+  house: PropTypes.object.isRequired,
+  bookingPrice: PropTypes.object.isRequired,
+};
