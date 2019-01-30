@@ -25,7 +25,7 @@ export const CALENDAR_QUERY = gql`
 
 class PriceField extends React.Component {
   render() {
-    const { portalCode, objectCode, startsAt, endsAt, locale } = this.props;
+    const { portalCode, objectCode, startsAt, endsAt } = this.props;
     return (
       <Query
         query={CALENDAR_QUERY}
@@ -80,9 +80,7 @@ class PriceField extends React.Component {
                       <td className="column">
                         <ul>
                           {result.required_house_costs.map(cost => {
-                            return (
-                              <li key={cost.id}>{cost[`name_${locale}`]}</li>
-                            );
+                            return <li key={cost.id}>{cost.name}</li>;
                           })}
                         </ul>
                       </td>
@@ -135,7 +133,6 @@ PriceField.propTypes = {
   objectCode: PropTypes.string.isRequired,
   startsAt: PropTypes.string.isRequired,
   endsAt: PropTypes.string.isRequired,
-  locale: PropTypes.string.isRequired,
   onStartBooking: PropTypes.func.isRequired,
 };
 

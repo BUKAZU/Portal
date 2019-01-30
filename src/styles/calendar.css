@@ -84,13 +84,13 @@
       font-weight: bold;
       text-decoration: underline;
     }
-    .discount.arrival {
+    /* .discount.arrival {
       background: linear-gradient(
         45deg,
         var(--bukazu-discount) 50%,
         var(--bukazu-arrival) 50%
-      );
-    }
+      ); 
+    } */
     .booked-departure {
       background: linear-gradient(
         45deg,

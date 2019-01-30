@@ -96,13 +96,11 @@ class Calendar extends React.Component {
         const last_minute =
           daysFromToday <= house.last_minute_days && daysFromToday > 0;
 
-        console.log({ daz, yesterday, prevBooked });
-
         const highlight =
           daz.departure && isAfter(daz.date, selectedDate)
             ? minimum
               ? maximum
-                ? !prevBooked
+                ? prevBooked.max_nights !== 0
                   ? 'departure'
                   : null
                 : ''
