@@ -73,7 +73,7 @@ class Filters extends Component {
 
 Filters.propTypes = {
   PortalSite: PropTypes.object.isRequired,
-  filters: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };

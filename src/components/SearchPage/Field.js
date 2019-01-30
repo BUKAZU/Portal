@@ -9,6 +9,7 @@ class Field extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
       focused: false,
@@ -16,6 +17,10 @@ class Field extends Component {
   }
 
   handleChange(event) {
+    this.props.onFilterChange(this.props.field.id, event.target.value);
+  }
+
+  handleCheckboxChange(event) {
     this.props.onFilterChange(this.props.field.id, event.target.value);
   }
 
@@ -45,7 +50,7 @@ class Field extends Component {
       options = PortalSite[field.id];
     } else if (field.id === 'min_persons') {
       options = this.createNumberArray(PortalSite.max_persons);
-    } else if (field.id === 'max_weekprice') {
+    } else if (field.id === 'weekprice_max') {
       options = this.createPriceArray(PortalSite.max_weekprice);
     } else {
       options = this.createNumberArray(PortalSite[field.id]);
@@ -57,7 +62,7 @@ class Field extends Component {
     //   const layouts = this.props.filters.layouts || [];
     //   const properties = this.props.filters.properties || [];
 
-    moment.locale('nl', {
+    moment.updateLocale('nl', {
       months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split(
         '_'
       ),
@@ -137,7 +142,8 @@ class Field extends Component {
                   countries ? !countries.includes(opt.country_id) : false
                 }
                 checked={value === opt.id}
-                onBlur={this.handleChange}
+                onBlur={this.handleCheckboxChange}
+                onChange={this.handleCheckboxChange}
               />
               <label htmlFor={opt.id}>{opt.name}</label>
             </ListItem>
@@ -160,8 +166,9 @@ class Field extends Component {
                 disabled={
                   countries ? !countries.includes(opt.country_id) : false
                 }
-                checked={value === opt.id || opt}
+                // checked={value === opt.id || opt}
                 onBlur={this.handleChange}
+                onChange={this.handleChange}
               />
               <label htmlFor={opt.id || opt}>{opt.name || opt}</label>
             </ListItem>
@@ -215,9 +222,9 @@ class Field extends Component {
 
 Field.propTypes = {
   field: PropTypes.object.isRequired,
-  PortalSite: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  filters: PropTypes.array.isRequired,
+  PortalSite: PropTypes.object.isRequired,
+  value: PropTypes.string,
+  filters: PropTypes.object.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };
 

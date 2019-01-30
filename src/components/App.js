@@ -89,7 +89,7 @@ class App extends Component {
 
 App.propTypes = {
   portalCode: PropTypes.string.isRequired,
-  objectCode: PropTypes.string.isRequired,
+  objectCode: PropTypes.string,
   locale: PropTypes.string.isRequired,
 };
 

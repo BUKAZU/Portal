@@ -26,9 +26,10 @@ export const PORTAL_QUERY = gql`
       max_nights
       max_persons
       max_weekprice
-      country_label
+      countries_label
       country_placeholder
-      region_label
+      regions_label
+      categories
     }
   }
 `;
