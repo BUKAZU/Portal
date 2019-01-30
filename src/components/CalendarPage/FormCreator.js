@@ -61,10 +61,12 @@ class FormCreator extends React.Component {
 
   calculateCost(cost, values) {
     const bookingPrice = this.props.house.booking_price;
+    const { children, adults, babies } = values;
+    const persons = Number(children) + Number(adults) + Number(babies);
     return calc[cost.method](
       cost.amount,
       Number(values.costs[cost.id]),
-      Number(values.persons),
+      Number(persons),
       bookingPrice.nights,
       this.calculateRentPrice(values).discounted_price
     );
@@ -77,8 +79,11 @@ class FormCreator extends React.Component {
       damage_insurance,
       cancel_insurance,
       travel_insurance,
-      persons,
+      children,
+      adults,
+      babies,
     } = values;
+    const persons = Number(children) + Number(adults) + Number(babies);
 
     let insurances = [];
     if (house.damage_insurance_required || damage_insurance === '1') {
@@ -131,7 +136,8 @@ class FormCreator extends React.Component {
       nights,
     } = this.props.house.booking_price;
     let discount = this.props.house.booking_price.discount;
-    const { persons } = values;
+    const { children, adults, babies } = values;
+    const persons = Number(children) + Number(adults) + Number(babies);
 
     let night_percentage = night_percentages.find(x => x.nights === nights);
     let night_price = base_price * (night_percentage.percentage / 100);
@@ -242,15 +248,7 @@ class FormCreator extends React.Component {
                 setSubmitting(false);
               }, 1000);
             }}
-            render={({
-              errors,
-              touched,
-              values,
-              status,
-              isSubmitting,
-              handleChange,
-              handleBlur,
-            }) => (
+            render={({ errors, touched, values, status, isSubmitting }) => (
               <Form className="form">
                 {loading && <div className="return-message">Loading...</div>}
                 {error && (
@@ -286,12 +284,7 @@ class FormCreator extends React.Component {
                       <label htmlFor="adults">
                         <FormattedMessage id="adults" />
                       </label>
-                      <Field
-                        component="select"
-                        name="adults"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      >
+                      <Field component="select" name="adults">
                         {adults.map(opt => {
                           return (
                             <option key={opt} value={opt}>
@@ -531,27 +524,29 @@ class FormCreator extends React.Component {
                           );
                         })}
                         {bookingPrice.required_house_costs.map(cost => {
-                          if (cost.method === 'none') {
-                            return (
-                              <tr key={cost.id}>
-                                <td>{cost.name}</td>
-                                <td className="price">{cost.method_name}</td>
-                              </tr>
-                            );
-                          } else {
-                            return (
-                              <tr key={cost.id}>
-                                <td>{cost.name}</td>
-                                <td className="price">
-                                  €{'  '}
-                                  <FormattedNumber
-                                    value={this.calculateCost(cost, values)}
-                                    minimumFractionDigits={2}
-                                    maximumFractionDigits={2}
-                                  />
-                                </td>
-                              </tr>
-                            );
+                          if (!cost.on_site) {
+                            if (cost.method === 'none') {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">{cost.method_name}</td>
+                                </tr>
+                              );
+                            } else {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    €{'  '}
+                                    <FormattedNumber
+                                      value={this.calculateCost(cost, values)}
+                                      minimumFractionDigits={2}
+                                      maximumFractionDigits={2}
+                                    />
+                                  </td>
+                                </tr>
+                              );
+                            }
                           }
                         })}
                       </tbody>
@@ -561,39 +556,114 @@ class FormCreator extends React.Component {
                     <table>
                       <tbody>
                         {bookingPrice.optional_house_costs.map(cost => {
-                          if (cost.method === 'none') {
-                            return (
-                              <tr key={cost.id}>
-                                <td>{cost.name}</td>
-                                <td className="price">
-                                  {cost.amount && cost.amount > 0 && (
-                                    <span>
-                                      €{' '}
-                                      <FormattedNumber
-                                        value={cost.amount}
-                                        minimumFractionDigits={2}
-                                        maximumFractionDigits={2}
-                                      />
-                                    </span>
-                                  )}
-                                  {cost.method_name}
-                                </td>
-                              </tr>
-                            );
-                          } else {
-                            return (
-                              <tr key={cost.id}>
-                                <td>{cost.name}</td>
-                                <td className="price">
-                                  €{' '}
-                                  <FormattedNumber
-                                    value={this.calculateCost(cost, values)}
-                                    minimumFractionDigits={2}
-                                    maximumFractionDigits={2}
-                                  />
-                                </td>
-                              </tr>
-                            );
+                          if (!cost.on_site) {
+                            if (cost.method === 'none') {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    {cost.amount && cost.amount > 0 && (
+                                      <span>
+                                        €{' '}
+                                        <FormattedNumber
+                                          value={cost.amount}
+                                          minimumFractionDigits={2}
+                                          maximumFractionDigits={2}
+                                        />
+                                      </span>
+                                    )}
+                                    {cost.method_name}
+                                  </td>
+                                </tr>
+                              );
+                            } else {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    €{' '}
+                                    <FormattedNumber
+                                      value={this.calculateCost(cost, values)}
+                                      minimumFractionDigits={2}
+                                      maximumFractionDigits={2}
+                                    />
+                                  </td>
+                                </tr>
+                              );
+                            }
+                          }
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="costs-section">
+                    <strong>
+                      <FormattedMessage id="costs_on_site" />
+                    </strong>
+                    <table>
+                      <tbody>
+                        {bookingPrice.required_house_costs.map(cost => {
+                          if (cost.on_site) {
+                            if (cost.method === 'none') {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">{cost.method_name}</td>
+                                </tr>
+                              );
+                            } else {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    €{'  '}
+                                    <FormattedNumber
+                                      value={this.calculateCost(cost, values)}
+                                      minimumFractionDigits={2}
+                                      maximumFractionDigits={2}
+                                    />
+                                  </td>
+                                </tr>
+                              );
+                            }
+                          }
+                        })}
+                        {bookingPrice.optional_house_costs.map(cost => {
+                          if (cost.on_site) {
+                            if (cost.method === 'none') {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    {cost.amount && cost.amount > 0 && (
+                                      <span>
+                                        €{' '}
+                                        <FormattedNumber
+                                          value={cost.amount}
+                                          minimumFractionDigits={2}
+                                          maximumFractionDigits={2}
+                                        />
+                                      </span>
+                                    )}
+                                    {cost.method_name}
+                                  </td>
+                                </tr>
+                              );
+                            } else {
+                              return (
+                                <tr key={cost.id}>
+                                  <td>{cost.name}</td>
+                                  <td className="price">
+                                    €{' '}
+                                    <FormattedNumber
+                                      value={this.calculateCost(cost, values)}
+                                      minimumFractionDigits={2}
+                                      maximumFractionDigits={2}
+                                    />
+                                  </td>
+                                </tr>
+                              );
+                            }
                           }
                         })}
                       </tbody>
