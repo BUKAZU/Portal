@@ -48,7 +48,14 @@ class Results extends Component {
           const Results = data.PortalSite.houses;
 
           return (
-            <div id="results">
+            <div
+              id="results"
+              className={
+                PortalSite.options.filtersForm
+                  ? PortalSite.options.filtersForm.mode
+                  : null
+              }
+            >
               {Results.map(result => (
                 <SingleResult key={result.id} result={result} />
               ))}

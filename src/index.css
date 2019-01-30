@@ -766,6 +766,29 @@
 .bukazu-result-inner .result-button:hover:before {
             width: 100%;
           }
+@media screen and (min-width: 992px) {
+.list .bukazu-result {
+    width: 100%
+}
+    .list .bukazu-result .bukazu-result-inner {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+    }
+      .list .bukazu-result .bukazu-result-inner .image-holder {
+        width: 400px;
+        height: 300px;
+        padding: 0;
+      }
+        .list .bukazu-result .bukazu-result-inner .image-holder img {
+          width: 100%;
+          height: auto;
+        }
+        .list .bukazu-result .bukazu-result-inner .result-description {
+          max-width: 75ch;
+        }
+  }
 #bukazu-app #search-page {
     display: -webkit-box;
     display: -ms-flexbox;

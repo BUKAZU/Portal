@@ -40,7 +40,11 @@ class Filters extends Component {
       >
         <button
           onClick={() => {
-            this.props.onFilterChange({});
+            let filters = {};
+            for (var property in this.props.filters) {
+              filters[property] = '';
+            }
+            this.props.onFilterChange(filters);
           }}
           className="filters-reload"
         >

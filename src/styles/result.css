@@ -33,6 +33,7 @@
         min-height: 100%;
       }
     }
+    
     .result {
       flex: 1 1;
       display: flex;
@@ -92,6 +93,28 @@
           &:before {
             width: 100%;
           }
+        }
+      }
+    }
+  }
+}
+.list .bukazu-result {
+  @media screen and (min-width: 992px) {
+    width: 100%;
+    .bukazu-result-inner {
+      flex-direction: row;
+      .image-holder {
+        width: 400px;
+        height: 300px;
+        padding: 0;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .result {
+        &-description {
+          max-width: 75ch;
         }
       }
     }
