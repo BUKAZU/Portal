@@ -5,7 +5,6 @@ import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { Mutation } from 'react-apollo';
 import { CREATE_BOOKING_MUTATION } from '../../_lib/queries';
 import * as calc from '../../_lib/costs';
-import { Countries } from '../../_lib/countries';
 import { Insurances } from './formParts/insurances';
 import Discount from './formParts/discount';
 import { Summary } from './formParts/summary';
@@ -14,6 +13,7 @@ import Icon from '../icons/info.svg';
 import Modal from './formParts/Modal';
 import DefaultBookingFields from './formParts/DefaultBookingFields';
 import SuccessMessage from './formParts/SuccessMessage';
+import { OptionalBookingFields } from './formParts/OptionalBookingFields';
 
 class FormCreator extends React.Component {
   state = {
@@ -190,8 +190,8 @@ class FormCreator extends React.Component {
   render() {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
-    const bookingPrice = this.props.house.booking_price;
     const { house, locale } = this.props;
+    const bookingPrice = house.booking_price;
 
     let costs = {};
 
@@ -214,8 +214,6 @@ class FormCreator extends React.Component {
               country: 'nl',
             }}
             onSubmit={(values, { setSubmitting }) => {
-              // console.log({ costs: JSON.stringify(values.costs) });
-
               let variables = {
                 first_name: values.first_name,
                 last_name: values.last_name,
@@ -330,11 +328,13 @@ class FormCreator extends React.Component {
                     )}
                   </div>
                   <Discount errors={errors} house={house} />
+
                   <Insurances
                     house={house}
                     Field={Field}
                     FormattedMessage={FormattedMessage}
                   />
+
                   {bookingPrice.optional_house_costs.length > 0 ? (
                     <div className="form-section">
                       <h2>
@@ -391,49 +391,11 @@ class FormCreator extends React.Component {
                       </div>
                     </div>
                   ) : null}
-                  <div className="form-section">
-                    <h2>
-                      <FormattedMessage id="personal_details" />
-                    </h2>
-                    {this.state.bookingFields.map(input => {
-                      if (input.id === 'country') {
-                        return (
-                          <div className="form-row" key={input.id}>
-                            <label htmlFor={input.id}>{input.label}</label>
-                            <Field component="select" name={input.id}>
-                              {Countries[window.__localeId__].map(country => {
-                                return (
-                                  <option
-                                    value={country.alpha2}
-                                    key={country.alpha2}
-                                  >
-                                    {country.name}
-                                  </option>
-                                );
-                              })}
-                            </Field>
-                            {errors[input.id] && (
-                              <div className="error-message">
-                                {errors[input.id]}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      } else {
-                        return (
-                          <div className="form-row" key={input.id}>
-                            <label htmlFor={input.id}>{input.label}</label>
-                            <Field type={input.type} name={input.id} />
-                            {errors[input.id] && (
-                              <div className="error-message">
-                                {errors[input.id]}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      }
-                    })}
-                  </div>
+                  <OptionalBookingFields
+                    bookingFields={this.state.bookingFields}
+                    errors={errors}
+                    Field={Field}
+                  />
                 </div>
 
                 <div className="form-sum">
