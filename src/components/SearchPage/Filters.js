@@ -59,7 +59,7 @@ class Filters extends Component {
               }}
               htmlFor={field.id}
             >
-              {field.label}
+              {PortalSite[`${field.id}_label`]}
             </label>
             <Field
               field={field}

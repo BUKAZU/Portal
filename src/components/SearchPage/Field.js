@@ -111,7 +111,12 @@ class Field extends Component {
         );
       } else {
         input = (
-          <select name={field.id} onBlur={this.handleChange} value={value}>
+          <select
+            name={field.id}
+            onBlur={this.handleChange}
+            onChange={this.handleChange}
+            value={value}
+          >
             <option value="" />
             {options.map(opt => {
               let hidden = false;
@@ -211,6 +216,7 @@ class Field extends Component {
           showClearDate={false}
           numberOfMonths={1}
           noBorder={true}
+          placeholder=""
         />
       );
     } else {

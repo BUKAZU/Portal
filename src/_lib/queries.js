@@ -26,10 +26,23 @@ export const PORTAL_QUERY = gql`
       max_nights
       max_persons
       max_weekprice
+      country_placeholder
+      categories
       countries_label
       country_placeholder
       regions_label
-      categories
+      cities_label
+      arrival_date_label
+      departure_date_label
+      max_weekprice_label
+      persons_min_label
+      persons_max_label
+      bedrooms_min_label
+      bathrooms_min_label
+      weekprice_max_label
+      no_nights_label
+      extra_search_label
+      properties_label
     }
   }
 `;

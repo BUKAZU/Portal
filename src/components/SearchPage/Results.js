@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
+import { FormattedMessage } from 'react-intl';
 import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import Loading from '../icons/loading.svg';
 import SingleResult from './SingleResult';
@@ -31,7 +32,7 @@ class Results extends Component {
       arrival_date: filters.arrival_date,
       no_nights: Number(min_nights) || null,
       extra_search: filters.extra_search,
-      weekprice_max: Number(filters.weekprice_max),
+      weekprice_max: Number(filters.weekprice_max) || null,
     };
 
     return (
@@ -56,6 +57,12 @@ class Results extends Component {
                   : null
               }
             >
+              {' '}
+              {Results.length === 0 ? (
+                <div className="bu-noresults">
+                  <FormattedMessage id="no_results" />
+                </div>
+              ) : null}
               {Results.map(result => (
                 <SingleResult key={result.id} result={result} />
               ))}
