@@ -15,19 +15,21 @@ export const Summary = ({ house, bookingPrice }) => (
         <tbody>
           <tr>
             <th>
-              <FormattedMessage id="arrival_date" />
+              <FormattedMessage id="arrival" />
             </th>
             <td className="price">
-              {format(bookingPrice.arrival_date, 'DD-MM-YYYY')}
+              {format(bookingPrice.arrival_date, 'dddd DD MMMM YYYY')}
             </td>
+            <td>{bookingPrice.arrival_time}</td>
           </tr>
           <tr>
             <th>
-              <FormattedMessage id="departure_date" />
+              <FormattedMessage id="departure" />
             </th>
             <td className="price">
-              {format(bookingPrice.departure_date, 'DD-MM-YYYY')}
+              {format(bookingPrice.departure_date, 'dddd DD MMMM YYYY')}
             </td>
+            <td>{bookingPrice.departure_time}</td>
           </tr>
         </tbody>
       </table>
