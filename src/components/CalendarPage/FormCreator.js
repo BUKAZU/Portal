@@ -699,7 +699,7 @@ class FormCreator extends React.Component {
 FormCreator.propTypes = {
   house: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
-  locale: PropTypes.string.isRequired,
+  locale: PropTypes.string,
   booking: PropTypes.object.isRequired,
   onReturn: PropTypes.func.isRequired,
 };

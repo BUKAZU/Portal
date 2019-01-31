@@ -37,7 +37,7 @@ export const RadioButton = ({
 RadioButton.propTypes = {
   field: PropTypes.object,
   id: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.object,
 };
 
 // Radio group

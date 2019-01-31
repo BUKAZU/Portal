@@ -108,13 +108,13 @@
       font-weight: bold;
       text-decoration: underline;
     }
-  #bukazu-app .calendar .discount.arrival {
+  /* .discount.arrival {
       background: linear-gradient(
         45deg,
         var(--bukazu-discount) 50%,
         var(--bukazu-arrival) 50%
-      );
-    }
+      ); 
+    } */
   #bukazu-app .calendar .booked-departure {
       background: linear-gradient(
         45deg,
