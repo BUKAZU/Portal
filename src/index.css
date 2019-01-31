@@ -98,15 +98,15 @@
   #bukazu-app .calendar .disabled {
       opacity: 0;
     }
-  #bukazu-app .calendar .discount {
-      background: var(--bukazu-discount);
-    }
   #bukazu-app .calendar .arrival {
       background: #6eeb83;
       background: var(--bukazu-arrival);
       cursor: pointer;
       font-weight: bold;
       text-decoration: underline;
+    }
+  #bukazu-app .calendar .discount {
+      background: var(--bukazu-discount);
     }
   /* .discount.arrival {
       background: linear-gradient(

@@ -74,15 +74,15 @@
     .disabled {
       opacity: 0;
     }
-    .discount {
-      background: var(--bukazu-discount);
-    }
     .arrival {
       background: #6eeb83;
       background: var(--bukazu-arrival);
       cursor: pointer;
       font-weight: bold;
       text-decoration: underline;
+    }
+    .discount {
+      background: var(--bukazu-discount);
     }
     /* .discount.arrival {
       background: linear-gradient(
