@@ -367,10 +367,21 @@
         padding: 0 4px;
         background: 0;
         display: inline;
-        width: 0;
-        font-size: 1rem;
+        width: auto;
+        font-size: 16px;
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
         color: var(--bukazu-button);
       }
+#bukazu-app .form-sum .terms button:hover {
+          -webkit-box-shadow: none;
+                  box-shadow: none;
+          text-decoration: underline;
+        }
 #bukazu-app .form-sum button {
       width: 100%;
       padding: 16px;
