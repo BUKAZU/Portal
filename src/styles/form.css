@@ -45,6 +45,7 @@
     top: 0;
     right: 10%;
     min-width: 400px;
+    max-width: 500px;
     align-self: flex-start;
     @media screen and (max-width: 992px) {
       min-width: 100%;

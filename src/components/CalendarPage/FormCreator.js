@@ -681,7 +681,7 @@ class FormCreator extends React.Component {
                   </div>
                   {status && status.msg && <div>{status.msg}</div>}
                   <div className="terms">
-                    <FormattedMessage id="agree_with" />
+                    <FormattedMessage id="agree_with" />{' '}
                     <FormattedMessage id="terms">
                       {fm => (
                         <Modal buttonText={fm}>

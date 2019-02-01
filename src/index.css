@@ -276,6 +276,7 @@
     top: 0;
     right: 10%;
     min-width: 400px;
+    max-width: 500px;
     -ms-flex-item-align: start;
         align-self: flex-start;
   }
