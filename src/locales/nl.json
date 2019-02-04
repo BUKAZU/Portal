@@ -27,7 +27,7 @@
         "adults": "Volwassenen",
         "adults_from": "(vanaf {age} jaar)",
         "children": "Kinderen",
-        "children_from": "({from} t/m {til} jaar ",
+        "children_from": "({from} t/m {til} jaar)",
         "arrival_date": "Aankomstdatum",
         "departure_date": "Vertrekdatum",
         "arrival": "Aankomst",
@@ -92,6 +92,7 @@
         "bedrooms": "slaapkamers",
         "minimum_week_price": "min. weekprijs",
         "no_results": "Geen resultaten",
-        "agree_with": "Door op 'Boek nu' te klikken gaat u akkoord met de"
+        "agree_with": "Door op 'Boek nu' te klikken gaat u akkoord met de",
+        "discount_reason": "Reden korting"
     }
 

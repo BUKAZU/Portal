@@ -34,7 +34,7 @@ class PriceField extends React.Component {
           house_id: objectCode,
           starts_at: startsAt,
           ends_at: endsAt,
-          locale: locale
+          locale: locale,
         }}
       >
         {({ loading, data }) => {

@@ -78,5 +78,6 @@
     "bedrooms": "bedrooms",
     "minimum_week_price": "min. weekly price",
     "no_results": "No results",
-    "agree_with": "By clicking on 'Definite Booking', you agree to the"
+    "agree_with": "By clicking on 'Definite Booking', you agree to the",
+    "discount_reason": "Reason discount."
 }

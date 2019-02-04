@@ -87,5 +87,6 @@
         "bedrooms": "Schlafzimmer",
         "minimum_week_price": "min. Wochenpreis",
         "no_results": "Keine Ergebnisse",
-        "agree_with": "Indem Sie auf 'Kostenpflichtige Buchung' klicken, akzeptieren Sie die"
+        "agree_with": "Indem Sie auf 'Kostenpflichtige Buchung' klicken, akzeptieren Sie die",
+        "discount_reason": "Grund für Rabatt"
     }
