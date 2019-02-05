@@ -8,21 +8,7 @@ import Loading from '../icons/loading.svg';
 
 export const HOUSE_QUERY = gql`
   query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
-    PortalSite(id: $id) {
-      first_name_label
-      preposition_label
-      last_name_label
-      email_label
-      zipcode_label
-      city_label
-      address_label
-      phone_label
-      phone_mobile_label
-      country_label
-      iban_label
-      holder_label
-      bic_label
-      comment_label
+    PortalSite(id: $id) {      
       houses(house_code: $house_id) {
         id
         name
