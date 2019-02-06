@@ -291,13 +291,15 @@ class FormCreator extends React.Component {
                           );
                         })}
                       </Field>
-                      <FormattedMessage
-                        id="adults_from"
-                        defaultMessage="> {age}"
-                        values={{
-                          age: '18' || '18',
-                        }}
-                      />
+                      <div className="age-description">
+                        <FormattedMessage
+                          id="adults_from"
+                          defaultMessage="> {age}"
+                          values={{
+                            age: '18' || '18',
+                          }}
+                        />
+                      </div>
                       {errors.adults && touched.adults && (
                         <div className="error-message">{errors.adults}</div>
                       )}
@@ -315,14 +317,16 @@ class FormCreator extends React.Component {
                           );
                         })}
                       </Field>
-                      <FormattedMessage
-                        id="children_from"
-                        defaultMessage="{from} - {til}"
-                        values={{
-                          from: '3' || '3',
-                          til: '17' || '17',
-                        }}
-                      />
+                      <div className="age-description">
+                        <FormattedMessage
+                          id="children_from"
+                          defaultMessage="{from} - {til}"
+                          values={{
+                            from: '3' || '3',
+                            til: '17' || '17',
+                          }}
+                        />
+                      </div>
                     </div>
                     <div className="form-row inline">
                       <label htmlFor="babies">
@@ -338,13 +342,15 @@ class FormCreator extends React.Component {
                         })}
                       </Field>
                       <div>
-                        <FormattedMessage
-                          id="babies_from"
-                          defaultMessage="< {babies}"
-                          values={{
-                            babies: '2' || '2',
-                          }}
-                        />
+                        <div className="age-description">
+                          <FormattedMessage
+                            id="babies_from"
+                            defaultMessage="< {babies}"
+                            values={{
+                              babies: '2' || '2',
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                     {errors.max_persons && (

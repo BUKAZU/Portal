@@ -36,6 +36,9 @@
     flex-direction: column;
     border-bottom: 1px solid #aeacac;
     padding: 16px;
+    .age-description {
+      padding: 0 0 0 16px;
+    }
   }
   &-sum {
     padding: 16px;

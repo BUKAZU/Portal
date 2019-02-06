@@ -267,6 +267,9 @@
     border-bottom: 1px solid #aeacac;
     padding: 16px;
   }
+#bukazu-app .form-section .age-description {
+      padding: 0 0 0 16px;
+    }
 #bukazu-app .form-sum {
     padding: 16px;
     background: #fff;
