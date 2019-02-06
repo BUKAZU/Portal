@@ -8,7 +8,7 @@ import Loading from '../icons/loading.svg';
 
 export const HOUSE_QUERY = gql`
   query PortalSiteHousesQuery($id: ID!, $house_id: String!) {
-    PortalSite(id: $id) {      
+    PortalSite(id: $id) {
       houses(house_code: $house_id) {
         id
         name
