@@ -10,6 +10,7 @@ class Field extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.handlePropertyChange = this.handlePropertyChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
       focused: false,
@@ -41,6 +42,19 @@ class Field extends Component {
     }
   }
 
+  handlePropertyChange(event) {
+    const value = Number(event.target.value);
+
+    let properties = this.props.filters.properties || [];
+    if (properties.includes(value)) {
+      let index = properties.indexOf(value);
+      properties.splice(index, 1);
+    } else {
+      properties.push(value);
+    }
+    this.props.onFilterChange('properties', properties);
+  }
+
   render() {
     const field = this.props.field;
     const { PortalSite } = this.props;
@@ -60,7 +74,7 @@ class Field extends Component {
     const countries = this.props.filters.countries;
     const regions = this.props.filters.regions;
     //   const layouts = this.props.filters.layouts || [];
-    //   const properties = this.props.filters.properties || [];
+    const properties = this.props.filters.properties || [];
 
     moment.updateLocale('nl', {
       months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split(
@@ -71,8 +85,33 @@ class Field extends Component {
         dow: 1,
       },
     });
-
-    if (field.type === 'select') {
+    if (field.id === 'properties') {
+      // console.log(PortalSite.categories);
+      input = [];
+      PortalSite.categories.map(category => {
+        input.push(
+          <div className="bu-properties" key={category.id}>
+            <strong>{category.name}</strong>
+            <ul>
+              {category.properties.map(property => (
+                <li key={property.id}>
+                  <label htmlFor={property.id}>
+                    <input
+                      type="checkbox"
+                      id={property.id}
+                      value={property.id}
+                      checked={properties.includes(property.id)}
+                      onChange={this.handlePropertyChange}
+                    />
+                    {property.name}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      });
+    } else if (field.type === 'select') {
       if (options && ['countries', 'cities', 'regions'].includes(field.id)) {
         input = (
           <select
@@ -229,7 +268,7 @@ class Field extends Component {
 Field.propTypes = {
   field: PropTypes.object.isRequired,
   PortalSite: PropTypes.object.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   filters: PropTypes.object.isRequired,
   onFilterChange: PropTypes.func.isRequired,
 };

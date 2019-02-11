@@ -26,12 +26,28 @@
         /* &.filters-right {
             order: 2;
         } */
+        min-width: 300px;
         &-reload {
             background: var(--bukazu-button);
             border: 0;
             border-radius: 5px;
             padding: 4px 8px;
             float: right;
+        }
+    }
+    .bu-properties {
+        padding: 8px;
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 8px 0 16px;
+            li {
+             padding: 4px 0;
+             label {
+                 display: flex;
+                 align-items: center;
+             }   
+            }
         }
     }
     .SingleDatePicker, .SingleDatePickerInput, .DateInput {

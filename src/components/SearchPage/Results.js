@@ -19,6 +19,12 @@ class Results extends Component {
         filters.arrival_date
       );
     }
+    let filterProperties = filters.properties || [];
+    filterProperties = filterProperties.map(e => {
+      return JSON.stringify(e);
+    });
+
+    let properties = filterProperties.join(',');
 
     let variables = {
       id: PortalSite.portal_code,
@@ -32,6 +38,7 @@ class Results extends Component {
       arrival_date: filters.arrival_date,
       no_nights: Number(min_nights) || null,
       extra_search: filters.extra_search,
+      properties,
       weekprice_max: Number(filters.weekprice_max) || null,
     };
 
