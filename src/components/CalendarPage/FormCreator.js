@@ -190,7 +190,7 @@ class FormCreator extends React.Component {
   render() {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
-    const { house, locale } = this.props;
+    const { house, locale, PortalSite } = this.props;
     const bookingPrice = house.booking_price;
 
     let costs = {};
@@ -291,13 +291,15 @@ class FormCreator extends React.Component {
                           );
                         })}
                       </Field>
-                      <FormattedMessage
-                        id="adults_from"
-                        defaultMessage="> {age}"
-                        values={{
-                          age: '18' || '18',
-                        }}
-                      />
+                      <div className="age-description">
+                        <FormattedMessage
+                          id="adults_from"
+                          defaultMessage="> {age}"
+                          values={{
+                            age: '18' || '18',
+                          }}
+                        />
+                      </div>
                       {errors.adults && touched.adults && (
                         <div className="error-message">{errors.adults}</div>
                       )}
@@ -315,14 +317,16 @@ class FormCreator extends React.Component {
                           );
                         })}
                       </Field>
-                      <FormattedMessage
-                        id="children_from"
-                        defaultMessage="{from} - {til}"
-                        values={{
-                          from: '3' || '17',
-                          til: '3' || '17',
-                        }}
-                      />
+                      <div className="age-description">
+                        <FormattedMessage
+                          id="children_from"
+                          defaultMessage="{from} - {til}"
+                          values={{
+                            from: '3' || '3',
+                            til: '17' || '17',
+                          }}
+                        />
+                      </div>
                     </div>
                     <div className="form-row inline">
                       <label htmlFor="babies">
@@ -338,13 +342,15 @@ class FormCreator extends React.Component {
                         })}
                       </Field>
                       <div>
-                        <FormattedMessage
-                          id="babies_from"
-                          defaultMessage="< {babies}"
-                          values={{
-                            babies: '2' || '2',
-                          }}
-                        />
+                        <div className="age-description">
+                          <FormattedMessage
+                            id="babies_from"
+                            defaultMessage="< {babies}"
+                            values={{
+                              babies: '2' || '2',
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                     {errors.max_persons && (
@@ -419,6 +425,7 @@ class FormCreator extends React.Component {
                     bookingFields={this.state.bookingFields}
                     errors={errors}
                     Field={Field}
+                    PortalSite={PortalSite}
                   />
                 </div>
 
@@ -725,6 +732,7 @@ FormCreator.propTypes = {
   options: PropTypes.object.isRequired,
   locale: PropTypes.string,
   booking: PropTypes.object.isRequired,
+  PortalSite: PropTypes.object.isRequired,
   onReturn: PropTypes.func.isRequired,
 };
 

@@ -267,6 +267,9 @@
     border-bottom: 1px solid #aeacac;
     padding: 16px;
   }
+#bukazu-app .form-section .age-description {
+      padding: 0 0 0 16px;
+    }
 #bukazu-app .form-sum {
     padding: 16px;
     background: #fff;
@@ -654,7 +657,7 @@
   display: block;
   -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 16px;
+  border-radius: 16px;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
@@ -801,6 +804,68 @@
           max-width: 75ch;
         }
   }
+#bukazu-app #results {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 16px;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+@media screen and (max-width: 992px) {
+#bukazu-app #results {
+    -ms-flex-pack: distribute;
+        justify-content: space-around
+}
+  }
+#bukazu-app #results .bu-paginator {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 8px 16px 0;
+  }
+#bukazu-app #results .bu-paginator .pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    list-style: none;
+  }
+#bukazu-app #results .bu-paginator .pagination li {
+      padding: 8px;
+    }
+#bukazu-app #results .bu-paginator .pagination li a {
+        text-decoration: none;
+      }
+#bukazu-app #results .bu-paginator .pagination li.disabled a {
+          color: rgba(0, 0, 0, 0.5);
+        }
+#bukazu-app #results .bu-paginator .pagination li.active {
+        border: 1px solid var(--bukazu-button);
+      }
+#bukazu-app #results .bu-paginator .pagination li.active a {
+          color: #000 !important;
+        }
+#bukazu-app #results .object-inner {
+  color: rgba(26, 25, 25, 1);
+  border: 1px solid rgba(69, 74, 83, 0.2);
+  border-radius: 5px;
+}
 #bukazu-app #search-page {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -830,9 +895,12 @@
 #bukazu-app .filters-hidden {
         display: none;
     }
-/* &.filters-right {
+#bukazu-app .filters {
+        /* &.filters-right {
             order: 2;
         } */
+        min-width: 300px;
+    }
 #bukazu-app .filters-reload {
             background: var(--bukazu-button);
             border: 0;
@@ -840,6 +908,25 @@
             padding: 4px 8px;
             float: right;
         }
+#bukazu-app .bu-properties {
+        padding: 8px;
+    }
+#bukazu-app .bu-properties ul {
+            list-style: none;
+            margin: 0;
+            padding: 8px 0 16px;
+        }
+#bukazu-app .bu-properties ul li {
+             padding: 4px 0;   
+            }
+#bukazu-app .bu-properties ul li label {
+                 display: -webkit-box;
+                 display: -ms-flexbox;
+                 display: flex;
+                 -webkit-box-align: center;
+                     -ms-flex-align: center;
+                         align-items: center;
+             }
 #bukazu-app .SingleDatePicker, #bukazu-app .SingleDatePickerInput, #bukazu-app .DateInput {
         width: 100%;
         display: block;

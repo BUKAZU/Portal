@@ -10,13 +10,17 @@ class SearchPage extends Component {
     super(props);
     this.state = {
       filters: {},
+      activePage: 1,
     };
     this.onFilterChange = this.onFilterChange.bind(this);
   }
 
   onFilterChange(data) {
     let filters = data;
-    this.setState({ filters });
+    this.setState({
+      filters,
+      activePage: 1,
+    });
   }
 
   render() {
@@ -42,7 +46,11 @@ class SearchPage extends Component {
           onFilterChange={this.onFilterChange}
           options={options}
         />
-        <Results PortalSite={this.props.PortalSite} filters={filters} />
+        <Results
+          PortalSite={this.props.PortalSite}
+          currentPage={this.state.activePage}
+          filters={filters}
+        />
       </div>
     );
   }

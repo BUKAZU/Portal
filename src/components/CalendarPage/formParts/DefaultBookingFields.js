@@ -67,7 +67,7 @@ const DefaultBookingFields = [
     placeholder: '',
   },
   {
-    id: 'mobile',
+    id: 'phone_mobile',
     label: 'Mobiel telefoonnummer',
     type: 'text',
     options: ['text'],
@@ -75,7 +75,7 @@ const DefaultBookingFields = [
     placeholder: '',
   },
   {
-    id: 'telephone',
+    id: 'phone',
     label: 'Telefoonnummer',
     type: 'text',
     options: ['text'],

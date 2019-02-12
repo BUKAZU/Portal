@@ -5,12 +5,37 @@ import { FormattedMessage } from 'react-intl';
 import differenceInCalendarDays from 'date-fns/difference_in_calendar_days';
 import Loading from '../icons/loading.svg';
 import SingleResult from './SingleResult';
-import './Results.css';
+import Paginator from './Paginator';
+
 import { HOUSES_QUERY } from '../../_lib/SearchQueries';
 
 class Results extends Component {
+  constructor(props) {
+    super(props);
+
+    this.pageChange = this.pageChange.bind(this);
+
+    this.state = {
+      limit: 10,
+      skip: 0,
+      activePage: this.props.activePage,
+      totalAmount: 10,
+    };
+  }
+
+  pageChange(pageNumber) {
+    const { limit } = this.state;
+    let newSkip = pageNumber * limit - limit;
+
+    this.setState({
+      activePage: pageNumber,
+      skip: newSkip,
+    });
+  }
+
   render() {
     const { filters, PortalSite } = this.props;
+    const { limit, skip } = this.state;
 
     let min_nights = null;
     if (filters.departure_date && filters.arrival_date) {
@@ -19,6 +44,12 @@ class Results extends Component {
         filters.arrival_date
       );
     }
+    let filterProperties = filters.properties || [];
+    filterProperties = filterProperties.map(e => {
+      return JSON.stringify(e);
+    });
+
+    let properties = filterProperties.join(',');
 
     let variables = {
       id: PortalSite.portal_code,
@@ -32,7 +63,10 @@ class Results extends Component {
       arrival_date: filters.arrival_date,
       no_nights: Number(min_nights) || null,
       extra_search: filters.extra_search,
+      properties,
       weekprice_max: Number(filters.weekprice_max) || null,
+      limit,
+      skip,
     };
 
     return (
@@ -57,7 +91,11 @@ class Results extends Component {
                   : null
               }
             >
-              {' '}
+              <Paginator
+                variables={variables}
+                activePage={this.state.activePage}
+                onPageChange={this.pageChange}
+              />{' '}
               {Results.length === 0 ? (
                 <div className="bu-noresults">
                   <FormattedMessage id="no_results" />
@@ -66,6 +104,11 @@ class Results extends Component {
               {Results.map(result => (
                 <SingleResult key={result.id} result={result} />
               ))}
+              <Paginator
+                variables={variables}
+                activePage={this.state.activePage}
+                onPageChange={this.pageChange}
+              />
             </div>
           );
         }}
@@ -77,6 +120,7 @@ class Results extends Component {
 Results.propTypes = {
   PortalSite: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
+  activePage: PropTypes.number.isRequired,
 };
 
 export default Results;

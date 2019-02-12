@@ -84,6 +84,20 @@ export const BOOKING_PRICE_QUERY = gql`
   ) {
     PortalSite(id: $id) {
       options
+      first_name_label
+      preposition_label
+      last_name_label
+      email_label
+      zipcode_label
+      city_label
+      address_label
+      phone_label
+      phone_mobile_label
+      country_label
+      iban_label
+      holder_label
+      bic_label
+      comment_label
       houses(house_code: $house_id) {
         id
         name

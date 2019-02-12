@@ -44,6 +44,7 @@ class BookingForm extends React.Component {
               house={result}
               options={options}
               booking={this.state.booking}
+              PortalSite={data.PortalSite}
               onReturn={() => {
                 this.props.onReturn(this.props.booking);
               }}
