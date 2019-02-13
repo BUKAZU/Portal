@@ -18,12 +18,12 @@ import nlData from "react-intl/locale-data/nl";
 import deData from "react-intl/locale-data/de";
 import itData from "react-intl/locale-data/it";
 
-import en from "./locales/en.json";
-import nl from "./locales/nl.json";
-import de from "./locales/de.json";
-import fr from "./locales/fr.json";
-import es from "./locales/es.json";
-import it from "./locales/it.json";
+import en from './locales/en.json';
+import nl from './locales/nl.json';
+import de from './locales/de.json';
+import fr from './locales/fr.json';
+import es from './locales/es.json';
+import it from './locales/it.json';
 
 require("dotenv").config();
 
@@ -44,7 +44,7 @@ addLocaleData([
   ...esData,
   ...nlData,
   ...itData,
-  ...deData
+  ...deData,
 ]);
 
 const element = document.getElementById("bukazu-app");

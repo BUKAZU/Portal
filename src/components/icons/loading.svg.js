@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Loading = () => (
   <svg
@@ -11,7 +11,7 @@ const Loading = () => (
     width="24px"
     height="30px"
     viewBox="0 0 24 30"
-    style={{ enableBackground: "new 0 0 50 50" }}
+    style={{ enableBackground: 'new 0 0 50 50' }}
     xmlSpace="preserve"
   >
     <rect x="0" y="10" width="4" height="10" fill="#333" opacity="0.2">

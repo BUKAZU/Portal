@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { FormattedMessage } from "react-intl";
+import PropTypes from 'prop-types';
+import ArrowRight from '../icons/ArrowRight.svg';
+import ArrowLeft from '../icons/ArrowLeft.svg';
+import Reload from '../icons/Reload.svg';
 
 class CalendarHeader extends Component {
   constructor(props) {
@@ -22,22 +25,54 @@ class CalendarHeader extends Component {
   }
 
   render() {
-    return <div className="calendars-header">
-        <div className="col" style={{ textAlign: "center" }} onClick={this.goPrev}>
-        <div className="icon"> <FormattedMessage id="previous" /></div>
-        </div>
-        <div className="col" onClick={this.resetDate} style={{ textAlign: "center" }}>
+    return (
+      <div className="calendars-header">
+        <div
+          className="col"
+          style={{ textAlign: 'center' }}
+          onClick={this.goPrev}
+          onKeyPress={this.goPrev}
+          tabIndex={0}
+          role="button"
+        >
           <div className="icon">
-            <FormattedMessage id="reset" />
+            {' '}
+            <ArrowLeft />
           </div>
         </div>
-        <div className="col" onClick={this.goNext} style={{ textAlign: "center" }}>
+        <div
+          className="col"
+          onClick={this.resetDate}
+          onKeyPress={this.resetDate}
+          style={{ textAlign: 'center' }}
+          tabIndex={0}
+          role="button"
+        >
           <div className="icon">
-            <FormattedMessage id="next" />
+            <Reload />
           </div>
         </div>
-      </div>;
+        <div
+          className="col"
+          onClick={this.goNext}
+          onKeyPress={this.goNext}
+          style={{ textAlign: 'center' }}
+          tabIndex={0}
+          role="button"
+        >
+          <div className="icon">
+            <ArrowRight />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
+
+CalendarHeader.propTypes = {
+  onGoNext: PropTypes.func.isRequired,
+  onGoPrev: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
+};
 
 export default CalendarHeader;

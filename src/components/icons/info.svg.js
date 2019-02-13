@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Icon = () => (
   <svg
@@ -11,8 +11,8 @@ const Icon = () => (
     enableBackground="new 0 0 100 100"
     xmlSpace="preserve"
     style={{
-        height: '24px',
-        widths: '24px'
+      height: '24px',
+      widths: '24px',
     }}
   >
     <path d="M50,5c24.813,0,45,20.187,45,45c0,24.813-20.187,45-45,45C25.187,95,5,74.813,5,50C5,25.187,25.187,5,50,5   M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0L50,0z" />
