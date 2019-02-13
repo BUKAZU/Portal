@@ -26,7 +26,7 @@ build_stage:
   stage: build
   script:
     - npm install
-    - npm run build --mode staging
+    - npm run build:staging
   artifacts:
     paths:
     - build
