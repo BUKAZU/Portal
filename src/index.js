@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
-import { IntlProvider } from 'react-intl';
-import { addLocaleData } from 'react-intl';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./components/App";
+import { IntlProvider } from "react-intl";
+import { addLocaleData } from "react-intl";
 // import registerServiceWorker from './registerServiceWorker';
 
 import { ApolloProvider } from "react-apollo";
@@ -16,7 +16,7 @@ import frData from "react-intl/locale-data/fr";
 import esData from "react-intl/locale-data/es";
 import nlData from "react-intl/locale-data/nl";
 import deData from "react-intl/locale-data/de";
-import itData from 'react-intl/locale-data/it';
+import itData from "react-intl/locale-data/it";
 
 import en from "./locales/en.json";
 import nl from "./locales/nl.json";
@@ -25,14 +25,16 @@ import fr from "./locales/fr.json";
 import es from "./locales/es.json";
 import it from "./locales/it.json";
 
+require("dotenv").config();
+
 const httpLink = createHttpLink({
-    uri: 'https://bukazu.eu/graphql'
-})
+  uri: process.env.DOMAIN
+});
 
 const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache()
-})
+  link: httpLink,
+  cache: new InMemoryCache()
+});
 
 const messages = { en, nl, de, fr, es, it };
 
@@ -45,7 +47,7 @@ addLocaleData([
   ...deData
 ]);
 
-const element = document.getElementById("bukazu-app")
+const element = document.getElementById("bukazu-app");
 const portalCode = element.getAttribute("portal-code");
 const objectCode = element.getAttribute("object-code");
 const locale = element.getAttribute("language");
