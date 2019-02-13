@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const PORTAL_QUERY = gql`
   query PortalSiteQuery($id: ID!) {
@@ -26,9 +26,23 @@ export const PORTAL_QUERY = gql`
       max_nights
       max_persons
       max_weekprice
-      country_label
       country_placeholder
-      region_label
+      categories
+      countries_label
+      country_placeholder
+      regions_label
+      cities_label
+      arrival_date_label
+      departure_date_label
+      max_weekprice_label
+      persons_min_label
+      persons_max_label
+      bedrooms_min_label
+      bathrooms_min_label
+      weekprice_max_label
+      no_nights_label
+      extra_search_label
+      properties_label
     }
   }
 `;
@@ -70,6 +84,20 @@ export const BOOKING_PRICE_QUERY = gql`
   ) {
     PortalSite(id: $id) {
       options
+      first_name_label
+      preposition_label
+      last_name_label
+      email_label
+      zipcode_label
+      city_label
+      address_label
+      phone_label
+      phone_mobile_label
+      country_label
+      iban_label
+      holder_label
+      bic_label
+      comment_label
       houses(house_code: $house_id) {
         id
         name
@@ -93,32 +121,32 @@ export const CREATE_BOOKING_MUTATION = gql`
   mutation CreateBooking(
     $first_name: String!
     $last_name: String!
-    $is_option: Boolean!,
-    $address: String,
-    $zipcode: String,
-    $city: String,
-    $phone: String,
-    $email: String!,
-    $house_code: String!,
-    $portal_code: String,
-    $language: String,
-    $country: String!,
-    $adults: Int!,
-    $children: Int,
-    $babies: Int,
-    $pets: Int,
-    $discount: Int,
-    $damage_insurance: Int,
-    $cancel_insurance: Int,
-    $travel_insurance: Int,
-    $discount_reason: String,
-    $arrival_date: String!,
-    $departure_date: String!,
+    $is_option: Boolean!
+    $address: String
+    $zipcode: String
+    $city: String
+    $phone: String
+    $email: String!
+    $house_code: String!
+    $portal_code: String
+    $language: String
+    $country: String!
+    $adults: Int!
+    $children: Int
+    $babies: Int
+    $pets: Int
+    $discount: Int
+    $damage_insurance: Int
+    $cancel_insurance: Int
+    $travel_insurance: Int
+    $discount_reason: String
+    $arrival_date: String!
+    $departure_date: String!
     $costs: Json
   ) {
     createBooking(
       first_name: $first_name
-      last_name:$last_name
+      last_name: $last_name
       is_option: $is_option
       address: $address
       zipcode: $zipcode
@@ -143,7 +171,6 @@ export const CREATE_BOOKING_MUTATION = gql`
       costs: $costs
     ) {
       booking_nr
-
     }
   }
 `;
