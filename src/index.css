@@ -851,6 +851,7 @@
     }
 #bukazu-app #results .bu-paginator .pagination li a {
         text-decoration: none;
+        color: #000;
       }
 #bukazu-app #results .bu-paginator .pagination li.disabled a {
           color: rgba(0, 0, 0, 0.5);

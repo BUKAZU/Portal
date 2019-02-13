@@ -25,8 +25,13 @@ import fr from './locales/fr.json';
 import es from './locales/es.json';
 import it from './locales/it.json';
 
+let uri = 'https://bukazu.eu/graphql';
+
+if (process.env.NODE_ENV !== 'production') {
+  uri = 'https://stage.bukazu.eu/graphql';
+}
 const httpLink = createHttpLink({
-  uri: 'https://bukazu.eu/graphql',
+  uri,
 });
 
 const client = new ApolloClient({
