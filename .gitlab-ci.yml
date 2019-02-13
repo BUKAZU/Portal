@@ -31,7 +31,7 @@ build_stage:
     paths:
     - build
   only:
-    - master
+    - develop
 
 deploys3:
   image: "python:3.6.6"  # We use python because there is a well-working AWS Sdk
@@ -54,7 +54,7 @@ deployStage:
   only:
     - develop
   dependencies:
-    - build
+    - build_stage
   before_script:
     - pip install awscli # Install the SDK
   script:
