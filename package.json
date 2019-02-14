@@ -68,7 +68,7 @@
     "start-js": "node scripts/start.js",
     "build-js": "node scripts/build.js",
     "build": "npm-run-all build:css build-js",
-    "build:staging": "REACT_APP_ENV=staging npm-run-all build:css build-js",
+    "build:staging": "NODE_ENV=staging npm-run-all build:css build-js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
