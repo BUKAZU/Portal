@@ -6,6 +6,7 @@ stages:
 
 variables:
   BUCKET_NAME: bukazu-portal
+  STAGE_BUCKET_NAME: bukazu-portal-stage
 
 cache:
   paths:
@@ -58,7 +59,7 @@ deployStage:
   before_script:
     - pip install awscli # Install the SDK
   script:
-    - aws s3 cp build s3://${BUCKET_NAME} --recursive
+    - aws s3 cp build s3://${STAGE_BUCKET_NAME} --recursive
   environment:
     name: 'stage'
     url: http://bukazu-portal-stage.s3-website-eu-west-1.amazonaws.com  # This is the url of the bucket we saved before
