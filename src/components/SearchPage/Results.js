@@ -13,29 +13,13 @@ class Results extends Component {
   constructor(props) {
     super(props);
 
-    this.pageChange = this.pageChange.bind(this);
-
     this.state = {
-      limit: 10,
-      skip: 0,
-      activePage: this.props.activePage,
       totalAmount: 10,
     };
   }
 
-  pageChange(pageNumber) {
-    const { limit } = this.state;
-    let newSkip = pageNumber * limit - limit;
-
-    this.setState({
-      activePage: pageNumber,
-      skip: newSkip,
-    });
-  }
-
   render() {
-    const { filters, PortalSite } = this.props;
-    const { limit, skip } = this.state;
+    const { filters, PortalSite, limit, skip } = this.props;
 
     let min_nights = null;
     if (filters.departure_date && filters.arrival_date) {
@@ -93,8 +77,8 @@ class Results extends Component {
             >
               <Paginator
                 variables={variables}
-                activePage={this.state.activePage}
-                onPageChange={this.pageChange}
+                activePage={this.props.activePage}
+                onPageChange={this.props.onPageChange}
               />{' '}
               {Results.length === 0 ? (
                 <div className="bu-noresults">
@@ -106,8 +90,8 @@ class Results extends Component {
               ))}
               <Paginator
                 variables={variables}
-                activePage={this.state.activePage}
-                onPageChange={this.pageChange}
+                activePage={this.props.activePage}
+                onPageChange={this.props.onPageChange}
               />
             </div>
           );
@@ -121,6 +105,10 @@ Results.propTypes = {
   PortalSite: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
   activePage: PropTypes.number.isRequired,
+  locale: PropTypes.string.isRequired,
+  limit: PropTypes.number.isRequired,
+  skip: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default Results;

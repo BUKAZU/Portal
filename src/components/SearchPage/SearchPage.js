@@ -11,21 +11,34 @@ class SearchPage extends Component {
     this.state = {
       filters: {},
       activePage: 1,
+      limit: 10,
+      skip: 0,
     };
     this.onFilterChange = this.onFilterChange.bind(this);
+    this.pageChange = this.pageChange.bind(this);
   }
 
   onFilterChange(data) {
     let filters = data;
     this.setState({
       filters,
-      activePage: 1,
+    });
+    this.pageChange(1);
+  }
+
+  pageChange(pageNumber) {
+    const { limit } = this.state;
+    let newSkip = pageNumber * limit - limit;
+
+    this.setState({
+      activePage: pageNumber,
+      skip: newSkip,
     });
   }
 
   render() {
-    let filters = this.state.filters;
-    const { options } = this.props;
+    const { filters, activePage, limit, skip } = this.state;
+    const { options, locale } = this.props;
 
     return (
       <div
@@ -48,8 +61,12 @@ class SearchPage extends Component {
         />
         <Results
           PortalSite={this.props.PortalSite}
-          currentPage={this.state.activePage}
           filters={filters}
+          activePage={activePage}
+          locale={locale}
+          onPageChange={this.pageChange}
+          skip={skip}
+          limit={limit}
         />
       </div>
     );
@@ -59,6 +76,7 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
   PortalSite: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
+  locale: PropTypes.string.isRequired,
 };
 
 export default SearchPage;

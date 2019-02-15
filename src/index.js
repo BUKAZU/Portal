@@ -50,18 +50,29 @@ addLocaleData([
   ...deData,
 ]);
 
-const element = document.getElementById('bukazu-app');
-const portalCode = element.getAttribute('portal-code');
-const objectCode = element.getAttribute('object-code');
-const locale = element.getAttribute('language');
-window.__localeId__ = locale;
+const elem = document.getElementById('bukazu-app');
+const elements = document.getElementsByClassName('bukazu-app');
+if (elements.length > 0) {
+  for (let element of elements) {
+    runApp(element);
+  }
+} else if (elem) {
+  runApp(elem);
+}
 
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <IntlProvider locale={locale} messages={messages[locale]}>
-      <App portalCode={portalCode} objectCode={objectCode} locale={locale} />
-    </IntlProvider>
-  </ApolloProvider>,
-  element
-);
+function runApp(element) {
+  const portalCode = element.getAttribute('portal-code');
+  const objectCode = element.getAttribute('object-code');
+  const locale = element.getAttribute('language');
+  window.__localeId__ = locale;
+
+  ReactDOM.render(
+    <ApolloProvider client={client}>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <App portalCode={portalCode} objectCode={objectCode} locale={locale} />
+      </IntlProvider>
+    </ApolloProvider>,
+    element
+  );
+}
 // registerServiceWorker()

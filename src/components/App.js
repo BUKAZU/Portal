@@ -15,7 +15,7 @@ class App extends Component {
     const { portalCode, objectCode, locale } = this.props;
 
     return (
-      <Query query={PORTAL_QUERY} variables={{ id: portalCode }}>
+      <Query query={PORTAL_QUERY} variables={{ id: portalCode, locale }}>
         {({ loading, error, data }) => {
           if (loading)
             return (
