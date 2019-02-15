@@ -11,7 +11,7 @@ class SearchPage extends Component {
     this.state = {
       filters: {},
       activePage: 1,
-      limit: 10,
+      limit: Number(this.props.options.filtersForm.no_results),
       skip: 0,
     };
     this.onFilterChange = this.onFilterChange.bind(this);

@@ -19,7 +19,7 @@ class Results extends Component {
   }
 
   render() {
-    const { filters, PortalSite, limit, skip } = this.props;
+    const { filters, PortalSite, limit, skip, locale } = this.props;
 
     let min_nights = null;
     if (filters.departure_date && filters.arrival_date) {
@@ -51,6 +51,7 @@ class Results extends Component {
       weekprice_max: Number(filters.weekprice_max) || null,
       limit,
       skip,
+      locale,
     };
 
     return (
@@ -78,6 +79,7 @@ class Results extends Component {
               <Paginator
                 variables={variables}
                 activePage={this.props.activePage}
+                limit={limit}
                 onPageChange={this.props.onPageChange}
               />{' '}
               {Results.length === 0 ? (
@@ -91,6 +93,7 @@ class Results extends Component {
               <Paginator
                 variables={variables}
                 activePage={this.props.activePage}
+                limit={limit}
                 onPageChange={this.props.onPageChange}
               />
             </div>

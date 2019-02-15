@@ -86,30 +86,32 @@ class Field extends Component {
       },
     });
     if (field.id === 'properties') {
-      // console.log(PortalSite.categories);
+      let requiredCategories = PortalSite.options.filtersForm.categories;
       input = [];
       PortalSite.categories.map(category => {
-        input.push(
-          <div className="bu-properties" key={category.id}>
-            <strong>{category.name}</strong>
-            <ul>
-              {category.properties.map(property => (
-                <li key={property.id}>
-                  <label htmlFor={property.id}>
-                    <input
-                      type="checkbox"
-                      id={property.id}
-                      value={property.id}
-                      checked={properties.includes(property.id)}
-                      onChange={this.handlePropertyChange}
-                    />
-                    {property.name}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
+        if (requiredCategories.includes(category.id)) {
+          input.push(
+            <div className="bu-properties" key={category.id}>
+              <strong>{category.name}</strong>
+              <ul>
+                {category.properties.map(property => (
+                  <li key={property.id}>
+                    <label htmlFor={property.id}>
+                      <input
+                        type="checkbox"
+                        id={property.id}
+                        value={property.id}
+                        checked={properties.includes(property.id)}
+                        onChange={this.handlePropertyChange}
+                      />
+                      {property.name}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
       });
     } else if (field.type === 'select') {
       if (options && ['countries', 'cities', 'regions'].includes(field.id)) {
