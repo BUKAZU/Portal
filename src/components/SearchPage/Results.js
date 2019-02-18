@@ -88,7 +88,11 @@ class Results extends Component {
                 </div>
               ) : null}
               {Results.map(result => (
-                <SingleResult key={result.id} result={result} options={PortalSite.options.filtersForm} />
+                <SingleResult
+                  key={result.id}
+                  result={result}
+                  options={PortalSite.options.filtersForm}
+                />
               ))}
               <Paginator
                 variables={variables}

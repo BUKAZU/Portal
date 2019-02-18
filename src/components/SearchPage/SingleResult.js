@@ -4,7 +4,7 @@ import { FormattedMessage, FormattedNumber } from 'react-intl';
 import ArrowRight from '../icons/ArrowRight.svg';
 
 const SingleResult = ({ result, options }) => {
-  console.log({ options });
+  // console.log({ options });
 
   return (
     <a className="bukazu-result" href={result.house_url}>

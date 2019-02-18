@@ -26,7 +26,10 @@ class Field extends Component {
   }
 
   createNumberArray(max_number) {
-    return Array.apply(null, { length: max_number + 1 }).map(Number.call, Number);
+    return Array.apply(null, { length: max_number + 1 }).map(
+      Number.call,
+      Number
+    );
   }
 
   createPriceArray(max_price) {
