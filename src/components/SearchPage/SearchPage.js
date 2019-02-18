@@ -9,7 +9,7 @@ class SearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filters: {},
+      filters: this.props.filters,
       activePage: 1,
       limit: Number(this.props.options.filtersForm.no_results),
       skip: 0,
@@ -39,7 +39,7 @@ class SearchPage extends Component {
   render() {
     const { filters, activePage, limit, skip } = this.state;
     const { options, locale } = this.props;
-
+    
     return (
       <div
         id="search-page"
@@ -77,6 +77,7 @@ SearchPage.propTypes = {
   PortalSite: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
   locale: PropTypes.string.isRequired,
+  filters: PropTypes.object.isRequired,
 };
 
 export default SearchPage;

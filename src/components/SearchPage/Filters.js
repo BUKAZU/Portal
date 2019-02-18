@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Field from './Field';
 import Reload from '../icons/Reload.svg';
+import { FormattedMessage } from 'react-intl';
 
 class Filters extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Filters extends Component {
     return (
       <React.Fragment>
         <button className={`filters-button ${fixed}`} onClick={this.toggle}>
-          Filters
+          <FormattedMessage id="filters" />
         </button>
         <div className={`${filterClass} ${fixed} ${show}`}>
           <button

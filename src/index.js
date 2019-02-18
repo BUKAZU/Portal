@@ -64,12 +64,25 @@ function runApp(element) {
   const portalCode = element.getAttribute('portal-code');
   const objectCode = element.getAttribute('object-code');
   const locale = element.getAttribute('language');
+  let filters = element.getAttribute('filters');
   window.__localeId__ = locale;
+
+  // console.log({ filters });
+  if (filters) {
+    filters = JSON.parse(filters);
+  } else {
+    filters = {};
+  }
 
   ReactDOM.render(
     <ApolloProvider client={client}>
       <IntlProvider locale={locale} messages={messages[locale]}>
-        <App portalCode={portalCode} objectCode={objectCode} locale={locale} />
+        <App
+          portalCode={portalCode}
+          objectCode={objectCode}
+          locale={locale}
+          filters={filters}
+        />
       </IntlProvider>
     </ApolloProvider>,
     element
