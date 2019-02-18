@@ -26,7 +26,7 @@ class Field extends Component {
   }
 
   createNumberArray(max_number) {
-    return Array.apply(null, { length: max_number }).map(Number.call, Number);
+    return Array.apply(null, { length: max_number + 1 }).map(Number.call, Number);
   }
 
   createPriceArray(max_price) {
@@ -62,8 +62,12 @@ class Field extends Component {
     let options = [];
     if (['countries', 'cities', 'regions'].includes(field.id)) {
       options = PortalSite[field.id];
-    } else if (field.id === 'min_persons') {
+    } else if (field.id === 'persons_min' || field.id === 'persons_max') {
       options = this.createNumberArray(PortalSite.max_persons);
+    } else if (field.id === 'bedrooms_min') {
+      options = this.createNumberArray(PortalSite.max_bedrooms);
+    } else if (field.id === 'bathrooms_min') {
+      options = this.createNumberArray(PortalSite.max_bathrooms);
     } else if (field.id === 'weekprice_max') {
       options = this.createPriceArray(PortalSite.max_weekprice);
     } else {
@@ -228,7 +232,7 @@ class Field extends Component {
           type="number"
           min="0"
           max={
-            field.id === 'min_persons'
+            field.id === 'persons_min'
               ? PortalSite.max_persons
               : PortalSite[field.id]
           }

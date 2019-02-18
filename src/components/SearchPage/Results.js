@@ -40,10 +40,10 @@ class Results extends Component {
       country_id: filters.countries || null,
       region_id: filters.regions || null,
       city_id: filters.cities,
-      persons_min: Number(filters.persons_min),
-      persons_max: Number(filters.persons_max),
-      bedrooms_max: Number(filters.bedrooms_max),
-      bathrooms_max: Number(filters.bathrooms_max),
+      persons_min: Number(filters.persons_min) || null,
+      persons_max: Number(filters.persons_max) || null,
+      bedrooms_min: Number(filters.bedrooms_min),
+      bathrooms_min: Number(filters.bathrooms_min),
       arrival_date: filters.arrival_date,
       no_nights: Number(min_nights) || null,
       extra_search: filters.extra_search,
@@ -88,7 +88,7 @@ class Results extends Component {
                 </div>
               ) : null}
               {Results.map(result => (
-                <SingleResult key={result.id} result={result} />
+                <SingleResult key={result.id} result={result} options={PortalSite.options.filtersForm} />
               ))}
               <Paginator
                 variables={variables}

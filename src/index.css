@@ -710,6 +710,9 @@
         padding: 8px;
         font-weight: bold;
       }
+.bukazu-result-inner .result-place {
+        padding: 4px 8px;
+      }
 .bukazu-result-inner .result-description {
         padding: 8px;
         -webkit-box-flex: 1;

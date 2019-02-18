@@ -40,6 +40,8 @@ export const HOUSES_QUERY = gql`
         description
         image_url
         house_url
+        province
+        city
         minimum_week_price
       }
     }
