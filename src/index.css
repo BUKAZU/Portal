@@ -879,6 +879,20 @@
         -ms-flex-direction: row;
             flex-direction: row;
 }
+#bukazu-app #search-page .filters-button {
+        display: none;
+        background: var(--bukazu-button);
+        padding: 8px;
+        border: 0;
+        font-weight: bold;
+    }
+#bukazu-app #search-page .filters-button.fixed-mobile {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+        }
 #bukazu-app #search-page .filters {
     padding: 16px;
     /* width: 20%; */
@@ -891,9 +905,30 @@
             -ms-flex-direction: column;
                 flex-direction: column;
     }
+        #bukazu-app #search-page .filters-button {
+            display: block;
+        }
     #bukazu-app #search-page .filters {
         width: 100%;
+        display: none;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
     }
+        #bukazu-app #search-page .filters.showOnMobile {
+            display: block
+        }
+        #bukazu-app #search-page .filters.fixed-mobile {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            z-index: 9998;
+            background: #fff;
+            max-height: 75%;
+            overflow-y: auto;
+            -webkit-box-shadow: 0 -5px 8px rgba(0, 0, 0, .25);
+                    box-shadow: 0 -5px 8px rgba(0, 0, 0, .25);
+        }
 
 }
 #bukazu-app .filters-hidden {
