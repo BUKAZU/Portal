@@ -28,7 +28,7 @@ import it from './locales/it.json';
 let uri = 'https://bukazu.eu/graphql';
 
 if (process.env.NODE_ENV !== 'production') {
-  uri = 'https://stage.bukazu.eu/graphql';
+  // uri = 'https://stage.bukazu.eu/graphql';
 }
 const httpLink = createHttpLink({
   uri,

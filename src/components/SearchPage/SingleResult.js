@@ -5,6 +5,7 @@ import ArrowRight from '../icons/ArrowRight.svg';
 
 const SingleResult = ({ result, options }) => {
   // console.log({ options });
+  let thisOptions = options || {};
 
   return (
     <a className="bukazu-result" href={result.house_url}>
@@ -15,26 +16,32 @@ const SingleResult = ({ result, options }) => {
         <div className="result">
           <div className="result-title">{result.name}</div>
           <div className="result-place">
-            {options.showCity && <span>{result.city}, </span>}
-            {options.showRegion && <span>{result.province}</span>}
+            {thisOptions.showCity && <span>{result.city}, </span>}
+            {thisOptions.showRegion && <span>{result.province}, </span>}
+            {thisOptions.showCountry && <span>{result.country_name}</span>}
           </div>
           <div
             className="result-description"
             dangerouslySetInnerHTML={{ __html: result.description }}
           />
           <div className="result-details">
-            {options.showPersons && (
+            {thisOptions.showPersons && (
               <div>
                 {result.persons} <FormattedMessage id="persons" />
               </div>
             )}
-            {options.showBedrooms && (
+            {thisOptions.showBedrooms && (
               <div>
                 {result.bedrooms} <FormattedMessage id="bedrooms" />
               </div>
             )}
+            {thisOptions.showBathrooms && (
+              <div>
+                {result.bathrooms} <FormattedMessage id="bedrooms" />
+              </div>
+            )}
           </div>
-          {options.showPrice && (
+          {thisOptions.showPrice && (
             <div className="result-price">
               <FormattedMessage id="minimum_week_price" />
               <span className="price">

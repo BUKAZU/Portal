@@ -8,10 +8,13 @@ import Results from './Results';
 class SearchPage extends Component {
   constructor(props) {
     super(props);
+    let limit = this.props.options.filtersForm
+      ? Number(this.props.options.filtersForm.no_results)
+      : 20;
     this.state = {
       filters: this.props.filters,
       activePage: 1,
-      limit: Number(this.props.options.filtersForm.no_results),
+      limit,
       skip: 0,
     };
     this.onFilterChange = this.onFilterChange.bind(this);
@@ -39,7 +42,7 @@ class SearchPage extends Component {
   render() {
     const { filters, activePage, limit, skip } = this.state;
     const { options, locale } = this.props;
-    
+
     return (
       <div
         id="search-page"
