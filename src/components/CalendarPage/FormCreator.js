@@ -306,61 +306,68 @@ class FormCreator extends React.Component {
                         <div className="error-message">{errors.adults}</div>
                       )}
                     </div>
-                    <div className="form-row inline">
-                      <label htmlFor="children">
-                        <FormattedMessage id="children" />
-                      </label>
-                      <Field component="select" name="children">
-                        {children.map(opt => {
-                          return (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          );
-                        })}
-                      </Field>
-                      <div className="age-description">
-                        <FormattedMessage
-                          id="children_from"
-                          defaultMessage="{from} - {til}"
-                          values={{
-                            from: options.bookingForm
-                              ? options.bookingForm.children_from || '3'
-                              : '3',
-                            til: options.bookingForm
-                              ? options.bookingForm.children_til || '17'
-                              : '17',
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-row inline">
-                      <label htmlFor="babies">
-                        <FormattedMessage id="babies" />
-                      </label>
-                      <Field component="select" name="babies">
-                        {children.map(opt => {
-                          return (
-                            <option key={opt} value={opt}>
-                              {opt}
-                            </option>
-                          );
-                        })}
-                      </Field>
-                      <div>
+                    {options.bookingForm &&
+                    !options.bookingForm.children ? null : (
+                      <div className="form-row inline">
+                        <label htmlFor="children">
+                          <FormattedMessage id="children" />
+                        </label>
+                        <Field component="select" name="children">
+                          {children.map(opt => {
+                            return (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            );
+                          })}
+                        </Field>
                         <div className="age-description">
                           <FormattedMessage
-                            id="babies_from"
-                            defaultMessage="< {babies}"
+                            id="children_from"
+                            defaultMessage="{from} - {til}"
                             values={{
-                              babies: options.bookingForm
-                                ? options.bookingForm.babies_til || '2'
-                                : '2',
+                              from: options.bookingForm
+                                ? options.bookingForm.children_from || '3'
+                                : '3',
+                              til: options.bookingForm
+                                ? options.bookingForm.children_til || '17'
+                                : '17',
                             }}
                           />
                         </div>
                       </div>
-                    </div>
+                    )}
+
+                    {options.bookingForm &&
+                    !options.bookingForm.babies ? null : (
+                      <div className="form-row inline">
+                        <label htmlFor="babies">
+                          <FormattedMessage id="babies" />
+                        </label>
+                        <Field component="select" name="babies">
+                          {children.map(opt => {
+                            return (
+                              <option key={opt} value={opt}>
+                                {opt}
+                              </option>
+                            );
+                          })}
+                        </Field>
+                        <div>
+                          <div className="age-description">
+                            <FormattedMessage
+                              id="babies_from"
+                              defaultMessage="< {babies}"
+                              values={{
+                                babies: options.bookingForm
+                                  ? options.bookingForm.babies_til || '2'
+                                  : '2',
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                     {errors.max_persons && (
                       <div className="error-message">{errors.max_persons}</div>
                     )}
