@@ -50,7 +50,7 @@ class Paginator extends React.Component {
               </div>
               <Pagination
                 activePage={this.props.activePage}
-                itemsCountPerPage={10}
+                itemsCountPerPage={this.props.limit}
                 totalItemsCount={results.length}
                 pageRangeDisplayed={5}
                 onChange={this.handlePageChange}
@@ -65,6 +65,7 @@ class Paginator extends React.Component {
 
 Paginator.propTypes = {
   activePage: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired,
   variables: PropTypes.object.isRequired,
 };

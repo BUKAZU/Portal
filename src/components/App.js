@@ -12,10 +12,10 @@ import CalendarPage from './CalendarPage/CalendarPage';
 
 class App extends Component {
   render() {
-    const { portalCode, objectCode, locale } = this.props;
+    const { portalCode, objectCode, locale, filters } = this.props;
 
     return (
-      <Query query={PORTAL_QUERY} variables={{ id: portalCode }}>
+      <Query query={PORTAL_QUERY} variables={{ id: portalCode, locale }}>
         {({ loading, error, data }) => {
           if (loading)
             return (
@@ -78,6 +78,7 @@ class App extends Component {
                 PortalSite={PortalSite}
                 locale={locale}
                 options={options}
+                filters={filters}
               />
             );
           }
@@ -91,6 +92,7 @@ App.propTypes = {
   portalCode: PropTypes.string.isRequired,
   objectCode: PropTypes.string,
   locale: PropTypes.string.isRequired,
+  filters: PropTypes.object.isRequired,
 };
 
 export default App;

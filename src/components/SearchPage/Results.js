@@ -13,29 +13,13 @@ class Results extends Component {
   constructor(props) {
     super(props);
 
-    this.pageChange = this.pageChange.bind(this);
-
     this.state = {
-      limit: 10,
-      skip: 0,
-      activePage: this.props.activePage,
       totalAmount: 10,
     };
   }
 
-  pageChange(pageNumber) {
-    const { limit } = this.state;
-    let newSkip = pageNumber * limit - limit;
-
-    this.setState({
-      activePage: pageNumber,
-      skip: newSkip,
-    });
-  }
-
   render() {
-    const { filters, PortalSite } = this.props;
-    const { limit, skip } = this.state;
+    const { filters, PortalSite, limit, skip, locale } = this.props;
 
     let min_nights = null;
     if (filters.departure_date && filters.arrival_date) {
@@ -56,10 +40,10 @@ class Results extends Component {
       country_id: filters.countries || null,
       region_id: filters.regions || null,
       city_id: filters.cities,
-      persons_min: Number(filters.persons_min),
-      persons_max: Number(filters.persons_max),
-      bedrooms_max: Number(filters.bedrooms_max),
-      bathrooms_max: Number(filters.bathrooms_max),
+      persons_min: Number(filters.persons_min) || null,
+      persons_max: Number(filters.persons_max) || null,
+      bedrooms_min: Number(filters.bedrooms_min),
+      bathrooms_min: Number(filters.bathrooms_min),
       arrival_date: filters.arrival_date,
       no_nights: Number(min_nights) || null,
       extra_search: filters.extra_search,
@@ -67,6 +51,7 @@ class Results extends Component {
       weekprice_max: Number(filters.weekprice_max) || null,
       limit,
       skip,
+      locale,
     };
 
     return (
@@ -93,8 +78,9 @@ class Results extends Component {
             >
               <Paginator
                 variables={variables}
-                activePage={this.state.activePage}
-                onPageChange={this.pageChange}
+                activePage={this.props.activePage}
+                limit={limit}
+                onPageChange={this.props.onPageChange}
               />{' '}
               {Results.length === 0 ? (
                 <div className="bu-noresults">
@@ -102,12 +88,17 @@ class Results extends Component {
                 </div>
               ) : null}
               {Results.map(result => (
-                <SingleResult key={result.id} result={result} />
+                <SingleResult
+                  key={result.id}
+                  result={result}
+                  options={PortalSite.options.filtersForm}
+                />
               ))}
               <Paginator
                 variables={variables}
-                activePage={this.state.activePage}
-                onPageChange={this.pageChange}
+                activePage={this.props.activePage}
+                limit={limit}
+                onPageChange={this.props.onPageChange}
               />
             </div>
           );
@@ -121,6 +112,10 @@ Results.propTypes = {
   PortalSite: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
   activePage: PropTypes.number.isRequired,
+  locale: PropTypes.string.isRequired,
+  limit: PropTypes.number.isRequired,
+  skip: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
 };
 
 export default Results;

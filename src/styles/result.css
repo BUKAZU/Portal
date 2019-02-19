@@ -43,6 +43,9 @@
         padding: 8px;
         font-weight: bold;
       }
+      &-place {
+        padding: 4px 8px;
+      }
       &-description {
         padding: 8px;
         flex: 1;

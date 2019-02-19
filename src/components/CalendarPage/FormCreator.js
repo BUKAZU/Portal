@@ -190,7 +190,7 @@ class FormCreator extends React.Component {
   render() {
     const adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
-    const { house, locale, PortalSite } = this.props;
+    const { house, locale, PortalSite, options } = this.props;
     const bookingPrice = house.booking_price;
 
     let costs = {};
@@ -296,7 +296,9 @@ class FormCreator extends React.Component {
                           id="adults_from"
                           defaultMessage="> {age}"
                           values={{
-                            age: '18' || '18',
+                            age: options.bookingForm
+                              ? options.bookingForm.adults_from || '18'
+                              : '18',
                           }}
                         />
                       </div>
@@ -322,8 +324,12 @@ class FormCreator extends React.Component {
                           id="children_from"
                           defaultMessage="{from} - {til}"
                           values={{
-                            from: '3' || '3',
-                            til: '17' || '17',
+                            from: options.bookingForm
+                              ? options.bookingForm.children_from || '3'
+                              : '3',
+                            til: options.bookingForm
+                              ? options.bookingForm.children_til || '17'
+                              : '17',
                           }}
                         />
                       </div>
@@ -347,7 +353,9 @@ class FormCreator extends React.Component {
                             id="babies_from"
                             defaultMessage="< {babies}"
                             values={{
-                              babies: '2' || '2',
+                              babies: options.bookingForm
+                                ? options.bookingForm.babies_til || '2'
+                                : '2',
                             }}
                           />
                         </div>
