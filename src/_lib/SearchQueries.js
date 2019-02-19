@@ -36,12 +36,14 @@ export const HOUSES_QUERY = gql`
         id
         name
         persons
+        bathrooms
         bedrooms
         description
         image_url
         house_url
         province
         city
+        country_name
         minimum_week_price
       }
     }
