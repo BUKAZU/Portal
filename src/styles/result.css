@@ -118,7 +118,7 @@
       }
       .result {
         &-description {
-          max-width: 75ch;
+          max-width: 90ch;
         }
       }
     }
