@@ -664,6 +664,7 @@
 .bukazu-result:hover {
     -webkit-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
             box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
   }
 .bukazu-result-inner {
     overflow: hidden;
@@ -705,6 +706,8 @@
           -ms-flex-direction: column;
               flex-direction: column;
       font-size: 14px;
+      background: #fff;
+      text-decoration: none;
     }
 .bukazu-result-inner .result-title {
         padding: 8px;
@@ -804,7 +807,7 @@
           height: auto;
         }
         .list .bukazu-result .bukazu-result-inner .result-description {
-          max-width: 75ch;
+          max-width: 90ch;
         }
   }
 #bukazu-app #results {

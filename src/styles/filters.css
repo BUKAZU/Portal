@@ -86,5 +86,6 @@
     .SingleDatePicker, .SingleDatePickerInput, .DateInput {
         width: 100%;
         display: block;
+        background: rgba(0, 0, 0, 0);
     }
 }
