@@ -972,6 +972,7 @@
 #bukazu-app .SingleDatePicker, #bukazu-app .SingleDatePickerInput, #bukazu-app .DateInput {
         width: 100%;
         display: block;
+        background: rgba(0, 0, 0, 0);
     }
 #bukazu-app #search-page.bu-reverse {
       -webkit-box-orient: horizontal;

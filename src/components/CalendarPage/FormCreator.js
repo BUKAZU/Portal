@@ -188,12 +188,13 @@ class FormCreator extends React.Component {
   }
 
   render() {
-    const adults = this.createPeronsArray(this.state.max_persons);
+    let adults = this.createPeronsArray(this.state.max_persons);
     const children = this.createPeronsArray(this.state.max_persons - 1);
     const { house, locale, PortalSite, options } = this.props;
     const bookingPrice = house.booking_price;
 
     let costs = {};
+    adults.splice(0, 1)
 
     for (const val of bookingPrice.optional_house_costs) {
       costs[val.id] = '0';
