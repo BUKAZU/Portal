@@ -88,4 +88,5 @@ function runApp(element) {
     element
   );
 }
+
 // registerServiceWorker()

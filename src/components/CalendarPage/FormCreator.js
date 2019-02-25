@@ -194,7 +194,7 @@ class FormCreator extends React.Component {
     const bookingPrice = house.booking_price;
 
     let costs = {};
-    adults.splice(0, 1)
+    adults.splice(0, 1);
 
     for (const val of bookingPrice.optional_house_costs) {
       costs[val.id] = '0';
