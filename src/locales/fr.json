@@ -1,5 +1,4 @@
 {
-    "next": "pijltje",
     "previous": "pijltje",
     "price": "Prix",
     "calculate": "Calculez votre prix",
@@ -29,7 +28,7 @@
     "arrival": "Arrivée",
     "departure": "Départ",
     "extra_costs_bookable": "Frais supplémentaires",
-    "costs_on_site": "Les frais supplémentaires seront facturés et à payer sur place. Ces frais s'ajoutent au montant calculé ci-dessus.",
+    "costs_on_site": "Frais supplémentaires possibles sur place:",
     "insurances": "Insurances",
     "at_least_1_adult": "Choisissez au moins 1 adulte.",
     "max_persons_reached": "Trop de personnes ont été sélectionnées.",
@@ -38,14 +37,12 @@
     "cancel_insurance_all_risk": "All Risk",
     "cancel_insurance_normal": "Standard",
     "none": "None",
-    "damage_insurance": null,
     "cancel_insurance": "Cancellation insurance",
-    "travel_insurance": null,
     "insurance_costs": "Insurance Costs",
     "choose": "Choose",
     "yes": "Yes",
     "booking_details": "Détails de la réservation",
-    "based_on_one_person": "Basé sur 2 personne",
+    "based_on_one_person": "Base 2 personnes",
     "return_to_calendar": "Retour au calendrier",
     "close": "Fermer",
     "cancel_insurance_normal_long": "Standard Cancellation Insurance",
@@ -56,8 +53,6 @@
     "terms_and_costs": "Premiums and Conditions",
     "costs_normal_cancel_insurance": "Standard Cancellation Insurance Premium:",
     "costs_allrisk_cancel_insurance": "All Risk Cancellation Insurance Premium:",
-    "228_ppd": null,
-    "181_costs": null,
     "666_costs": "6.66% of the travel costs",
     "847_costs": "8.47% of the travel costs",
     "more_information": "More information:",
@@ -78,5 +73,7 @@
     "minimum_week_price": "min. prix hebdomadaire",
     "no_results": "Aucun résultat",
     "agree_with": "En cliquant maintenant sur 'Réservation définitive', vous adhérez aux",
-    "discount_reason": "Raison réduction."
+    "discount_reason": "Raison réduction.",
+    "results": "résultats",
+    "bathrooms": "salle de bain"
 }
