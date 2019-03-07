@@ -139,7 +139,8 @@
     .booked {
       background: #ea2b1f;
       background: var(--bukazu-booked);
-      color: #fff;
+      color: #000;
+      /* filter: invert(100%) */
     }
   }
   .legend {
