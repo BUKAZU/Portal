@@ -4,6 +4,7 @@ import './index.css';
 import App from './components/App';
 import { IntlProvider } from 'react-intl';
 import { addLocaleData } from 'react-intl';
+import 'react-app-polyfill/ie11';
 // import registerServiceWorker from './registerServiceWorker';
 
 import { ApolloProvider } from 'react-apollo';
