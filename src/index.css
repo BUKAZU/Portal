@@ -7,16 +7,15 @@
         -ms-flex-direction: row;
             flex-direction: row;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+        justify-content: space-around
   }
-    @media screen and (max-width: 992px) {#bukazu-app .calendars-header {
+  @media screen and (max-width: 992px) {
       /* flex-direction: column; */
-  }
       #bukazu-app .calendars-header .col {
         margin: 4px 8px;
       }
     }
-    #bukazu-app .calendars-header .col .icon {
+  #bukazu-app .calendars-header .col .icon {
         padding: 8px 40px;
         background: rgba(23, 190, 187, 0.75);
         -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
@@ -32,10 +31,10 @@
             -ms-flex-pack: center;
                 justify-content: center;
       }
-    #bukazu-app .calendars-header .col .icon svg {
+  #bukazu-app .calendars-header .col .icon svg {
           height: 18px;
         }
-    #bukazu-app .calendars-header .col .icon:hover {
+  #bukazu-app .calendars-header .col .icon:hover {
           -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
                   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
         }
@@ -68,7 +67,7 @@
       display: flex;
       -webkit-box-flex: 1;
           -ms-flex: 1 1;
-              flex: 1 1;
+              flex: 1 1
     }
   #bukazu-app .calendar .row.days {
         border-bottom: 1px solid rgba(211, 211, 211, 0.5);
@@ -172,7 +171,7 @@
     display: flex;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 8px 16px;
+    padding: 8px 16px
   }
   @media screen and (max-width: 992px) {
   #bukazu-app .legend {
@@ -186,10 +185,10 @@
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
-      padding: 0 16px;
+      padding: 0 16px
     }
   @media screen and (max-width: 992px) {
-  #bukazu-app .legend > div {
+    #bukazu-app .legend > div {
         padding: 4px 8px
     }
       }
@@ -197,7 +196,7 @@
       display: block;
       width: 16px;
       height: 16px;
-      margin: 0 8px 0 0;
+      margin: 0 8px 0 0
     }
   #bukazu-app .legend-field.booked {
         background: var(--bukazu-booked);
@@ -221,7 +220,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  position: relative;
+  position: relative
 }
 @media screen and (max-width: 992px) {
 #bukazu-app .form {
@@ -250,10 +249,10 @@
     padding-bottom: 4px;
   }
 #bukazu-app .form-content {
-    width: 70%;
+    width: 70%
   }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-content {
+  #bukazu-app .form-content {
       width: 100%
   }
     }
@@ -282,10 +281,10 @@
     min-width: 400px;
     max-width: 500px;
     -ms-flex-item-align: start;
-        align-self: flex-start;
+        align-self: flex-start
   }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-sum {
+  #bukazu-app .form-sum {
       min-width: 100%
   }
     }
@@ -295,10 +294,10 @@
     }
 #bukazu-app .form-sum .house-details img {
         padding: 16px 0;
-        height: 200px;
+        height: 200px
       }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-sum .house-details img {
+      #bukazu-app .form-sum .house-details img {
           max-width: 100%;
           height: auto
       }
@@ -380,7 +379,7 @@
         font: inherit;
         cursor: pointer;
         outline: inherit;
-        color: var(--bukazu-button);
+        color: var(--bukazu-button)
       }
 #bukazu-app .form-sum .terms button:hover {
           -webkit-box-shadow: none;
@@ -394,7 +393,7 @@
       color: #fff;
       font-size: 20px;
       background: var(--bukazu-button_cta);
-      cursor: pointer;
+      cursor: pointer
     }
 #bukazu-app .form-sum button:hover {
         -webkit-box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.25);
@@ -412,10 +411,10 @@
   }
 #bukazu-app .form-row select,
     #bukazu-app .form-row input {
-      max-width: 40%;
+      max-width: 40%
     }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-row select,
+    #bukazu-app .form-row select,
     #bukazu-app .form-row input {
         max-width: none
     }
@@ -434,17 +433,17 @@
       /* justify-content: space-between; */
       -ms-flex-wrap: wrap;
           flex-wrap: wrap;
-      width: 100%;
+      width: 100%
     }
 #bukazu-app .form-row.inline.hidden {
         display: none;
       }
 #bukazu-app .form-row.inline label {
         width: 30%;
-        font-size: 16px;
+        font-size: 16px
       }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-row.inline label {
+      #bukazu-app .form-row.inline label {
           width: auto
       }
         }
@@ -452,10 +451,10 @@
       #bukazu-app .form-row.inline input {
         width: auto;
         min-width: 150px;
-        padding: 8px 64px 8px 16px;
+        padding: 8px 64px 8px 16px
       }
 @media screen and (max-width: 992px) {
-#bukazu-app .form-row.inline select,
+      #bukazu-app .form-row.inline select,
       #bukazu-app .form-row.inline input {
           -webkit-box-ordinal-group: 4;
               -ms-flex-order: 3;
@@ -479,7 +478,7 @@
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+      flex-wrap: wrap
 }
 @media screen and (max-width: 992px) {
 .price-overview {
@@ -496,14 +495,14 @@
     text-align: left;
   }
 .price-overview tr {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25)
   }
 .price-overview tr.hidden {
       display: none;
     }
 .price-overview td {
     padding: 4px;
-    width: 50%;
+    width: 50%
   }
 .price-overview td.price {
       text-align: right;
@@ -544,10 +543,10 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding: 16px;
+    padding: 16px
   }
 @media screen and (max-width: 992px) {
-.price-overview--build {
+  .price-overview--build {
       padding: 16px 0;
       min-height: 0px
   }
@@ -598,10 +597,10 @@
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center;
+            align-items: center
   }
 @media screen and (max-width: 992px) {
-.price-overview--book {
+  .price-overview--book {
       padding: 16px 0
   }
     }
@@ -624,7 +623,7 @@
       font-size: 20px;
       -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
               box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
-      cursor: pointer;
+      cursor: pointer
     }
 .price-overview--book .button:hover {
         -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
@@ -660,7 +659,7 @@
           box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
   -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease
 }
 .bukazu-result:hover {
     -webkit-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
@@ -790,7 +789,7 @@
           }
 @media screen and (min-width: 992px) {
 .list .bukazu-result {
-    width: 100%
+    width: 100%;
 }
     .list .bukazu-result .bukazu-result-inner {
       -webkit-box-orient: horizontal;
@@ -826,7 +825,7 @@
       -ms-flex-align: stretch;
           align-items: stretch;
   -ms-flex-line-pack: start;
-      align-content: flex-start;
+      align-content: flex-start
 }
 @media screen and (max-width: 992px) {
 #bukazu-app #results {
@@ -888,7 +887,7 @@
         background: var(--bukazu-button);
         padding: 8px;
         border: 0;
-        font-weight: bold;
+        font-weight: bold
     }
 #bukazu-app #search-page .filters-button.fixed-mobile {
             position: fixed;
@@ -916,7 +915,7 @@
         width: 100%;
         display: none;
         -webkit-transition: all 0.3s ease;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease
     }
         #bukazu-app #search-page .filters.showOnMobile {
             display: block
@@ -1045,10 +1044,10 @@
     display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center;
+            align-items: center
   }
 @media screen and (max-width: 992px) {
-#bukazu-app .backdrop {
+  #bukazu-app .backdrop {
       padding: 50px 16px
   }
     }

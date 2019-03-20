@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import '@babel/polyfill';
+
 import Portal from 'bukazu-portal-react';
 import 'bukazu-portal-react/build/index.css';
 
