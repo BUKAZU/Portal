@@ -10,6 +10,7 @@
   transition: all 0.5s ease;
   &:hover {
     box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
   }
   &-inner {
     overflow: hidden;
@@ -39,6 +40,8 @@
       display: flex;
       flex-direction: column;
       font-size: 14px;
+      background: #fff;
+      text-decoration: none;      
       &-title {
         padding: 8px;
         font-weight: bold;
@@ -117,7 +120,7 @@
       }
       .result {
         &-description {
-          max-width: 75ch;
+          max-width: 90ch;
         }
       }
     }

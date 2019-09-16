@@ -98,6 +98,7 @@ export const BOOKING_PRICE_QUERY = gql`
       holder_label
       bic_label
       comment_label
+      company_name_label
       houses(house_code: $house_id) {
         id
         name

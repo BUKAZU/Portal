@@ -37,7 +37,7 @@ const SingleResult = ({ result, options }) => {
             )}
             {thisOptions.showBathrooms && (
               <div>
-                {result.bathrooms} <FormattedMessage id="bedrooms" />
+                {result.bathrooms} <FormattedMessage id="bathrooms" />
               </div>
             )}
           </div>
