@@ -58,7 +58,6 @@ purge_cache:
     - develop
   dependencies:
     - build
-    - deploys3
   script:
     - >
       curl -s -X DELETE
