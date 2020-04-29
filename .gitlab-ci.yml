@@ -58,7 +58,7 @@ purge_cache:
   only:
     - develop
   dependencies:
-    - deploy
+    - deployStage
   script:
     - >
       curl -s -X POST
