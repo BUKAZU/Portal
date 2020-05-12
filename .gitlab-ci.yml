@@ -60,7 +60,7 @@ purge_cache:
   dependencies:
     - deployStage
   script:
-    - echo $CLOUDFLARE_AUTH_EMAIL
+    - export
     - >
       curl -s -X POST
       https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache
