@@ -60,7 +60,6 @@ purge_cache:
   dependencies:
     - deployStage
   script:
-    - export
     - >
       curl -s -X DELETE
       "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache"
