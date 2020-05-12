@@ -58,7 +58,7 @@ purge_cache:
   only:
     - master
   dependencies:
-    - deploy
+    - deploys3
   script:
     - >
       curl -s -X DELETE
