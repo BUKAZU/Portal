@@ -56,9 +56,9 @@ purge_cache:
   image: "python:3.6.6"  # We use python because there is a well-working AWS Sdk
   stage: purge_cache
   only:
-    - develop
+    - master
   dependencies:
-    - deployStage
+    - deploy
   script:
     - >
       curl -s -X DELETE
