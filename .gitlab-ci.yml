@@ -62,10 +62,10 @@ purge_cache:
   script:
     - export
     - >
-      curl -s -X POST
-      https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache
-      -H X-Auth-Email: "$CLOUDFLARE_AUTH_EMAIL"
-      -H X-Auth-Key: "$CLOUDFLARE_AUTH_KEY"
+      curl -s -X DELETE
+      "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache"
+      -H "X-Auth-Email: $CLOUDFLARE_AUTH_EMAIL"
+      -H "X-Auth-Key: $CLOUDFLARE_AUTH_KEY"
       -H "Content-Type: application/json"
       --data '{"purge_everything":true}'
 
