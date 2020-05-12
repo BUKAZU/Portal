@@ -3,6 +3,7 @@ image: node:latest
 stages:
   - build
   - deploy
+  - purge_cache
 
 variables:
   BUCKET_NAME: bukazu-portal
@@ -53,11 +54,11 @@ deploys3:
 
 purge_cache:
   image: "python:3.6.6"  # We use python because there is a well-working AWS Sdk
-  stage: deploy
+  stage: purge_cache
   only:
-    - develop
+    - master
   dependencies:
-    - build
+    - deploys3
   script:
     - >
       curl -s -X DELETE
