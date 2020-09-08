@@ -17,7 +17,7 @@ build:
   stage: build
   script:
     - npm install
-    # - npm update bukazu-portal-react
+    - npm install bukazu-portal-react@latest
     - npm run build
   artifacts:
     paths:
@@ -29,7 +29,7 @@ build_stage:
   stage: build
   script:
     - npm install
-    # - npm update bukazu-portal-react
+    - npm install bukazu-portal-react@latest
     - npm run build:staging
   artifacts:
     paths:
