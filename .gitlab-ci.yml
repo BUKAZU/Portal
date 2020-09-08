@@ -11,7 +11,7 @@ variables:
 
 cache:
   paths:
-    - node_modules/
+    # - node_modules/
 
 build:
   stage: build
