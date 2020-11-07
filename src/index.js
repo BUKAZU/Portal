@@ -47,7 +47,12 @@ function runTheApp() {
 }
 
 function runApp(element) {
-  const portalCode = element.getAttribute('portal-code');
+  const portalCode = element.getAttribute('portal-code');u-backend:~/sites/reactPortal$ npm run build
+
+> bukazu.react-portal@1.0.1 build /home/bob/sites/reactPortal
+> npm-run-all build-js
+
+
   const objectCode = element.getAttribute('object-code');
   const pageType = element.getAttribute('page');
   const locale = element.getAttribute('language');
